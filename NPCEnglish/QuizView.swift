@@ -58,7 +58,10 @@ struct QuizView: View {
 
     private var header: some View {
         HStack {
-            Text("Счёт: \(viewModel.score)/\(viewModel.total)")
+            Text("✅ \(viewModel.correctAnswers)")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Text("❌ \(viewModel.wrongAnswers)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Spacer()

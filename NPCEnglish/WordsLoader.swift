@@ -10,7 +10,7 @@ import Foundation
 
 enum WordsLoader {
     /// Загружает слова из words.json, добавленного в таргет приложения.
-    static func loadWords(from fileName: String = "words") -> [Word] {
+    static func loadWords(from fileName: String = "wordsA1") -> [Word] {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
             print("⚠️ Не найден файл \(fileName).json в бандле")
             return []

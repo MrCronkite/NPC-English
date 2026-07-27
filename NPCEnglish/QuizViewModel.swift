@@ -18,16 +18,29 @@ final class QuizViewModel: ObservableObject {
     @Published var selectedOption: Word?
     @Published var isAnswered = false
 
-    @Published var score = 0
-    @Published var total = 0
+    @Published var correctAnswers = 0
+    @Published var wrongAnswers = 0
 
     init(words: [Word] = WordsLoader.loadWords()) {
         self.allWords = words
         nextQuestion()
     }
 
+    var totalQuestions: Int {
+        correctAnswers + wrongAnswers
+    }
+
+    var accuracy: Int {
+        guard totalQuestions > 0 else { return 0 }
+        return correctAnswers * 100 / totalQuestions
+    }
+
     var isCorrect: Bool {
-        guard let selected = selectedOption, let current = currentWord else { return false }
+        guard let selected = selectedOption,
+              let current = currentWord else {
+            return false
+        }
+
         return selected.id == current.id
     }
 
@@ -44,20 +57,24 @@ final class QuizViewModel: ObservableObject {
         let word = allWords.randomElement()!
         currentWord = word
 
-        var wrongOptions = allWords.filter { $0.id != word.id }
-        wrongOptions.shuffle()
-        let wrongThree = Array(wrongOptions.prefix(3))
+        let wrongOptions = allWords
+            .filter { $0.id != word.id }
+            .shuffled()
+            .prefix(3)
 
-        options = (wrongThree + [word]).shuffled()
+        options = (Array(wrongOptions) + [word]).shuffled()
     }
 
     func select(_ option: Word) {
         guard !isAnswered else { return }
+
         selectedOption = option
         isAnswered = true
-        total += 1
+
         if option.id == currentWord?.id {
-            score += 1
+            correctAnswers += 1
+        } else {
+            wrongAnswers += 1
         }
     }
 }

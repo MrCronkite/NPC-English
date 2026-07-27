@@ -1,0 +1,5002 @@
+[
+  {
+    "id": 1,
+    "english": "I",
+    "translation": "я"
+  },
+  {
+    "id": 2,
+    "english": "you",
+    "translation": "ты"
+  },
+  {
+    "id": 3,
+    "english": "he",
+    "translation": "он"
+  },
+  {
+    "id": 4,
+    "english": "she",
+    "translation": "она"
+  },
+  {
+    "id": 5,
+    "english": "it",
+    "translation": "это"
+  },
+  {
+    "id": 6,
+    "english": "we",
+    "translation": "мы"
+  },
+  {
+    "id": 7,
+    "english": "they",
+    "translation": "они"
+  },
+  {
+    "id": 8,
+    "english": "this",
+    "translation": "этот"
+  },
+  {
+    "id": 9,
+    "english": "that",
+    "translation": "тот"
+  },
+  {
+    "id": 10,
+    "english": "these",
+    "translation": "эти"
+  },
+  {
+    "id": 11,
+    "english": "those",
+    "translation": "те"
+  },
+  {
+    "id": 12,
+    "english": "my",
+    "translation": "мой"
+  },
+  {
+    "id": 13,
+    "english": "your",
+    "translation": "твой"
+  },
+  {
+    "id": 14,
+    "english": "his",
+    "translation": "его"
+  },
+  {
+    "id": 15,
+    "english": "her",
+    "translation": "её"
+  },
+  {
+    "id": 16,
+    "english": "its",
+    "translation": "его/её"
+  },
+  {
+    "id": 17,
+    "english": "our",
+    "translation": "наш"
+  },
+  {
+    "id": 18,
+    "english": "their",
+    "translation": "их"
+  },
+  {
+    "id": 19,
+    "english": "who",
+    "translation": "кто"
+  },
+  {
+    "id": 20,
+    "english": "what",
+    "translation": "что"
+  },
+  {
+    "id": 21,
+    "english": "where",
+    "translation": "где"
+  },
+  {
+    "id": 22,
+    "english": "when",
+    "translation": "когда"
+  },
+  {
+    "id": 23,
+    "english": "why",
+    "translation": "почему"
+  },
+  {
+    "id": 24,
+    "english": "how",
+    "translation": "как"
+  },
+  {
+    "id": 25,
+    "english": "yes",
+    "translation": "да"
+  },
+  {
+    "id": 26,
+    "english": "no",
+    "translation": "нет"
+  },
+  {
+    "id": 27,
+    "english": "and",
+    "translation": "и"
+  },
+  {
+    "id": 28,
+    "english": "or",
+    "translation": "или"
+  },
+  {
+    "id": 29,
+    "english": "but",
+    "translation": "но"
+  },
+  {
+    "id": 30,
+    "english": "because",
+    "translation": "потому что"
+  },
+  {
+    "id": 31,
+    "english": "if",
+    "translation": "если"
+  },
+  {
+    "id": 32,
+    "english": "so",
+    "translation": "поэтому"
+  },
+  {
+    "id": 33,
+    "english": "then",
+    "translation": "тогда"
+  },
+  {
+    "id": 34,
+    "english": "also",
+    "translation": "также"
+  },
+  {
+    "id": 35,
+    "english": "very",
+    "translation": "очень"
+  },
+  {
+    "id": 36,
+    "english": "too",
+    "translation": "тоже"
+  },
+  {
+    "id": 37,
+    "english": "only",
+    "translation": "только"
+  },
+  {
+    "id": 38,
+    "english": "just",
+    "translation": "просто"
+  },
+  {
+    "id": 39,
+    "english": "again",
+    "translation": "снова"
+  },
+  {
+    "id": 40,
+    "english": "always",
+    "translation": "всегда"
+  },
+  {
+    "id": 41,
+    "english": "never",
+    "translation": "никогда"
+  },
+  {
+    "id": 42,
+    "english": "sometimes",
+    "translation": "иногда"
+  },
+  {
+    "id": 43,
+    "english": "often",
+    "translation": "часто"
+  },
+  {
+    "id": 44,
+    "english": "here",
+    "translation": "здесь"
+  },
+  {
+    "id": 45,
+    "english": "there",
+    "translation": "там"
+  },
+  {
+    "id": 46,
+    "english": "now",
+    "translation": "сейчас"
+  },
+  {
+    "id": 47,
+    "english": "with",
+    "translation": "с"
+  },
+  {
+    "id": 48,
+    "english": "without",
+    "translation": "без"
+  },
+  {
+    "id": 49,
+    "english": "in",
+    "translation": "в"
+  },
+  {
+    "id": 50,
+    "english": "on",
+    "translation": "на"
+  },
+  {
+    "id": 51,
+    "english": "at",
+    "translation": "у/в"
+  },
+  {
+    "id": 52,
+    "english": "under",
+    "translation": "под"
+  },
+  {
+    "id": 53,
+    "english": "over",
+    "translation": "над"
+  },
+  {
+    "id": 54,
+    "english": "near",
+    "translation": "около"
+  },
+  {
+    "id": 55,
+    "english": "far",
+    "translation": "далеко"
+  },
+  {
+    "id": 56,
+    "english": "between",
+    "translation": "между"
+  },
+  {
+    "id": 57,
+    "english": "in front of",
+    "translation": "перед"
+  },
+  {
+    "id": 58,
+    "english": "behind",
+    "translation": "позади"
+  },
+  {
+    "id": 59,
+    "english": "up",
+    "translation": "вверх"
+  },
+  {
+    "id": 60,
+    "english": "down",
+    "translation": "вниз"
+  },
+  {
+    "id": 61,
+    "english": "left",
+    "translation": "налево"
+  },
+  {
+    "id": 62,
+    "english": "right",
+    "translation": "направо"
+  },
+  {
+    "id": 63,
+    "english": "zero",
+    "translation": "ноль"
+  },
+  {
+    "id": 64,
+    "english": "one",
+    "translation": "один"
+  },
+  {
+    "id": 65,
+    "english": "two",
+    "translation": "два"
+  },
+  {
+    "id": 66,
+    "english": "three",
+    "translation": "три"
+  },
+  {
+    "id": 67,
+    "english": "four",
+    "translation": "четыре"
+  },
+  {
+    "id": 68,
+    "english": "five",
+    "translation": "пять"
+  },
+  {
+    "id": 69,
+    "english": "six",
+    "translation": "шесть"
+  },
+  {
+    "id": 70,
+    "english": "seven",
+    "translation": "семь"
+  },
+  {
+    "id": 71,
+    "english": "eight",
+    "translation": "восемь"
+  },
+  {
+    "id": 72,
+    "english": "nine",
+    "translation": "девять"
+  },
+  {
+    "id": 73,
+    "english": "ten",
+    "translation": "десять"
+  },
+  {
+    "id": 74,
+    "english": "eleven",
+    "translation": "одиннадцать"
+  },
+  {
+    "id": 75,
+    "english": "twelve",
+    "translation": "двенадцать"
+  },
+  {
+    "id": 76,
+    "english": "thirteen",
+    "translation": "тринадцать"
+  },
+  {
+    "id": 77,
+    "english": "fourteen",
+    "translation": "четырнадцать"
+  },
+  {
+    "id": 78,
+    "english": "fifteen",
+    "translation": "пятнадцать"
+  },
+  {
+    "id": 79,
+    "english": "sixteen",
+    "translation": "шестнадцать"
+  },
+  {
+    "id": 80,
+    "english": "seventeen",
+    "translation": "семнадцать"
+  },
+  {
+    "id": 81,
+    "english": "eighteen",
+    "translation": "восемнадцать"
+  },
+  {
+    "id": 82,
+    "english": "nineteen",
+    "translation": "девятнадцать"
+  },
+  {
+    "id": 83,
+    "english": "twenty",
+    "translation": "двадцать"
+  },
+  {
+    "id": 84,
+    "english": "thirty",
+    "translation": "тридцать"
+  },
+  {
+    "id": 85,
+    "english": "forty",
+    "translation": "сорок"
+  },
+  {
+    "id": 86,
+    "english": "fifty",
+    "translation": "пятьдесят"
+  },
+  {
+    "id": 87,
+    "english": "sixty",
+    "translation": "шестьдесят"
+  },
+  {
+    "id": 88,
+    "english": "seventy",
+    "translation": "семьдесят"
+  },
+  {
+    "id": 89,
+    "english": "eighty",
+    "translation": "восемьдесят"
+  },
+  {
+    "id": 90,
+    "english": "ninety",
+    "translation": "девяносто"
+  },
+  {
+    "id": 91,
+    "english": "hundred",
+    "translation": "сто"
+  },
+  {
+    "id": 92,
+    "english": "thousand",
+    "translation": "тысяча"
+  },
+  {
+    "id": 93,
+    "english": "first",
+    "translation": "первый"
+  },
+  {
+    "id": 94,
+    "english": "second",
+    "translation": "второй"
+  },
+  {
+    "id": 95,
+    "english": "third",
+    "translation": "третий"
+  },
+  {
+    "id": 96,
+    "english": "last",
+    "translation": "последний"
+  },
+  {
+    "id": 97,
+    "english": "next",
+    "translation": "следующий"
+  },
+  {
+    "id": 98,
+    "english": "many",
+    "translation": "много"
+  },
+  {
+    "id": 99,
+    "english": "much",
+    "translation": "много"
+  },
+  {
+    "id": 100,
+    "english": "few",
+    "translation": "мало"
+  },
+  {
+    "id": 101,
+    "english": "little",
+    "translation": "немного"
+  },
+  {
+    "id": 102,
+    "english": "some",
+    "translation": "несколько"
+  },
+  {
+    "id": 103,
+    "english": "all",
+    "translation": "все"
+  },
+  {
+    "id": 104,
+    "english": "every",
+    "translation": "каждый"
+  },
+  {
+    "id": 105,
+    "english": "each",
+    "translation": "каждый"
+  },
+  {
+    "id": 106,
+    "english": "more",
+    "translation": "больше"
+  },
+  {
+    "id": 107,
+    "english": "less",
+    "translation": "меньше"
+  },
+  {
+    "id": 108,
+    "english": "half",
+    "translation": "половина"
+  },
+  {
+    "id": 109,
+    "english": "time",
+    "translation": "время"
+  },
+  {
+    "id": 110,
+    "english": "day",
+    "translation": "день"
+  },
+  {
+    "id": 111,
+    "english": "night",
+    "translation": "ночь"
+  },
+  {
+    "id": 112,
+    "english": "morning",
+    "translation": "утро"
+  },
+  {
+    "id": 113,
+    "english": "afternoon",
+    "translation": "день (после полудня)"
+  },
+  {
+    "id": 114,
+    "english": "evening",
+    "translation": "вечер"
+  },
+  {
+    "id": 115,
+    "english": "week",
+    "translation": "неделя"
+  },
+  {
+    "id": 116,
+    "english": "month",
+    "translation": "месяц"
+  },
+  {
+    "id": 117,
+    "english": "year",
+    "translation": "год"
+  },
+  {
+    "id": 118,
+    "english": "hour",
+    "translation": "час"
+  },
+  {
+    "id": 119,
+    "english": "minute",
+    "translation": "минута"
+  },
+  {
+    "id": 120,
+    "english": "second",
+    "translation": "секунда"
+  },
+  {
+    "id": 121,
+    "english": "today",
+    "translation": "сегодня"
+  },
+  {
+    "id": 122,
+    "english": "tomorrow",
+    "translation": "завтра"
+  },
+  {
+    "id": 123,
+    "english": "yesterday",
+    "translation": "вчера"
+  },
+  {
+    "id": 124,
+    "english": "later",
+    "translation": "позже"
+  },
+  {
+    "id": 125,
+    "english": "early",
+    "translation": "рано"
+  },
+  {
+    "id": 126,
+    "english": "late",
+    "translation": "поздно"
+  },
+  {
+    "id": 127,
+    "english": "clock",
+    "translation": "часы"
+  },
+  {
+    "id": 128,
+    "english": "calendar",
+    "translation": "календарь"
+  },
+  {
+    "id": 129,
+    "english": "date",
+    "translation": "дата"
+  },
+  {
+    "id": 130,
+    "english": "weekend",
+    "translation": "выходные"
+  },
+  {
+    "id": 131,
+    "english": "holiday",
+    "translation": "праздник"
+  },
+  {
+    "id": 132,
+    "english": "birthday",
+    "translation": "день рождения"
+  },
+  {
+    "id": 133,
+    "english": "Monday",
+    "translation": "понедельник"
+  },
+  {
+    "id": 134,
+    "english": "Tuesday",
+    "translation": "вторник"
+  },
+  {
+    "id": 135,
+    "english": "Wednesday",
+    "translation": "среда"
+  },
+  {
+    "id": 136,
+    "english": "Thursday",
+    "translation": "четверг"
+  },
+  {
+    "id": 137,
+    "english": "Friday",
+    "translation": "пятница"
+  },
+  {
+    "id": 138,
+    "english": "Saturday",
+    "translation": "суббота"
+  },
+  {
+    "id": 139,
+    "english": "Sunday",
+    "translation": "воскресенье"
+  },
+  {
+    "id": 140,
+    "english": "January",
+    "translation": "январь"
+  },
+  {
+    "id": 141,
+    "english": "February",
+    "translation": "февраль"
+  },
+  {
+    "id": 142,
+    "english": "March",
+    "translation": "март"
+  },
+  {
+    "id": 143,
+    "english": "April",
+    "translation": "апрель"
+  },
+  {
+    "id": 144,
+    "english": "May",
+    "translation": "май"
+  },
+  {
+    "id": 145,
+    "english": "June",
+    "translation": "июнь"
+  },
+  {
+    "id": 146,
+    "english": "July",
+    "translation": "июль"
+  },
+  {
+    "id": 147,
+    "english": "August",
+    "translation": "август"
+  },
+  {
+    "id": 148,
+    "english": "September",
+    "translation": "сентябрь"
+  },
+  {
+    "id": 149,
+    "english": "October",
+    "translation": "октябрь"
+  },
+  {
+    "id": 150,
+    "english": "November",
+    "translation": "ноябрь"
+  },
+  {
+    "id": 151,
+    "english": "December",
+    "translation": "декабрь"
+  },
+  {
+    "id": 152,
+    "english": "spring",
+    "translation": "весна"
+  },
+  {
+    "id": 153,
+    "english": "summer",
+    "translation": "лето"
+  },
+  {
+    "id": 154,
+    "english": "autumn",
+    "translation": "осень"
+  },
+  {
+    "id": 155,
+    "english": "winter",
+    "translation": "зима"
+  },
+  {
+    "id": 156,
+    "english": "red",
+    "translation": "красный"
+  },
+  {
+    "id": 157,
+    "english": "blue",
+    "translation": "синий"
+  },
+  {
+    "id": 158,
+    "english": "green",
+    "translation": "зелёный"
+  },
+  {
+    "id": 159,
+    "english": "yellow",
+    "translation": "жёлтый"
+  },
+  {
+    "id": 160,
+    "english": "black",
+    "translation": "чёрный"
+  },
+  {
+    "id": 161,
+    "english": "white",
+    "translation": "белый"
+  },
+  {
+    "id": 162,
+    "english": "orange",
+    "translation": "оранжевый"
+  },
+  {
+    "id": 163,
+    "english": "purple",
+    "translation": "фиолетовый"
+  },
+  {
+    "id": 164,
+    "english": "pink",
+    "translation": "розовый"
+  },
+  {
+    "id": 165,
+    "english": "brown",
+    "translation": "коричневый"
+  },
+  {
+    "id": 166,
+    "english": "grey",
+    "translation": "серый"
+  },
+  {
+    "id": 167,
+    "english": "gold",
+    "translation": "золотой"
+  },
+  {
+    "id": 168,
+    "english": "silver",
+    "translation": "серебряный"
+  },
+  {
+    "id": 169,
+    "english": "light blue",
+    "translation": "голубой"
+  },
+  {
+    "id": 170,
+    "english": "dark blue",
+    "translation": "тёмно-синий"
+  },
+  {
+    "id": 171,
+    "english": "violet",
+    "translation": "фиолетовый (сиреневый)"
+  },
+  {
+    "id": 172,
+    "english": "mother",
+    "translation": "мама"
+  },
+  {
+    "id": 173,
+    "english": "father",
+    "translation": "папа"
+  },
+  {
+    "id": 174,
+    "english": "parents",
+    "translation": "родители"
+  },
+  {
+    "id": 175,
+    "english": "sister",
+    "translation": "сестра"
+  },
+  {
+    "id": 176,
+    "english": "brother",
+    "translation": "брат"
+  },
+  {
+    "id": 177,
+    "english": "son",
+    "translation": "сын"
+  },
+  {
+    "id": 178,
+    "english": "daughter",
+    "translation": "дочь"
+  },
+  {
+    "id": 179,
+    "english": "child",
+    "translation": "ребёнок"
+  },
+  {
+    "id": 180,
+    "english": "children",
+    "translation": "дети"
+  },
+  {
+    "id": 181,
+    "english": "baby",
+    "translation": "младенец"
+  },
+  {
+    "id": 182,
+    "english": "grandmother",
+    "translation": "бабушка"
+  },
+  {
+    "id": 183,
+    "english": "grandfather",
+    "translation": "дедушка"
+  },
+  {
+    "id": 184,
+    "english": "grandparents",
+    "translation": "бабушка и дедушка"
+  },
+  {
+    "id": 185,
+    "english": "aunt",
+    "translation": "тётя"
+  },
+  {
+    "id": 186,
+    "english": "uncle",
+    "translation": "дядя"
+  },
+  {
+    "id": 187,
+    "english": "cousin",
+    "translation": "двоюродный брат/сестра"
+  },
+  {
+    "id": 188,
+    "english": "wife",
+    "translation": "жена"
+  },
+  {
+    "id": 189,
+    "english": "husband",
+    "translation": "муж"
+  },
+  {
+    "id": 190,
+    "english": "family",
+    "translation": "семья"
+  },
+  {
+    "id": 191,
+    "english": "friend",
+    "translation": "друг"
+  },
+  {
+    "id": 192,
+    "english": "man",
+    "translation": "мужчина"
+  },
+  {
+    "id": 193,
+    "english": "woman",
+    "translation": "женщина"
+  },
+  {
+    "id": 194,
+    "english": "boy",
+    "translation": "мальчик"
+  },
+  {
+    "id": 195,
+    "english": "girl",
+    "translation": "девочка"
+  },
+  {
+    "id": 196,
+    "english": "people",
+    "translation": "люди"
+  },
+  {
+    "id": 197,
+    "english": "adult",
+    "translation": "взрослый"
+  },
+  {
+    "id": 198,
+    "english": "neighbour",
+    "translation": "сосед"
+  },
+  {
+    "id": 199,
+    "english": "head",
+    "translation": "голова"
+  },
+  {
+    "id": 200,
+    "english": "hair",
+    "translation": "волосы"
+  },
+  {
+    "id": 201,
+    "english": "face",
+    "translation": "лицо"
+  },
+  {
+    "id": 202,
+    "english": "eye",
+    "translation": "глаз"
+  },
+  {
+    "id": 203,
+    "english": "eyes",
+    "translation": "глаза"
+  },
+  {
+    "id": 204,
+    "english": "ear",
+    "translation": "ухо"
+  },
+  {
+    "id": 205,
+    "english": "ears",
+    "translation": "уши"
+  },
+  {
+    "id": 206,
+    "english": "nose",
+    "translation": "нос"
+  },
+  {
+    "id": 207,
+    "english": "mouth",
+    "translation": "рот"
+  },
+  {
+    "id": 208,
+    "english": "tooth",
+    "translation": "зуб"
+  },
+  {
+    "id": 209,
+    "english": "teeth",
+    "translation": "зубы"
+  },
+  {
+    "id": 210,
+    "english": "tongue",
+    "translation": "язык"
+  },
+  {
+    "id": 211,
+    "english": "neck",
+    "translation": "шея"
+  },
+  {
+    "id": 212,
+    "english": "shoulder",
+    "translation": "плечо"
+  },
+  {
+    "id": 213,
+    "english": "arm",
+    "translation": "рука (от плеча)"
+  },
+  {
+    "id": 214,
+    "english": "hand",
+    "translation": "кисть руки"
+  },
+  {
+    "id": 215,
+    "english": "finger",
+    "translation": "палец"
+  },
+  {
+    "id": 216,
+    "english": "elbow",
+    "translation": "локоть"
+  },
+  {
+    "id": 217,
+    "english": "chest",
+    "translation": "грудь"
+  },
+  {
+    "id": 218,
+    "english": "stomach",
+    "translation": "живот"
+  },
+  {
+    "id": 219,
+    "english": "back",
+    "translation": "спина"
+  },
+  {
+    "id": 220,
+    "english": "leg",
+    "translation": "нога"
+  },
+  {
+    "id": 221,
+    "english": "knee",
+    "translation": "колено"
+  },
+  {
+    "id": 222,
+    "english": "foot",
+    "translation": "ступня"
+  },
+  {
+    "id": 223,
+    "english": "feet",
+    "translation": "ступни"
+  },
+  {
+    "id": 224,
+    "english": "toe",
+    "translation": "палец ноги"
+  },
+  {
+    "id": 225,
+    "english": "skin",
+    "translation": "кожа"
+  },
+  {
+    "id": 226,
+    "english": "heart",
+    "translation": "сердце"
+  },
+  {
+    "id": 227,
+    "english": "brain",
+    "translation": "мозг"
+  },
+  {
+    "id": 228,
+    "english": "body",
+    "translation": "тело"
+  },
+  {
+    "id": 229,
+    "english": "ankle",
+    "translation": "лодыжка"
+  },
+  {
+    "id": 230,
+    "english": "wrist",
+    "translation": "запястье"
+  },
+  {
+    "id": 231,
+    "english": "hip",
+    "translation": "бедро"
+  },
+  {
+    "id": 232,
+    "english": "chin",
+    "translation": "подбородок"
+  },
+  {
+    "id": 233,
+    "english": "cheek",
+    "translation": "щека"
+  },
+  {
+    "id": 234,
+    "english": "lip",
+    "translation": "губа"
+  },
+  {
+    "id": 235,
+    "english": "beard",
+    "translation": "борода"
+  },
+  {
+    "id": 236,
+    "english": "moustache",
+    "translation": "усы"
+  },
+  {
+    "id": 237,
+    "english": "dog",
+    "translation": "собака"
+  },
+  {
+    "id": 238,
+    "english": "cat",
+    "translation": "кошка"
+  },
+  {
+    "id": 239,
+    "english": "bird",
+    "translation": "птица"
+  },
+  {
+    "id": 240,
+    "english": "fish",
+    "translation": "рыба"
+  },
+  {
+    "id": 241,
+    "english": "horse",
+    "translation": "лошадь"
+  },
+  {
+    "id": 242,
+    "english": "cow",
+    "translation": "корова"
+  },
+  {
+    "id": 243,
+    "english": "pig",
+    "translation": "свинья"
+  },
+  {
+    "id": 244,
+    "english": "sheep",
+    "translation": "овца"
+  },
+  {
+    "id": 245,
+    "english": "goat",
+    "translation": "коза"
+  },
+  {
+    "id": 246,
+    "english": "chicken",
+    "translation": "курица"
+  },
+  {
+    "id": 247,
+    "english": "duck",
+    "translation": "утка"
+  },
+  {
+    "id": 248,
+    "english": "mouse",
+    "translation": "мышь"
+  },
+  {
+    "id": 249,
+    "english": "rabbit",
+    "translation": "кролик"
+  },
+  {
+    "id": 250,
+    "english": "lion",
+    "translation": "лев"
+  },
+  {
+    "id": 251,
+    "english": "tiger",
+    "translation": "тигр"
+  },
+  {
+    "id": 252,
+    "english": "elephant",
+    "translation": "слон"
+  },
+  {
+    "id": 253,
+    "english": "bear",
+    "translation": "медведь"
+  },
+  {
+    "id": 254,
+    "english": "monkey",
+    "translation": "обезьяна"
+  },
+  {
+    "id": 255,
+    "english": "snake",
+    "translation": "змея"
+  },
+  {
+    "id": 256,
+    "english": "frog",
+    "translation": "лягушка"
+  },
+  {
+    "id": 257,
+    "english": "fox",
+    "translation": "лиса"
+  },
+  {
+    "id": 258,
+    "english": "wolf",
+    "translation": "волк"
+  },
+  {
+    "id": 259,
+    "english": "deer",
+    "translation": "олень"
+  },
+  {
+    "id": 260,
+    "english": "squirrel",
+    "translation": "белка"
+  },
+  {
+    "id": 261,
+    "english": "turtle",
+    "translation": "черепаха"
+  },
+  {
+    "id": 262,
+    "english": "bee",
+    "translation": "пчела"
+  },
+  {
+    "id": 263,
+    "english": "butterfly",
+    "translation": "бабочка"
+  },
+  {
+    "id": 264,
+    "english": "spider",
+    "translation": "паук"
+  },
+  {
+    "id": 265,
+    "english": "ant",
+    "translation": "муравей"
+  },
+  {
+    "id": 266,
+    "english": "fly",
+    "translation": "муха"
+  },
+  {
+    "id": 267,
+    "english": "mosquito",
+    "translation": "комар"
+  },
+  {
+    "id": 268,
+    "english": "owl",
+    "translation": "сова"
+  },
+  {
+    "id": 269,
+    "english": "eagle",
+    "translation": "орёл"
+  },
+  {
+    "id": 270,
+    "english": "shark",
+    "translation": "акула"
+  },
+  {
+    "id": 271,
+    "english": "whale",
+    "translation": "кит"
+  },
+  {
+    "id": 272,
+    "english": "dolphin",
+    "translation": "дельфин"
+  },
+  {
+    "id": 273,
+    "english": "crocodile",
+    "translation": "крокодил"
+  },
+  {
+    "id": 274,
+    "english": "camel",
+    "translation": "верблюд"
+  },
+  {
+    "id": 275,
+    "english": "zebra",
+    "translation": "зебра"
+  },
+  {
+    "id": 276,
+    "english": "giraffe",
+    "translation": "жираф"
+  },
+  {
+    "id": 277,
+    "english": "kangaroo",
+    "translation": "кенгуру"
+  },
+  {
+    "id": 278,
+    "english": "panda",
+    "translation": "панда"
+  },
+  {
+    "id": 279,
+    "english": "penguin",
+    "translation": "пингвин"
+  },
+  {
+    "id": 280,
+    "english": "snail",
+    "translation": "улитка"
+  },
+  {
+    "id": 281,
+    "english": "worm",
+    "translation": "червяк"
+  },
+  {
+    "id": 282,
+    "english": "animal",
+    "translation": "животное"
+  },
+  {
+    "id": 283,
+    "english": "pet",
+    "translation": "домашнее животное"
+  },
+  {
+    "id": 284,
+    "english": "farm",
+    "translation": "ферма"
+  },
+  {
+    "id": 285,
+    "english": "zoo",
+    "translation": "зоопарк"
+  },
+  {
+    "id": 286,
+    "english": "egg",
+    "translation": "яйцо"
+  },
+  {
+    "id": 287,
+    "english": "wing",
+    "translation": "крыло"
+  },
+  {
+    "id": 288,
+    "english": "tail",
+    "translation": "хвост"
+  },
+  {
+    "id": 289,
+    "english": "fur",
+    "translation": "мех"
+  },
+  {
+    "id": 290,
+    "english": "insect",
+    "translation": "насекомое"
+  },
+  {
+    "id": 291,
+    "english": "bat",
+    "translation": "летучая мышь"
+  },
+  {
+    "id": 292,
+    "english": "hen",
+    "translation": "курица (наседка)"
+  },
+  {
+    "id": 293,
+    "english": "goose",
+    "translation": "гусь"
+  },
+  {
+    "id": 294,
+    "english": "donkey",
+    "translation": "осёл"
+  },
+  {
+    "id": 295,
+    "english": "seal",
+    "translation": "тюлень"
+  },
+  {
+    "id": 296,
+    "english": "crab",
+    "translation": "краб"
+  },
+  {
+    "id": 297,
+    "english": "lobster",
+    "translation": "омар"
+  },
+  {
+    "id": 298,
+    "english": "bread",
+    "translation": "хлеб"
+  },
+  {
+    "id": 299,
+    "english": "butter",
+    "translation": "масло"
+  },
+  {
+    "id": 300,
+    "english": "cheese",
+    "translation": "сыр"
+  },
+  {
+    "id": 301,
+    "english": "milk",
+    "translation": "молоко"
+  },
+  {
+    "id": 302,
+    "english": "meat",
+    "translation": "мясо"
+  },
+  {
+    "id": 303,
+    "english": "rice",
+    "translation": "рис"
+  },
+  {
+    "id": 304,
+    "english": "pasta",
+    "translation": "паста"
+  },
+  {
+    "id": 305,
+    "english": "soup",
+    "translation": "суп"
+  },
+  {
+    "id": 306,
+    "english": "salad",
+    "translation": "салат"
+  },
+  {
+    "id": 307,
+    "english": "sandwich",
+    "translation": "сэндвич"
+  },
+  {
+    "id": 308,
+    "english": "pizza",
+    "translation": "пицца"
+  },
+  {
+    "id": 309,
+    "english": "apple",
+    "translation": "яблоко"
+  },
+  {
+    "id": 310,
+    "english": "banana",
+    "translation": "банан"
+  },
+  {
+    "id": 311,
+    "english": "orange",
+    "translation": "апельсин"
+  },
+  {
+    "id": 312,
+    "english": "pear",
+    "translation": "груша"
+  },
+  {
+    "id": 313,
+    "english": "grape",
+    "translation": "виноград"
+  },
+  {
+    "id": 314,
+    "english": "lemon",
+    "translation": "лимон"
+  },
+  {
+    "id": 315,
+    "english": "strawberry",
+    "translation": "клубника"
+  },
+  {
+    "id": 316,
+    "english": "watermelon",
+    "translation": "арбуз"
+  },
+  {
+    "id": 317,
+    "english": "tomato",
+    "translation": "помидор"
+  },
+  {
+    "id": 318,
+    "english": "potato",
+    "translation": "картофель"
+  },
+  {
+    "id": 319,
+    "english": "carrot",
+    "translation": "морковь"
+  },
+  {
+    "id": 320,
+    "english": "onion",
+    "translation": "лук"
+  },
+  {
+    "id": 321,
+    "english": "cucumber",
+    "translation": "огурец"
+  },
+  {
+    "id": 322,
+    "english": "cabbage",
+    "translation": "капуста"
+  },
+  {
+    "id": 323,
+    "english": "mushroom",
+    "translation": "гриб"
+  },
+  {
+    "id": 324,
+    "english": "pepper",
+    "translation": "перец"
+  },
+  {
+    "id": 325,
+    "english": "corn",
+    "translation": "кукуруза"
+  },
+  {
+    "id": 326,
+    "english": "beans",
+    "translation": "фасоль"
+  },
+  {
+    "id": 327,
+    "english": "peas",
+    "translation": "горох"
+  },
+  {
+    "id": 328,
+    "english": "sugar",
+    "translation": "сахар"
+  },
+  {
+    "id": 329,
+    "english": "salt",
+    "translation": "соль"
+  },
+  {
+    "id": 330,
+    "english": "oil",
+    "translation": "масло (растительное)"
+  },
+  {
+    "id": 331,
+    "english": "water",
+    "translation": "вода"
+  },
+  {
+    "id": 332,
+    "english": "juice",
+    "translation": "сок"
+  },
+  {
+    "id": 333,
+    "english": "tea",
+    "translation": "чай"
+  },
+  {
+    "id": 334,
+    "english": "coffee",
+    "translation": "кофе"
+  },
+  {
+    "id": 335,
+    "english": "wine",
+    "translation": "вино"
+  },
+  {
+    "id": 336,
+    "english": "beer",
+    "translation": "пиво"
+  },
+  {
+    "id": 337,
+    "english": "cake",
+    "translation": "торт"
+  },
+  {
+    "id": 338,
+    "english": "cookie",
+    "translation": "печенье"
+  },
+  {
+    "id": 339,
+    "english": "chocolate",
+    "translation": "шоколад"
+  },
+  {
+    "id": 340,
+    "english": "candy",
+    "translation": "конфета"
+  },
+  {
+    "id": 341,
+    "english": "ice cream",
+    "translation": "мороженое"
+  },
+  {
+    "id": 342,
+    "english": "honey",
+    "translation": "мёд"
+  },
+  {
+    "id": 343,
+    "english": "jam",
+    "translation": "варенье"
+  },
+  {
+    "id": 344,
+    "english": "breakfast",
+    "translation": "завтрак"
+  },
+  {
+    "id": 345,
+    "english": "lunch",
+    "translation": "обед"
+  },
+  {
+    "id": 346,
+    "english": "dinner",
+    "translation": "ужин"
+  },
+  {
+    "id": 347,
+    "english": "meal",
+    "translation": "приём пищи"
+  },
+  {
+    "id": 348,
+    "english": "food",
+    "translation": "еда"
+  },
+  {
+    "id": 349,
+    "english": "drink",
+    "translation": "напиток"
+  },
+  {
+    "id": 350,
+    "english": "fruit",
+    "translation": "фрукт"
+  },
+  {
+    "id": 351,
+    "english": "vegetable",
+    "translation": "овощ"
+  },
+  {
+    "id": 352,
+    "english": "nut",
+    "translation": "орех"
+  },
+  {
+    "id": 353,
+    "english": "lemonade",
+    "translation": "лимонад"
+  },
+  {
+    "id": 354,
+    "english": "yogurt",
+    "translation": "йогурт"
+  },
+  {
+    "id": 355,
+    "english": "cream",
+    "translation": "сливки"
+  },
+  {
+    "id": 356,
+    "english": "flour",
+    "translation": "мука"
+  },
+  {
+    "id": 357,
+    "english": "dough",
+    "translation": "тесто"
+  },
+  {
+    "id": 358,
+    "english": "sauce",
+    "translation": "соус"
+  },
+  {
+    "id": 359,
+    "english": "garlic",
+    "translation": "чеснок"
+  },
+  {
+    "id": 360,
+    "english": "spinach",
+    "translation": "шпинат"
+  },
+  {
+    "id": 361,
+    "english": "lettuce",
+    "translation": "салат-латук"
+  },
+  {
+    "id": 362,
+    "english": "peach",
+    "translation": "персик"
+  },
+  {
+    "id": 363,
+    "english": "plum",
+    "translation": "слива"
+  },
+  {
+    "id": 364,
+    "english": "cherry",
+    "translation": "вишня"
+  },
+  {
+    "id": 365,
+    "english": "pineapple",
+    "translation": "ананас"
+  },
+  {
+    "id": 366,
+    "english": "mango",
+    "translation": "манго"
+  },
+  {
+    "id": 367,
+    "english": "kiwi",
+    "translation": "киви"
+  },
+  {
+    "id": 368,
+    "english": "coconut",
+    "translation": "кокос"
+  },
+  {
+    "id": 369,
+    "english": "melon",
+    "translation": "дыня"
+  },
+  {
+    "id": 370,
+    "english": "apricot",
+    "translation": "абрикос"
+  },
+  {
+    "id": 371,
+    "english": "fork",
+    "translation": "вилка"
+  },
+  {
+    "id": 372,
+    "english": "knife",
+    "translation": "нож"
+  },
+  {
+    "id": 373,
+    "english": "spoon",
+    "translation": "ложка"
+  },
+  {
+    "id": 374,
+    "english": "plate",
+    "translation": "тарелка"
+  },
+  {
+    "id": 375,
+    "english": "cup",
+    "translation": "чашка"
+  },
+  {
+    "id": 376,
+    "english": "glass",
+    "translation": "стакан"
+  },
+  {
+    "id": 377,
+    "english": "bowl",
+    "translation": "миска"
+  },
+  {
+    "id": 378,
+    "english": "napkin",
+    "translation": "салфетка"
+  },
+  {
+    "id": 379,
+    "english": "bottle",
+    "translation": "бутылка"
+  },
+  {
+    "id": 380,
+    "english": "kettle",
+    "translation": "чайник (для кипячения)"
+  },
+  {
+    "id": 381,
+    "english": "teapot",
+    "translation": "заварочный чайник"
+  },
+  {
+    "id": 382,
+    "english": "shirt",
+    "translation": "рубашка"
+  },
+  {
+    "id": 383,
+    "english": "t-shirt",
+    "translation": "футболка"
+  },
+  {
+    "id": 384,
+    "english": "dress",
+    "translation": "платье"
+  },
+  {
+    "id": 385,
+    "english": "skirt",
+    "translation": "юбка"
+  },
+  {
+    "id": 386,
+    "english": "trousers",
+    "translation": "брюки"
+  },
+  {
+    "id": 387,
+    "english": "jeans",
+    "translation": "джинсы"
+  },
+  {
+    "id": 388,
+    "english": "jacket",
+    "translation": "куртка"
+  },
+  {
+    "id": 389,
+    "english": "coat",
+    "translation": "пальто"
+  },
+  {
+    "id": 390,
+    "english": "sweater",
+    "translation": "свитер"
+  },
+  {
+    "id": 391,
+    "english": "shoes",
+    "translation": "туфли/обувь"
+  },
+  {
+    "id": 392,
+    "english": "boots",
+    "translation": "ботинки"
+  },
+  {
+    "id": 393,
+    "english": "socks",
+    "translation": "носки"
+  },
+  {
+    "id": 394,
+    "english": "hat",
+    "translation": "шляпа"
+  },
+  {
+    "id": 395,
+    "english": "cap",
+    "translation": "кепка"
+  },
+  {
+    "id": 396,
+    "english": "scarf",
+    "translation": "шарф"
+  },
+  {
+    "id": 397,
+    "english": "gloves",
+    "translation": "перчатки"
+  },
+  {
+    "id": 398,
+    "english": "belt",
+    "translation": "ремень"
+  },
+  {
+    "id": 399,
+    "english": "tie",
+    "translation": "галстук"
+  },
+  {
+    "id": 400,
+    "english": "suit",
+    "translation": "костюм"
+  },
+  {
+    "id": 401,
+    "english": "shorts",
+    "translation": "шорты"
+  },
+  {
+    "id": 402,
+    "english": "pajamas",
+    "translation": "пижама"
+  },
+  {
+    "id": 403,
+    "english": "underwear",
+    "translation": "нижнее бельё"
+  },
+  {
+    "id": 404,
+    "english": "swimsuit",
+    "translation": "купальник"
+  },
+  {
+    "id": 405,
+    "english": "umbrella",
+    "translation": "зонт"
+  },
+  {
+    "id": 406,
+    "english": "glasses",
+    "translation": "очки"
+  },
+  {
+    "id": 407,
+    "english": "sunglasses",
+    "translation": "солнцезащитные очки"
+  },
+  {
+    "id": 408,
+    "english": "watch",
+    "translation": "наручные часы"
+  },
+  {
+    "id": 409,
+    "english": "ring",
+    "translation": "кольцо"
+  },
+  {
+    "id": 410,
+    "english": "necklace",
+    "translation": "ожерелье"
+  },
+  {
+    "id": 411,
+    "english": "bag",
+    "translation": "сумка"
+  },
+  {
+    "id": 412,
+    "english": "backpack",
+    "translation": "рюкзак"
+  },
+  {
+    "id": 413,
+    "english": "wallet",
+    "translation": "кошелёк"
+  },
+  {
+    "id": 414,
+    "english": "button",
+    "translation": "пуговица"
+  },
+  {
+    "id": 415,
+    "english": "pocket",
+    "translation": "карман"
+  },
+  {
+    "id": 416,
+    "english": "zipper",
+    "translation": "молния"
+  },
+  {
+    "id": 417,
+    "english": "house",
+    "translation": "дом"
+  },
+  {
+    "id": 418,
+    "english": "home",
+    "translation": "дом (жильё)"
+  },
+  {
+    "id": 419,
+    "english": "room",
+    "translation": "комната"
+  },
+  {
+    "id": 420,
+    "english": "kitchen",
+    "translation": "кухня"
+  },
+  {
+    "id": 421,
+    "english": "bedroom",
+    "translation": "спальня"
+  },
+  {
+    "id": 422,
+    "english": "bathroom",
+    "translation": "ванная"
+  },
+  {
+    "id": 423,
+    "english": "living room",
+    "translation": "гостиная"
+  },
+  {
+    "id": 424,
+    "english": "dining room",
+    "translation": "столовая"
+  },
+  {
+    "id": 425,
+    "english": "garden",
+    "translation": "сад"
+  },
+  {
+    "id": 426,
+    "english": "door",
+    "translation": "дверь"
+  },
+  {
+    "id": 427,
+    "english": "window",
+    "translation": "окно"
+  },
+  {
+    "id": 428,
+    "english": "wall",
+    "translation": "стена"
+  },
+  {
+    "id": 429,
+    "english": "floor",
+    "translation": "пол"
+  },
+  {
+    "id": 430,
+    "english": "ceiling",
+    "translation": "потолок"
+  },
+  {
+    "id": 431,
+    "english": "roof",
+    "translation": "крыша"
+  },
+  {
+    "id": 432,
+    "english": "stairs",
+    "translation": "лестница"
+  },
+  {
+    "id": 433,
+    "english": "table",
+    "translation": "стол"
+  },
+  {
+    "id": 434,
+    "english": "chair",
+    "translation": "стул"
+  },
+  {
+    "id": 435,
+    "english": "sofa",
+    "translation": "диван"
+  },
+  {
+    "id": 436,
+    "english": "bed",
+    "translation": "кровать"
+  },
+  {
+    "id": 437,
+    "english": "pillow",
+    "translation": "подушка"
+  },
+  {
+    "id": 438,
+    "english": "blanket",
+    "translation": "одеяло"
+  },
+  {
+    "id": 439,
+    "english": "sheet",
+    "translation": "простыня"
+  },
+  {
+    "id": 440,
+    "english": "wardrobe",
+    "translation": "шкаф"
+  },
+  {
+    "id": 441,
+    "english": "cupboard",
+    "translation": "буфет/шкафчик"
+  },
+  {
+    "id": 442,
+    "english": "shelf",
+    "translation": "полка"
+  },
+  {
+    "id": 443,
+    "english": "mirror",
+    "translation": "зеркало"
+  },
+  {
+    "id": 444,
+    "english": "lamp",
+    "translation": "лампа"
+  },
+  {
+    "id": 445,
+    "english": "light",
+    "translation": "свет"
+  },
+  {
+    "id": 446,
+    "english": "curtain",
+    "translation": "штора"
+  },
+  {
+    "id": 447,
+    "english": "carpet",
+    "translation": "ковёр"
+  },
+  {
+    "id": 448,
+    "english": "rug",
+    "translation": "коврик"
+  },
+  {
+    "id": 449,
+    "english": "key",
+    "translation": "ключ"
+  },
+  {
+    "id": 450,
+    "english": "lock",
+    "translation": "замок"
+  },
+  {
+    "id": 451,
+    "english": "garage",
+    "translation": "гараж"
+  },
+  {
+    "id": 452,
+    "english": "yard",
+    "translation": "двор"
+  },
+  {
+    "id": 453,
+    "english": "fence",
+    "translation": "забор"
+  },
+  {
+    "id": 454,
+    "english": "gate",
+    "translation": "калитка"
+  },
+  {
+    "id": 455,
+    "english": "mailbox",
+    "translation": "почтовый ящик"
+  },
+  {
+    "id": 456,
+    "english": "television",
+    "translation": "телевизор"
+  },
+  {
+    "id": 457,
+    "english": "radio",
+    "translation": "радио"
+  },
+  {
+    "id": 458,
+    "english": "computer",
+    "translation": "компьютер"
+  },
+  {
+    "id": 459,
+    "english": "telephone",
+    "translation": "телефон"
+  },
+  {
+    "id": 460,
+    "english": "refrigerator",
+    "translation": "холодильник"
+  },
+  {
+    "id": 461,
+    "english": "stove",
+    "translation": "плита"
+  },
+  {
+    "id": 462,
+    "english": "oven",
+    "translation": "духовка"
+  },
+  {
+    "id": 463,
+    "english": "microwave",
+    "translation": "микроволновка"
+  },
+  {
+    "id": 464,
+    "english": "washing machine",
+    "translation": "стиральная машина"
+  },
+  {
+    "id": 465,
+    "english": "sink",
+    "translation": "раковина"
+  },
+  {
+    "id": 466,
+    "english": "shower",
+    "translation": "душ"
+  },
+  {
+    "id": 467,
+    "english": "bathtub",
+    "translation": "ванна"
+  },
+  {
+    "id": 468,
+    "english": "toilet",
+    "translation": "туалет"
+  },
+  {
+    "id": 469,
+    "english": "towel",
+    "translation": "полотенце"
+  },
+  {
+    "id": 470,
+    "english": "soap",
+    "translation": "мыло"
+  },
+  {
+    "id": 471,
+    "english": "toothbrush",
+    "translation": "зубная щётка"
+  },
+  {
+    "id": 472,
+    "english": "toothpaste",
+    "translation": "зубная паста"
+  },
+  {
+    "id": 473,
+    "english": "comb",
+    "translation": "расчёска"
+  },
+  {
+    "id": 474,
+    "english": "brush",
+    "translation": "щётка"
+  },
+  {
+    "id": 475,
+    "english": "school",
+    "translation": "школа"
+  },
+  {
+    "id": 476,
+    "english": "teacher",
+    "translation": "учитель"
+  },
+  {
+    "id": 477,
+    "english": "student",
+    "translation": "студент"
+  },
+  {
+    "id": 478,
+    "english": "pupil",
+    "translation": "ученик"
+  },
+  {
+    "id": 479,
+    "english": "class",
+    "translation": "класс"
+  },
+  {
+    "id": 480,
+    "english": "classroom",
+    "translation": "классная комната"
+  },
+  {
+    "id": 481,
+    "english": "lesson",
+    "translation": "урок"
+  },
+  {
+    "id": 482,
+    "english": "book",
+    "translation": "книга"
+  },
+  {
+    "id": 483,
+    "english": "notebook",
+    "translation": "тетрадь"
+  },
+  {
+    "id": 484,
+    "english": "pen",
+    "translation": "ручка"
+  },
+  {
+    "id": 485,
+    "english": "pencil",
+    "translation": "карандаш"
+  },
+  {
+    "id": 486,
+    "english": "eraser",
+    "translation": "ластик"
+  },
+  {
+    "id": 487,
+    "english": "ruler",
+    "translation": "линейка"
+  },
+  {
+    "id": 488,
+    "english": "desk",
+    "translation": "парта"
+  },
+  {
+    "id": 489,
+    "english": "board",
+    "translation": "доска"
+  },
+  {
+    "id": 490,
+    "english": "chalk",
+    "translation": "мел"
+  },
+  {
+    "id": 491,
+    "english": "paper",
+    "translation": "бумага"
+  },
+  {
+    "id": 492,
+    "english": "page",
+    "translation": "страница"
+  },
+  {
+    "id": 493,
+    "english": "word",
+    "translation": "слово"
+  },
+  {
+    "id": 494,
+    "english": "letter",
+    "translation": "буква/письмо"
+  },
+  {
+    "id": 495,
+    "english": "sentence",
+    "translation": "предложение"
+  },
+  {
+    "id": 496,
+    "english": "question",
+    "translation": "вопрос"
+  },
+  {
+    "id": 497,
+    "english": "answer",
+    "translation": "ответ"
+  },
+  {
+    "id": 498,
+    "english": "exam",
+    "translation": "экзамен"
+  },
+  {
+    "id": 499,
+    "english": "test",
+    "translation": "тест"
+  },
+  {
+    "id": 500,
+    "english": "homework",
+    "translation": "домашнее задание"
+  },
+  {
+    "id": 501,
+    "english": "subject",
+    "translation": "предмет"
+  },
+  {
+    "id": 502,
+    "english": "math",
+    "translation": "математика"
+  },
+  {
+    "id": 503,
+    "english": "science",
+    "translation": "наука"
+  },
+  {
+    "id": 504,
+    "english": "history",
+    "translation": "история"
+  },
+  {
+    "id": 505,
+    "english": "geography",
+    "translation": "география"
+  },
+  {
+    "id": 506,
+    "english": "art",
+    "translation": "искусство"
+  },
+  {
+    "id": 507,
+    "english": "music",
+    "translation": "музыка"
+  },
+  {
+    "id": 508,
+    "english": "language",
+    "translation": "язык"
+  },
+  {
+    "id": 509,
+    "english": "library",
+    "translation": "библиотека"
+  },
+  {
+    "id": 510,
+    "english": "dictionary",
+    "translation": "словарь"
+  },
+  {
+    "id": 511,
+    "english": "doctor",
+    "translation": "врач"
+  },
+  {
+    "id": 512,
+    "english": "nurse",
+    "translation": "медсестра"
+  },
+  {
+    "id": 513,
+    "english": "engineer",
+    "translation": "инженер"
+  },
+  {
+    "id": 514,
+    "english": "driver",
+    "translation": "водитель"
+  },
+  {
+    "id": 515,
+    "english": "cook",
+    "translation": "повар"
+  },
+  {
+    "id": 516,
+    "english": "waiter",
+    "translation": "официант"
+  },
+  {
+    "id": 517,
+    "english": "waitress",
+    "translation": "официантка"
+  },
+  {
+    "id": 518,
+    "english": "police officer",
+    "translation": "полицейский"
+  },
+  {
+    "id": 519,
+    "english": "firefighter",
+    "translation": "пожарный"
+  },
+  {
+    "id": 520,
+    "english": "farmer",
+    "translation": "фермер"
+  },
+  {
+    "id": 521,
+    "english": "worker",
+    "translation": "рабочий"
+  },
+  {
+    "id": 522,
+    "english": "builder",
+    "translation": "строитель"
+  },
+  {
+    "id": 523,
+    "english": "pilot",
+    "translation": "пилот"
+  },
+  {
+    "id": 524,
+    "english": "sailor",
+    "translation": "моряк"
+  },
+  {
+    "id": 525,
+    "english": "soldier",
+    "translation": "солдат"
+  },
+  {
+    "id": 526,
+    "english": "singer",
+    "translation": "певец"
+  },
+  {
+    "id": 527,
+    "english": "actor",
+    "translation": "актёр"
+  },
+  {
+    "id": 528,
+    "english": "actress",
+    "translation": "актриса"
+  },
+  {
+    "id": 529,
+    "english": "dancer",
+    "translation": "танцор"
+  },
+  {
+    "id": 530,
+    "english": "artist",
+    "translation": "художник"
+  },
+  {
+    "id": 531,
+    "english": "writer",
+    "translation": "писатель"
+  },
+  {
+    "id": 532,
+    "english": "journalist",
+    "translation": "журналист"
+  },
+  {
+    "id": 533,
+    "english": "photographer",
+    "translation": "фотограф"
+  },
+  {
+    "id": 534,
+    "english": "hairdresser",
+    "translation": "парикмахер"
+  },
+  {
+    "id": 535,
+    "english": "dentist",
+    "translation": "стоматолог"
+  },
+  {
+    "id": 536,
+    "english": "vet",
+    "translation": "ветеринар"
+  },
+  {
+    "id": 537,
+    "english": "lawyer",
+    "translation": "юрист"
+  },
+  {
+    "id": 538,
+    "english": "businessman",
+    "translation": "бизнесмен"
+  },
+  {
+    "id": 539,
+    "english": "manager",
+    "translation": "менеджер"
+  },
+  {
+    "id": 540,
+    "english": "secretary",
+    "translation": "секретарь"
+  },
+  {
+    "id": 541,
+    "english": "cashier",
+    "translation": "кассир"
+  },
+  {
+    "id": 542,
+    "english": "cleaner",
+    "translation": "уборщик"
+  },
+  {
+    "id": 543,
+    "english": "postman",
+    "translation": "почтальон"
+  },
+  {
+    "id": 544,
+    "english": "baker",
+    "translation": "пекарь"
+  },
+  {
+    "id": 545,
+    "english": "butcher",
+    "translation": "мясник"
+  },
+  {
+    "id": 546,
+    "english": "scientist",
+    "translation": "учёный"
+  },
+  {
+    "id": 547,
+    "english": "athlete",
+    "translation": "спортсмен"
+  },
+  {
+    "id": 548,
+    "english": "car",
+    "translation": "машина"
+  },
+  {
+    "id": 549,
+    "english": "bus",
+    "translation": "автобус"
+  },
+  {
+    "id": 550,
+    "english": "train",
+    "translation": "поезд"
+  },
+  {
+    "id": 551,
+    "english": "airplane",
+    "translation": "самолёт"
+  },
+  {
+    "id": 552,
+    "english": "boat",
+    "translation": "лодка"
+  },
+  {
+    "id": 553,
+    "english": "ship",
+    "translation": "корабль"
+  },
+  {
+    "id": 554,
+    "english": "bicycle",
+    "translation": "велосипед"
+  },
+  {
+    "id": 555,
+    "english": "motorbike",
+    "translation": "мотоцикл"
+  },
+  {
+    "id": 556,
+    "english": "taxi",
+    "translation": "такси"
+  },
+  {
+    "id": 557,
+    "english": "truck",
+    "translation": "грузовик"
+  },
+  {
+    "id": 558,
+    "english": "subway",
+    "translation": "метро"
+  },
+  {
+    "id": 559,
+    "english": "tram",
+    "translation": "трамвай"
+  },
+  {
+    "id": 560,
+    "english": "helicopter",
+    "translation": "вертолёт"
+  },
+  {
+    "id": 561,
+    "english": "road",
+    "translation": "дорога"
+  },
+  {
+    "id": 562,
+    "english": "street",
+    "translation": "улица"
+  },
+  {
+    "id": 563,
+    "english": "bridge",
+    "translation": "мост"
+  },
+  {
+    "id": 564,
+    "english": "station",
+    "translation": "станция"
+  },
+  {
+    "id": 565,
+    "english": "airport",
+    "translation": "аэропорт"
+  },
+  {
+    "id": 566,
+    "english": "ticket",
+    "translation": "билет"
+  },
+  {
+    "id": 567,
+    "english": "traffic",
+    "translation": "движение (транспорта)"
+  },
+  {
+    "id": 568,
+    "english": "traffic light",
+    "translation": "светофор"
+  },
+  {
+    "id": 569,
+    "english": "wheel",
+    "translation": "колесо"
+  },
+  {
+    "id": 570,
+    "english": "engine",
+    "translation": "двигатель"
+  },
+  {
+    "id": 571,
+    "english": "sun",
+    "translation": "солнце"
+  },
+  {
+    "id": 572,
+    "english": "moon",
+    "translation": "луна"
+  },
+  {
+    "id": 573,
+    "english": "star",
+    "translation": "звезда"
+  },
+  {
+    "id": 574,
+    "english": "sky",
+    "translation": "небо"
+  },
+  {
+    "id": 575,
+    "english": "cloud",
+    "translation": "облако"
+  },
+  {
+    "id": 576,
+    "english": "rain",
+    "translation": "дождь"
+  },
+  {
+    "id": 577,
+    "english": "snow",
+    "translation": "снег"
+  },
+  {
+    "id": 578,
+    "english": "wind",
+    "translation": "ветер"
+  },
+  {
+    "id": 579,
+    "english": "storm",
+    "translation": "буря"
+  },
+  {
+    "id": 580,
+    "english": "weather",
+    "translation": "погода"
+  },
+  {
+    "id": 581,
+    "english": "ice",
+    "translation": "лёд"
+  },
+  {
+    "id": 582,
+    "english": "fire",
+    "translation": "огонь"
+  },
+  {
+    "id": 583,
+    "english": "earth",
+    "translation": "земля"
+  },
+  {
+    "id": 584,
+    "english": "world",
+    "translation": "мир"
+  },
+  {
+    "id": 585,
+    "english": "mountain",
+    "translation": "гора"
+  },
+  {
+    "id": 586,
+    "english": "hill",
+    "translation": "холм"
+  },
+  {
+    "id": 587,
+    "english": "river",
+    "translation": "река"
+  },
+  {
+    "id": 588,
+    "english": "lake",
+    "translation": "озеро"
+  },
+  {
+    "id": 589,
+    "english": "sea",
+    "translation": "море"
+  },
+  {
+    "id": 590,
+    "english": "ocean",
+    "translation": "океан"
+  },
+  {
+    "id": 591,
+    "english": "forest",
+    "translation": "лес"
+  },
+  {
+    "id": 592,
+    "english": "tree",
+    "translation": "дерево"
+  },
+  {
+    "id": 593,
+    "english": "flower",
+    "translation": "цветок"
+  },
+  {
+    "id": 594,
+    "english": "grass",
+    "translation": "трава"
+  },
+  {
+    "id": 595,
+    "english": "leaf",
+    "translation": "лист"
+  },
+  {
+    "id": 596,
+    "english": "stone",
+    "translation": "камень"
+  },
+  {
+    "id": 597,
+    "english": "sand",
+    "translation": "песок"
+  },
+  {
+    "id": 598,
+    "english": "beach",
+    "translation": "пляж"
+  },
+  {
+    "id": 599,
+    "english": "island",
+    "translation": "остров"
+  },
+  {
+    "id": 600,
+    "english": "valley",
+    "translation": "долина"
+  },
+  {
+    "id": 601,
+    "english": "happy",
+    "translation": "счастливый"
+  },
+  {
+    "id": 602,
+    "english": "sad",
+    "translation": "грустный"
+  },
+  {
+    "id": 603,
+    "english": "angry",
+    "translation": "злой"
+  },
+  {
+    "id": 604,
+    "english": "tired",
+    "translation": "уставший"
+  },
+  {
+    "id": 605,
+    "english": "hungry",
+    "translation": "голодный"
+  },
+  {
+    "id": 606,
+    "english": "thirsty",
+    "translation": "испытывающий жажду"
+  },
+  {
+    "id": 607,
+    "english": "sleepy",
+    "translation": "сонный"
+  },
+  {
+    "id": 608,
+    "english": "afraid",
+    "translation": "испуганный"
+  },
+  {
+    "id": 609,
+    "english": "surprised",
+    "translation": "удивлённый"
+  },
+  {
+    "id": 610,
+    "english": "excited",
+    "translation": "взволнованный"
+  },
+  {
+    "id": 611,
+    "english": "bored",
+    "translation": "скучающий"
+  },
+  {
+    "id": 612,
+    "english": "nervous",
+    "translation": "нервный"
+  },
+  {
+    "id": 613,
+    "english": "calm",
+    "translation": "спокойный"
+  },
+  {
+    "id": 614,
+    "english": "worried",
+    "translation": "обеспокоенный"
+  },
+  {
+    "id": 615,
+    "english": "proud",
+    "translation": "гордый"
+  },
+  {
+    "id": 616,
+    "english": "shy",
+    "translation": "застенчивый"
+  },
+  {
+    "id": 617,
+    "english": "funny",
+    "translation": "смешной"
+  },
+  {
+    "id": 618,
+    "english": "serious",
+    "translation": "серьёзный"
+  },
+  {
+    "id": 619,
+    "english": "kind",
+    "translation": "добрый"
+  },
+  {
+    "id": 620,
+    "english": "nice",
+    "translation": "приятный"
+  },
+  {
+    "id": 621,
+    "english": "friendly",
+    "translation": "дружелюбный"
+  },
+  {
+    "id": 622,
+    "english": "rude",
+    "translation": "грубый"
+  },
+  {
+    "id": 623,
+    "english": "polite",
+    "translation": "вежливый"
+  },
+  {
+    "id": 624,
+    "english": "brave",
+    "translation": "храбрый"
+  },
+  {
+    "id": 625,
+    "english": "lazy",
+    "translation": "ленивый"
+  },
+  {
+    "id": 626,
+    "english": "active",
+    "translation": "активный"
+  },
+  {
+    "id": 627,
+    "english": "clever",
+    "translation": "умный"
+  },
+  {
+    "id": 628,
+    "english": "smart",
+    "translation": "умный (сообразительный)"
+  },
+  {
+    "id": 629,
+    "english": "stupid",
+    "translation": "глупый"
+  },
+  {
+    "id": 630,
+    "english": "honest",
+    "translation": "честный"
+  },
+  {
+    "id": 631,
+    "english": "generous",
+    "translation": "щедрый"
+  },
+  {
+    "id": 632,
+    "english": "patient",
+    "translation": "терпеливый"
+  },
+  {
+    "id": 633,
+    "english": "big",
+    "translation": "большой"
+  },
+  {
+    "id": 634,
+    "english": "small",
+    "translation": "маленький"
+  },
+  {
+    "id": 635,
+    "english": "tall",
+    "translation": "высокий"
+  },
+  {
+    "id": 636,
+    "english": "short",
+    "translation": "низкий/короткий"
+  },
+  {
+    "id": 637,
+    "english": "long",
+    "translation": "длинный"
+  },
+  {
+    "id": 638,
+    "english": "wide",
+    "translation": "широкий"
+  },
+  {
+    "id": 639,
+    "english": "narrow",
+    "translation": "узкий"
+  },
+  {
+    "id": 640,
+    "english": "thick",
+    "translation": "толстый"
+  },
+  {
+    "id": 641,
+    "english": "thin",
+    "translation": "тонкий"
+  },
+  {
+    "id": 642,
+    "english": "heavy",
+    "translation": "тяжёлый"
+  },
+  {
+    "id": 643,
+    "english": "light",
+    "translation": "лёгкий"
+  },
+  {
+    "id": 644,
+    "english": "fast",
+    "translation": "быстрый"
+  },
+  {
+    "id": 645,
+    "english": "slow",
+    "translation": "медленный"
+  },
+  {
+    "id": 646,
+    "english": "strong",
+    "translation": "сильный"
+  },
+  {
+    "id": 647,
+    "english": "weak",
+    "translation": "слабый"
+  },
+  {
+    "id": 648,
+    "english": "hard",
+    "translation": "твёрдый/трудный"
+  },
+  {
+    "id": 649,
+    "english": "soft",
+    "translation": "мягкий"
+  },
+  {
+    "id": 650,
+    "english": "easy",
+    "translation": "лёгкий (простой)"
+  },
+  {
+    "id": 651,
+    "english": "difficult",
+    "translation": "трудный"
+  },
+  {
+    "id": 652,
+    "english": "hot",
+    "translation": "горячий"
+  },
+  {
+    "id": 653,
+    "english": "cold",
+    "translation": "холодный"
+  },
+  {
+    "id": 654,
+    "english": "warm",
+    "translation": "тёплый"
+  },
+  {
+    "id": 655,
+    "english": "cool",
+    "translation": "прохладный"
+  },
+  {
+    "id": 656,
+    "english": "new",
+    "translation": "новый"
+  },
+  {
+    "id": 657,
+    "english": "old",
+    "translation": "старый"
+  },
+  {
+    "id": 658,
+    "english": "young",
+    "translation": "молодой"
+  },
+  {
+    "id": 659,
+    "english": "beautiful",
+    "translation": "красивый"
+  },
+  {
+    "id": 660,
+    "english": "ugly",
+    "translation": "некрасивый"
+  },
+  {
+    "id": 661,
+    "english": "pretty",
+    "translation": "симпатичный"
+  },
+  {
+    "id": 662,
+    "english": "handsome",
+    "translation": "красивый (о мужчине)"
+  },
+  {
+    "id": 663,
+    "english": "clean",
+    "translation": "чистый"
+  },
+  {
+    "id": 664,
+    "english": "dirty",
+    "translation": "грязный"
+  },
+  {
+    "id": 665,
+    "english": "wet",
+    "translation": "мокрый"
+  },
+  {
+    "id": 666,
+    "english": "dry",
+    "translation": "сухой"
+  },
+  {
+    "id": 667,
+    "english": "full",
+    "translation": "полный"
+  },
+  {
+    "id": 668,
+    "english": "empty",
+    "translation": "пустой"
+  },
+  {
+    "id": 669,
+    "english": "rich",
+    "translation": "богатый"
+  },
+  {
+    "id": 670,
+    "english": "poor",
+    "translation": "бедный"
+  },
+  {
+    "id": 671,
+    "english": "cheap",
+    "translation": "дешёвый"
+  },
+  {
+    "id": 672,
+    "english": "expensive",
+    "translation": "дорогой"
+  },
+  {
+    "id": 673,
+    "english": "good",
+    "translation": "хороший"
+  },
+  {
+    "id": 674,
+    "english": "bad",
+    "translation": "плохой"
+  },
+  {
+    "id": 675,
+    "english": "wrong",
+    "translation": "неправильный"
+  },
+  {
+    "id": 676,
+    "english": "true",
+    "translation": "истинный"
+  },
+  {
+    "id": 677,
+    "english": "false",
+    "translation": "ложный"
+  },
+  {
+    "id": 678,
+    "english": "same",
+    "translation": "одинаковый"
+  },
+  {
+    "id": 679,
+    "english": "different",
+    "translation": "другой"
+  },
+  {
+    "id": 680,
+    "english": "open",
+    "translation": "открытый"
+  },
+  {
+    "id": 681,
+    "english": "closed",
+    "translation": "закрытый"
+  },
+  {
+    "id": 682,
+    "english": "quiet",
+    "translation": "тихий"
+  },
+  {
+    "id": 683,
+    "english": "loud",
+    "translation": "громкий"
+  },
+  {
+    "id": 684,
+    "english": "dark",
+    "translation": "тёмный"
+  },
+  {
+    "id": 685,
+    "english": "bright",
+    "translation": "яркий"
+  },
+  {
+    "id": 686,
+    "english": "be",
+    "translation": "быть"
+  },
+  {
+    "id": 687,
+    "english": "have",
+    "translation": "иметь"
+  },
+  {
+    "id": 688,
+    "english": "do",
+    "translation": "делать"
+  },
+  {
+    "id": 689,
+    "english": "go",
+    "translation": "идти"
+  },
+  {
+    "id": 690,
+    "english": "come",
+    "translation": "приходить"
+  },
+  {
+    "id": 691,
+    "english": "eat",
+    "translation": "есть"
+  },
+  {
+    "id": 692,
+    "english": "sleep",
+    "translation": "спать"
+  },
+  {
+    "id": 693,
+    "english": "wake up",
+    "translation": "просыпаться"
+  },
+  {
+    "id": 694,
+    "english": "get up",
+    "translation": "вставать"
+  },
+  {
+    "id": 695,
+    "english": "sit",
+    "translation": "сидеть"
+  },
+  {
+    "id": 696,
+    "english": "stand",
+    "translation": "стоять"
+  },
+  {
+    "id": 697,
+    "english": "walk",
+    "translation": "ходить"
+  },
+  {
+    "id": 698,
+    "english": "run",
+    "translation": "бегать"
+  },
+  {
+    "id": 699,
+    "english": "jump",
+    "translation": "прыгать"
+  },
+  {
+    "id": 700,
+    "english": "swim",
+    "translation": "плавать"
+  },
+  {
+    "id": 701,
+    "english": "fly",
+    "translation": "летать"
+  },
+  {
+    "id": 702,
+    "english": "drive",
+    "translation": "водить машину"
+  },
+  {
+    "id": 703,
+    "english": "ride",
+    "translation": "ездить верхом/на транспорте"
+  },
+  {
+    "id": 704,
+    "english": "read",
+    "translation": "читать"
+  },
+  {
+    "id": 705,
+    "english": "write",
+    "translation": "писать"
+  },
+  {
+    "id": 706,
+    "english": "speak",
+    "translation": "говорить"
+  },
+  {
+    "id": 707,
+    "english": "talk",
+    "translation": "разговаривать"
+  },
+  {
+    "id": 708,
+    "english": "listen",
+    "translation": "слушать"
+  },
+  {
+    "id": 709,
+    "english": "hear",
+    "translation": "слышать"
+  },
+  {
+    "id": 710,
+    "english": "see",
+    "translation": "видеть"
+  },
+  {
+    "id": 711,
+    "english": "look",
+    "translation": "смотреть"
+  },
+  {
+    "id": 712,
+    "english": "say",
+    "translation": "сказать"
+  },
+  {
+    "id": 713,
+    "english": "tell",
+    "translation": "рассказать"
+  },
+  {
+    "id": 714,
+    "english": "ask",
+    "translation": "спрашивать"
+  },
+  {
+    "id": 715,
+    "english": "answer",
+    "translation": "отвечать"
+  },
+  {
+    "id": 716,
+    "english": "understand",
+    "translation": "понимать"
+  },
+  {
+    "id": 717,
+    "english": "know",
+    "translation": "знать"
+  },
+  {
+    "id": 718,
+    "english": "think",
+    "translation": "думать"
+  },
+  {
+    "id": 719,
+    "english": "remember",
+    "translation": "помнить"
+  },
+  {
+    "id": 720,
+    "english": "forget",
+    "translation": "забывать"
+  },
+  {
+    "id": 721,
+    "english": "learn",
+    "translation": "учить(ся)"
+  },
+  {
+    "id": 722,
+    "english": "study",
+    "translation": "изучать"
+  },
+  {
+    "id": 723,
+    "english": "teach",
+    "translation": "обучать"
+  },
+  {
+    "id": 724,
+    "english": "work",
+    "translation": "работать"
+  },
+  {
+    "id": 725,
+    "english": "play",
+    "translation": "играть"
+  },
+  {
+    "id": 726,
+    "english": "help",
+    "translation": "помогать"
+  },
+  {
+    "id": 727,
+    "english": "need",
+    "translation": "нуждаться"
+  },
+  {
+    "id": 728,
+    "english": "want",
+    "translation": "хотеть"
+  },
+  {
+    "id": 729,
+    "english": "like",
+    "translation": "нравиться"
+  },
+  {
+    "id": 730,
+    "english": "love",
+    "translation": "любить"
+  },
+  {
+    "id": 731,
+    "english": "hate",
+    "translation": "ненавидеть"
+  },
+  {
+    "id": 732,
+    "english": "live",
+    "translation": "жить"
+  },
+  {
+    "id": 733,
+    "english": "buy",
+    "translation": "покупать"
+  },
+  {
+    "id": 734,
+    "english": "sell",
+    "translation": "продавать"
+  },
+  {
+    "id": 735,
+    "english": "pay",
+    "translation": "платить"
+  },
+  {
+    "id": 736,
+    "english": "cost",
+    "translation": "стоить"
+  },
+  {
+    "id": 737,
+    "english": "open",
+    "translation": "открывать"
+  },
+  {
+    "id": 738,
+    "english": "close",
+    "translation": "закрывать"
+  },
+  {
+    "id": 739,
+    "english": "start",
+    "translation": "начинать"
+  },
+  {
+    "id": 740,
+    "english": "finish",
+    "translation": "заканчивать"
+  },
+  {
+    "id": 741,
+    "english": "stop",
+    "translation": "останавливаться"
+  },
+  {
+    "id": 742,
+    "english": "wait",
+    "translation": "ждать"
+  },
+  {
+    "id": 743,
+    "english": "meet",
+    "translation": "встречать"
+  },
+  {
+    "id": 744,
+    "english": "visit",
+    "translation": "посещать"
+  },
+  {
+    "id": 745,
+    "english": "travel",
+    "translation": "путешествовать"
+  },
+  {
+    "id": 746,
+    "english": "arrive",
+    "translation": "прибывать"
+  },
+  {
+    "id": 747,
+    "english": "leave",
+    "translation": "уходить/уезжать"
+  },
+  {
+    "id": 748,
+    "english": "return",
+    "translation": "возвращаться"
+  },
+  {
+    "id": 749,
+    "english": "bring",
+    "translation": "приносить"
+  },
+  {
+    "id": 750,
+    "english": "take",
+    "translation": "брать"
+  },
+  {
+    "id": 751,
+    "english": "give",
+    "translation": "давать"
+  },
+  {
+    "id": 752,
+    "english": "send",
+    "translation": "отправлять"
+  },
+  {
+    "id": 753,
+    "english": "receive",
+    "translation": "получать"
+  },
+  {
+    "id": 754,
+    "english": "put",
+    "translation": "класть"
+  },
+  {
+    "id": 755,
+    "english": "make",
+    "translation": "делать/создавать"
+  },
+  {
+    "id": 756,
+    "english": "build",
+    "translation": "строить"
+  },
+  {
+    "id": 757,
+    "english": "break",
+    "translation": "ломать"
+  },
+  {
+    "id": 758,
+    "english": "fix",
+    "translation": "чинить"
+  },
+  {
+    "id": 759,
+    "english": "clean",
+    "translation": "убирать"
+  },
+  {
+    "id": 760,
+    "english": "wash",
+    "translation": "мыть"
+  },
+  {
+    "id": 761,
+    "english": "cook",
+    "translation": "готовить"
+  },
+  {
+    "id": 762,
+    "english": "cut",
+    "translation": "резать"
+  },
+  {
+    "id": 763,
+    "english": "wear",
+    "translation": "носить (одежду)"
+  },
+  {
+    "id": 764,
+    "english": "use",
+    "translation": "использовать"
+  },
+  {
+    "id": 765,
+    "english": "try",
+    "translation": "пытаться"
+  },
+  {
+    "id": 766,
+    "english": "find",
+    "translation": "находить"
+  },
+  {
+    "id": 767,
+    "english": "lose",
+    "translation": "терять"
+  },
+  {
+    "id": 768,
+    "english": "win",
+    "translation": "выигрывать"
+  },
+  {
+    "id": 769,
+    "english": "carry",
+    "translation": "нести"
+  },
+  {
+    "id": 770,
+    "english": "hold",
+    "translation": "держать"
+  },
+  {
+    "id": 771,
+    "english": "catch",
+    "translation": "ловить"
+  },
+  {
+    "id": 772,
+    "english": "throw",
+    "translation": "бросать"
+  },
+  {
+    "id": 773,
+    "english": "push",
+    "translation": "толкать"
+  },
+  {
+    "id": 774,
+    "english": "pull",
+    "translation": "тянуть"
+  },
+  {
+    "id": 775,
+    "english": "turn",
+    "translation": "поворачивать"
+  },
+  {
+    "id": 776,
+    "english": "fall",
+    "translation": "падать"
+  },
+  {
+    "id": 777,
+    "english": "smile",
+    "translation": "улыбаться"
+  },
+  {
+    "id": 778,
+    "english": "laugh",
+    "translation": "смеяться"
+  },
+  {
+    "id": 779,
+    "english": "cry",
+    "translation": "плакать"
+  },
+  {
+    "id": 780,
+    "english": "sing",
+    "translation": "петь"
+  },
+  {
+    "id": 781,
+    "english": "dance",
+    "translation": "танцевать"
+  },
+  {
+    "id": 782,
+    "english": "draw",
+    "translation": "рисовать"
+  },
+  {
+    "id": 783,
+    "english": "paint",
+    "translation": "красить/рисовать красками"
+  },
+  {
+    "id": 784,
+    "english": "city",
+    "translation": "город"
+  },
+  {
+    "id": 785,
+    "english": "town",
+    "translation": "городок"
+  },
+  {
+    "id": 786,
+    "english": "village",
+    "translation": "деревня"
+  },
+  {
+    "id": 787,
+    "english": "park",
+    "translation": "парк"
+  },
+  {
+    "id": 788,
+    "english": "shop",
+    "translation": "магазин"
+  },
+  {
+    "id": 789,
+    "english": "supermarket",
+    "translation": "супермаркет"
+  },
+  {
+    "id": 790,
+    "english": "market",
+    "translation": "рынок"
+  },
+  {
+    "id": 791,
+    "english": "restaurant",
+    "translation": "ресторан"
+  },
+  {
+    "id": 792,
+    "english": "cafe",
+    "translation": "кафе"
+  },
+  {
+    "id": 793,
+    "english": "hotel",
+    "translation": "отель"
+  },
+  {
+    "id": 794,
+    "english": "hospital",
+    "translation": "больница"
+  },
+  {
+    "id": 795,
+    "english": "bank",
+    "translation": "банк"
+  },
+  {
+    "id": 796,
+    "english": "post office",
+    "translation": "почта"
+  },
+  {
+    "id": 797,
+    "english": "police station",
+    "translation": "полицейский участок"
+  },
+  {
+    "id": 798,
+    "english": "fire station",
+    "translation": "пожарная станция"
+  },
+  {
+    "id": 799,
+    "english": "church",
+    "translation": "церковь"
+  },
+  {
+    "id": 800,
+    "english": "museum",
+    "translation": "музей"
+  },
+  {
+    "id": 801,
+    "english": "cinema",
+    "translation": "кинотеатр"
+  },
+  {
+    "id": 802,
+    "english": "theatre",
+    "translation": "театр"
+  },
+  {
+    "id": 803,
+    "english": "stadium",
+    "translation": "стадион"
+  },
+  {
+    "id": 804,
+    "english": "gym",
+    "translation": "спортзал"
+  },
+  {
+    "id": 805,
+    "english": "swimming pool",
+    "translation": "бассейн"
+  },
+  {
+    "id": 806,
+    "english": "playground",
+    "translation": "детская площадка"
+  },
+  {
+    "id": 807,
+    "english": "bus stop",
+    "translation": "автобусная остановка"
+  },
+  {
+    "id": 808,
+    "english": "factory",
+    "translation": "фабрика"
+  },
+  {
+    "id": 809,
+    "english": "office",
+    "translation": "офис"
+  },
+  {
+    "id": 810,
+    "english": "square",
+    "translation": "площадь"
+  },
+  {
+    "id": 811,
+    "english": "tower",
+    "translation": "башня"
+  },
+  {
+    "id": 812,
+    "english": "castle",
+    "translation": "замок"
+  },
+  {
+    "id": 813,
+    "english": "palace",
+    "translation": "дворец"
+  },
+  {
+    "id": 814,
+    "english": "building",
+    "translation": "здание"
+  },
+  {
+    "id": 815,
+    "english": "football",
+    "translation": "футбол"
+  },
+  {
+    "id": 816,
+    "english": "basketball",
+    "translation": "баскетбол"
+  },
+  {
+    "id": 817,
+    "english": "tennis",
+    "translation": "теннис"
+  },
+  {
+    "id": 818,
+    "english": "volleyball",
+    "translation": "волейбол"
+  },
+  {
+    "id": 819,
+    "english": "swimming",
+    "translation": "плавание"
+  },
+  {
+    "id": 820,
+    "english": "running",
+    "translation": "бег"
+  },
+  {
+    "id": 821,
+    "english": "cycling",
+    "translation": "велоспорт"
+  },
+  {
+    "id": 822,
+    "english": "skiing",
+    "translation": "лыжи"
+  },
+  {
+    "id": 823,
+    "english": "skating",
+    "translation": "катание на коньках"
+  },
+  {
+    "id": 824,
+    "english": "boxing",
+    "translation": "бокс"
+  },
+  {
+    "id": 825,
+    "english": "golf",
+    "translation": "гольф"
+  },
+  {
+    "id": 826,
+    "english": "baseball",
+    "translation": "бейсбол"
+  },
+  {
+    "id": 827,
+    "english": "hockey",
+    "translation": "хоккей"
+  },
+  {
+    "id": 828,
+    "english": "dancing",
+    "translation": "танцы"
+  },
+  {
+    "id": 829,
+    "english": "singing",
+    "translation": "пение"
+  },
+  {
+    "id": 830,
+    "english": "painting",
+    "translation": "рисование (живопись)"
+  },
+  {
+    "id": 831,
+    "english": "drawing",
+    "translation": "рисование"
+  },
+  {
+    "id": 832,
+    "english": "cooking",
+    "translation": "кулинария"
+  },
+  {
+    "id": 833,
+    "english": "gardening",
+    "translation": "садоводство"
+  },
+  {
+    "id": 834,
+    "english": "fishing",
+    "translation": "рыбалка"
+  },
+  {
+    "id": 835,
+    "english": "hiking",
+    "translation": "поход"
+  },
+  {
+    "id": 836,
+    "english": "camping",
+    "translation": "кемпинг"
+  },
+  {
+    "id": 837,
+    "english": "chess",
+    "translation": "шахматы"
+  },
+  {
+    "id": 838,
+    "english": "cards",
+    "translation": "карты"
+  },
+  {
+    "id": 839,
+    "english": "game",
+    "translation": "игра"
+  },
+  {
+    "id": 840,
+    "english": "ball",
+    "translation": "мяч"
+  },
+  {
+    "id": 841,
+    "english": "team",
+    "translation": "команда"
+  },
+  {
+    "id": 842,
+    "english": "match",
+    "translation": "матч"
+  },
+  {
+    "id": 843,
+    "english": "competition",
+    "translation": "соревнование"
+  },
+  {
+    "id": 844,
+    "english": "England",
+    "translation": "Англия"
+  },
+  {
+    "id": 845,
+    "english": "America",
+    "translation": "Америка"
+  },
+  {
+    "id": 846,
+    "english": "Russia",
+    "translation": "Россия"
+  },
+  {
+    "id": 847,
+    "english": "France",
+    "translation": "Франция"
+  },
+  {
+    "id": 848,
+    "english": "Germany",
+    "translation": "Германия"
+  },
+  {
+    "id": 849,
+    "english": "Spain",
+    "translation": "Испания"
+  },
+  {
+    "id": 850,
+    "english": "Italy",
+    "translation": "Италия"
+  },
+  {
+    "id": 851,
+    "english": "China",
+    "translation": "Китай"
+  },
+  {
+    "id": 852,
+    "english": "Japan",
+    "translation": "Япония"
+  },
+  {
+    "id": 853,
+    "english": "India",
+    "translation": "Индия"
+  },
+  {
+    "id": 854,
+    "english": "Canada",
+    "translation": "Канада"
+  },
+  {
+    "id": 855,
+    "english": "Australia",
+    "translation": "Австралия"
+  },
+  {
+    "id": 856,
+    "english": "Brazil",
+    "translation": "Бразилия"
+  },
+  {
+    "id": 857,
+    "english": "Mexico",
+    "translation": "Мексика"
+  },
+  {
+    "id": 858,
+    "english": "English",
+    "translation": "английский"
+  },
+  {
+    "id": 859,
+    "english": "Russian",
+    "translation": "русский"
+  },
+  {
+    "id": 860,
+    "english": "French",
+    "translation": "французский"
+  },
+  {
+    "id": 861,
+    "english": "German",
+    "translation": "немецкий"
+  },
+  {
+    "id": 862,
+    "english": "Spanish",
+    "translation": "испанский"
+  },
+  {
+    "id": 863,
+    "english": "Italian",
+    "translation": "итальянский"
+  },
+  {
+    "id": 864,
+    "english": "Chinese",
+    "translation": "китайский"
+  },
+  {
+    "id": 865,
+    "english": "Japanese",
+    "translation": "японский"
+  },
+  {
+    "id": 866,
+    "english": "country",
+    "translation": "страна"
+  },
+  {
+    "id": 867,
+    "english": "nation",
+    "translation": "нация"
+  },
+  {
+    "id": 868,
+    "english": "capital",
+    "translation": "столица"
+  },
+  {
+    "id": 869,
+    "english": "flag",
+    "translation": "флаг"
+  },
+  {
+    "id": 870,
+    "english": "map",
+    "translation": "карта"
+  },
+  {
+    "id": 871,
+    "english": "money",
+    "translation": "деньги"
+  },
+  {
+    "id": 872,
+    "english": "coin",
+    "translation": "монета"
+  },
+  {
+    "id": 873,
+    "english": "dollar",
+    "translation": "доллар"
+  },
+  {
+    "id": 874,
+    "english": "price",
+    "translation": "цена"
+  },
+  {
+    "id": 875,
+    "english": "shopping",
+    "translation": "покупки"
+  },
+  {
+    "id": 876,
+    "english": "receipt",
+    "translation": "чек"
+  },
+  {
+    "id": 877,
+    "english": "credit card",
+    "translation": "кредитная карта"
+  },
+  {
+    "id": 878,
+    "english": "cash",
+    "translation": "наличные"
+  },
+  {
+    "id": 879,
+    "english": "change",
+    "translation": "сдача"
+  },
+  {
+    "id": 880,
+    "english": "sale",
+    "translation": "распродажа"
+  },
+  {
+    "id": 881,
+    "english": "gift",
+    "translation": "подарок"
+  },
+  {
+    "id": 882,
+    "english": "phone",
+    "translation": "телефон"
+  },
+  {
+    "id": 883,
+    "english": "mobile phone",
+    "translation": "мобильный телефон"
+  },
+  {
+    "id": 884,
+    "english": "internet",
+    "translation": "интернет"
+  },
+  {
+    "id": 885,
+    "english": "email",
+    "translation": "электронная почта"
+  },
+  {
+    "id": 886,
+    "english": "website",
+    "translation": "веб-сайт"
+  },
+  {
+    "id": 887,
+    "english": "photo",
+    "translation": "фото"
+  },
+  {
+    "id": 888,
+    "english": "camera",
+    "translation": "камера"
+  },
+  {
+    "id": 889,
+    "english": "video",
+    "translation": "видео"
+  },
+  {
+    "id": 890,
+    "english": "screen",
+    "translation": "экран"
+  },
+  {
+    "id": 891,
+    "english": "battery",
+    "translation": "батарея"
+  },
+  {
+    "id": 892,
+    "english": "charger",
+    "translation": "зарядное устройство"
+  },
+  {
+    "id": 893,
+    "english": "headphones",
+    "translation": "наушники"
+  },
+  {
+    "id": 894,
+    "english": "keyboard",
+    "translation": "клавиатура"
+  },
+  {
+    "id": 895,
+    "english": "mouse",
+    "translation": "мышь (компьютерная)"
+  },
+  {
+    "id": 896,
+    "english": "printer",
+    "translation": "принтер"
+  },
+  {
+    "id": 897,
+    "english": "box",
+    "translation": "коробка"
+  },
+  {
+    "id": 898,
+    "english": "bag",
+    "translation": "пакет"
+  },
+  {
+    "id": 899,
+    "english": "basket",
+    "translation": "корзина"
+  },
+  {
+    "id": 900,
+    "english": "chair",
+    "translation": "стул (доп.)"
+  },
+  {
+    "id": 901,
+    "english": "candle",
+    "translation": "свеча"
+  },
+  {
+    "id": 902,
+    "english": "match",
+    "translation": "спичка"
+  },
+  {
+    "id": 903,
+    "english": "bell",
+    "translation": "колокольчик"
+  },
+  {
+    "id": 904,
+    "english": "string",
+    "translation": "верёвка"
+  },
+  {
+    "id": 905,
+    "english": "rope",
+    "translation": "канат"
+  },
+  {
+    "id": 906,
+    "english": "needle",
+    "translation": "игла"
+  },
+  {
+    "id": 907,
+    "english": "thread",
+    "translation": "нитка"
+  },
+  {
+    "id": 908,
+    "english": "scissors",
+    "translation": "ножницы"
+  },
+  {
+    "id": 909,
+    "english": "glue",
+    "translation": "клей"
+  },
+  {
+    "id": 910,
+    "english": "tape",
+    "translation": "скотч"
+  },
+  {
+    "id": 911,
+    "english": "nail",
+    "translation": "гвоздь"
+  },
+  {
+    "id": 912,
+    "english": "hammer",
+    "translation": "молоток"
+  },
+  {
+    "id": 913,
+    "english": "screw",
+    "translation": "шуруп"
+  },
+  {
+    "id": 914,
+    "english": "ladder",
+    "translation": "лестница (стремянка)"
+  },
+  {
+    "id": 915,
+    "english": "bucket",
+    "translation": "ведро"
+  },
+  {
+    "id": 916,
+    "english": "broom",
+    "translation": "метла"
+  },
+  {
+    "id": 917,
+    "english": "trash",
+    "translation": "мусор"
+  },
+  {
+    "id": 918,
+    "english": "bin",
+    "translation": "мусорное ведро"
+  },
+  {
+    "id": 919,
+    "english": "smell",
+    "translation": "запах"
+  },
+  {
+    "id": 920,
+    "english": "taste",
+    "translation": "вкус"
+  },
+  {
+    "id": 921,
+    "english": "sound",
+    "translation": "звук"
+  },
+  {
+    "id": 922,
+    "english": "noise",
+    "translation": "шум"
+  },
+  {
+    "id": 923,
+    "english": "silence",
+    "translation": "тишина"
+  },
+  {
+    "id": 924,
+    "english": "shadow",
+    "translation": "тень"
+  },
+  {
+    "id": 925,
+    "english": "shape",
+    "translation": "форма"
+  },
+  {
+    "id": 926,
+    "english": "circle",
+    "translation": "круг"
+  },
+  {
+    "id": 927,
+    "english": "square",
+    "translation": "квадрат"
+  },
+  {
+    "id": 928,
+    "english": "triangle",
+    "translation": "треугольник"
+  },
+  {
+    "id": 929,
+    "english": "rectangle",
+    "translation": "прямоугольник"
+  },
+  {
+    "id": 930,
+    "english": "line",
+    "translation": "линия"
+  },
+  {
+    "id": 931,
+    "english": "point",
+    "translation": "точка"
+  },
+  {
+    "id": 932,
+    "english": "north",
+    "translation": "север"
+  },
+  {
+    "id": 933,
+    "english": "south",
+    "translation": "юг"
+  },
+  {
+    "id": 934,
+    "english": "east",
+    "translation": "восток"
+  },
+  {
+    "id": 935,
+    "english": "west",
+    "translation": "запад"
+  },
+  {
+    "id": 936,
+    "english": "street lamp",
+    "translation": "уличный фонарь"
+  },
+  {
+    "id": 937,
+    "english": "sidewalk",
+    "translation": "тротуар"
+  },
+  {
+    "id": 938,
+    "english": "crossroad",
+    "translation": "перекрёсток"
+  },
+  {
+    "id": 939,
+    "english": "neighbourhood",
+    "translation": "район"
+  },
+  {
+    "id": 940,
+    "english": "suburb",
+    "translation": "пригород"
+  },
+  {
+    "id": 941,
+    "english": "countryside",
+    "translation": "сельская местность"
+  },
+  {
+    "id": 942,
+    "english": "job",
+    "translation": "работа (должность)"
+  },
+  {
+    "id": 943,
+    "english": "career",
+    "translation": "карьера"
+  },
+  {
+    "id": 944,
+    "english": "company",
+    "translation": "компания"
+  },
+  {
+    "id": 945,
+    "english": "business",
+    "translation": "бизнес"
+  },
+  {
+    "id": 946,
+    "english": "meeting",
+    "translation": "встреча (деловая)"
+  },
+  {
+    "id": 947,
+    "english": "interview",
+    "translation": "собеседование"
+  },
+  {
+    "id": 948,
+    "english": "salary",
+    "translation": "зарплата"
+  },
+  {
+    "id": 949,
+    "english": "boss",
+    "translation": "начальник"
+  },
+  {
+    "id": 950,
+    "english": "colleague",
+    "translation": "коллега"
+  },
+  {
+    "id": 951,
+    "english": "customer",
+    "translation": "клиент"
+  },
+  {
+    "id": 952,
+    "english": "health",
+    "translation": "здоровье"
+  },
+  {
+    "id": 953,
+    "english": "illness",
+    "translation": "болезнь"
+  },
+  {
+    "id": 954,
+    "english": "medicine",
+    "translation": "лекарство"
+  },
+  {
+    "id": 955,
+    "english": "pain",
+    "translation": "боль"
+  },
+  {
+    "id": 956,
+    "english": "headache",
+    "translation": "головная боль"
+  },
+  {
+    "id": 957,
+    "english": "cough",
+    "translation": "кашель"
+  },
+  {
+    "id": 958,
+    "english": "fever",
+    "translation": "температура (жар)"
+  },
+  {
+    "id": 959,
+    "english": "cold",
+    "translation": "простуда"
+  },
+  {
+    "id": 960,
+    "english": "pharmacy",
+    "translation": "аптека"
+  },
+  {
+    "id": 961,
+    "english": "ambulance",
+    "translation": "скорая помощь"
+  },
+  {
+    "id": 962,
+    "english": "love",
+    "translation": "любовь"
+  },
+  {
+    "id": 963,
+    "english": "hope",
+    "translation": "надежда"
+  },
+  {
+    "id": 964,
+    "english": "dream",
+    "translation": "мечта/сон"
+  },
+  {
+    "id": 965,
+    "english": "wish",
+    "translation": "желание"
+  },
+  {
+    "id": 966,
+    "english": "plan",
+    "translation": "план"
+  },
+  {
+    "id": 967,
+    "english": "idea",
+    "translation": "идея"
+  },
+  {
+    "id": 968,
+    "english": "problem",
+    "translation": "проблема"
+  },
+  {
+    "id": 969,
+    "english": "solution",
+    "translation": "решение"
+  },
+  {
+    "id": 970,
+    "english": "reason",
+    "translation": "причина"
+  },
+  {
+    "id": 971,
+    "english": "result",
+    "translation": "результат"
+  },
+  {
+    "id": 972,
+    "english": "choice",
+    "translation": "выбор"
+  },
+  {
+    "id": 973,
+    "english": "chance",
+    "translation": "шанс"
+  },
+  {
+    "id": 974,
+    "english": "news",
+    "translation": "новости"
+  },
+  {
+    "id": 975,
+    "english": "story",
+    "translation": "история (рассказ)"
+  },
+  {
+    "id": 976,
+    "english": "song",
+    "translation": "песня"
+  },
+  {
+    "id": 977,
+    "english": "movie",
+    "translation": "фильм"
+  },
+  {
+    "id": 978,
+    "english": "show",
+    "translation": "шоу"
+  },
+  {
+    "id": 979,
+    "english": "show",
+    "translation": "показывать"
+  },
+  {
+    "id": 980,
+    "english": "party",
+    "translation": "вечеринка"
+  },
+  {
+    "id": 981,
+    "english": "celebration",
+    "translation": "праздник (событие)"
+  },
+  {
+    "id": 982,
+    "english": "present",
+    "translation": "подарок"
+  },
+  {
+    "id": 983,
+    "english": "surprise",
+    "translation": "сюрприз"
+  },
+  {
+    "id": 984,
+    "english": "guest",
+    "translation": "гость"
+  },
+  {
+    "id": 985,
+    "english": "invitation",
+    "translation": "приглашение"
+  },
+  {
+    "id": 986,
+    "english": "wedding",
+    "translation": "свадьба"
+  },
+  {
+    "id": 987,
+    "english": "marriage",
+    "translation": "брак"
+  },
+  {
+    "id": 988,
+    "english": "king",
+    "translation": "король"
+  },
+  {
+    "id": 989,
+    "english": "queen",
+    "translation": "королева"
+  },
+  {
+    "id": 990,
+    "english": "prince",
+    "translation": "принц"
+  },
+  {
+    "id": 991,
+    "english": "princess",
+    "translation": "принцесса"
+  },
+  {
+    "id": 992,
+    "english": "hero",
+    "translation": "герой"
+  },
+  {
+    "id": 993,
+    "english": "giant",
+    "translation": "великан"
+  },
+  {
+    "id": 994,
+    "english": "dragon",
+    "translation": "дракон"
+  },
+  {
+    "id": 995,
+    "english": "magic",
+    "translation": "магия"
+  },
+  {
+    "id": 996,
+    "english": "stairway",
+    "translation": "лестничный пролёт"
+  },
+  {
+    "id": 997,
+    "english": "elevator",
+    "translation": "лифт"
+  },
+  {
+    "id": 998,
+    "english": "floor",
+    "translation": "этаж"
+  },
+  {
+    "id": 999,
+    "english": "apartment",
+    "translation": "квартира"
+  },
+  {
+    "id": 1000,
+    "english": "flat",
+    "translation": "квартира (брит.)"
+  }
+]
