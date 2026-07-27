@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "english": "apple",
+    "translation": "яблоко"
+  },
+  {
+    "id": 2,
+    "english": "house",
+    "translation": "дом"
+  },
+  {
+    "id": 3,
+    "english": "book",
+    "translation": "книга"
+  },
+  {
+    "id": 4,
+    "english": "water",
+    "translation": "вода"
+  },
+  {
+    "id": 5,
+    "english": "friend",
+    "translation": "друг"
+  },
+  {
+    "id": 6,
+    "english": "dog",
+    "translation": "собака"
+  },
+  {
+    "id": 7,
+    "english": "sun",
+    "translation": "солнце"
+  },
+  {
+    "id": 8,
+    "english": "table",
+    "translation": "стол"
+  },
+  {
+    "id": 9,
+    "english": "window",
+    "translation": "окно"
+  },
+  {
+    "id": 10,
+    "english": "road",
+    "translation": "дорога"
+  }
+]
