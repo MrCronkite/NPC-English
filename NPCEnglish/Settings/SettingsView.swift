@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("translationDirection") private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
-    @AppStorage("sessionLength") private var sessionLength: Int = 10
-    @AppStorage("appTheme") private var themeRaw: String = AppTheme.system.rawValue
+    @AppStorage("translationDirection")
+    private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
+
+    @AppStorage("sessionLength")
+    private var sessionLength: Int = 10
+
+    @AppStorage("appTheme")
+    private var themeRaw: String = AppTheme.system.rawValue
+
+    @AppStorage("soundEnabled")
+    private var soundEnabled: Bool = true
+
+    @AppStorage("hapticsEnabled")
+    private var hapticsEnabled: Bool = true
 
     private var direction: Binding<TranslationDirection> {
         Binding(
@@ -61,6 +72,15 @@ struct SettingsView: View {
                 .pickerStyle(.inline)
             } header: {
                 Text("Оформление")
+            }
+
+            Section {
+                Toggle("Звук", isOn: $soundEnabled)
+                Toggle("Вибрация", isOn: $hapticsEnabled)
+            } header: {
+                Text("Обратная связь")
+            } footer: {
+                Text("Звук и вибрация при ответе на вопрос.")
             }
         }
         .navigationTitle("Настройки")

@@ -61,24 +61,17 @@ extension QuizView {
 
             Spacer()
 
-            if let word = viewModel.currentWord {
-                Text(viewModel.questionText)
-                    .font(.system(size: 40, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-
-                VStack(spacing: 14) {
-                    ForEach(viewModel.options) { option in
-                        optionButton(for: option)
-                    }
-                }
+            Text(viewModel.questionText)
+                .font(.system(size: 40, weight: .bold))
+                .multilineTextAlignment(.center)
                 .padding(.horizontal)
-            } else {
-                Text("Недостаточно слов в словаре (нужно минимум 4)")
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
+
+            VStack(spacing: 14) {
+                ForEach(viewModel.options) { option in
+                    optionButton(for: option)
+                }
             }
+            .padding(.horizontal)
 
             Spacer()
 

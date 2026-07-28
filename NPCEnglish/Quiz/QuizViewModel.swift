@@ -47,7 +47,7 @@ final class QuizViewModel: ObservableObject {
 
     var questionText: String {
         guard let word = currentWord else { return "" }
-        
+
         return direction == .englishToRussian
         ? word.english
         : word.translation
@@ -65,44 +65,48 @@ final class QuizViewModel: ObservableObject {
     }
 
     func nextQuestion() {
-            guard allWords.count >= 4 else {
-                currentWord = nil
-                options = []
-                return
-            }
-
-            if isLimited && total >= plannedQuestions {
-                isSessionFinished = true
-                return
-            }
-
-            selectedOption = nil
-            isAnswered = false
-
-            let word = allWords.randomElement()!
-            currentWord = word
-
-            var wrongOptions = allWords.filter { $0.id != word.id }
-            wrongOptions.shuffle()
-            let wrongThree = Array(wrongOptions.prefix(3))
-
-            options = (wrongThree + [word]).shuffled()
+        guard allWords.count >= 4 else {
+            currentWord = nil
+            options = []
+            return
         }
+
+        if isLimited && total >= plannedQuestions {
+            isSessionFinished = true
+            return
+        }
+
+        selectedOption = nil
+        isAnswered = false
+
+        let word = allWords.randomElement()!
+        currentWord = word
+
+        var wrongOptions = allWords.filter { $0.id != word.id }
+        wrongOptions.shuffle()
+        let wrongThree = Array(wrongOptions.prefix(3))
+
+        options = (wrongThree + [word]).shuffled()
+    }
 
     func select(_ option: Word) {
-            guard !isAnswered else { return }
-            selectedOption = option
-            isAnswered = true
-            total += 1
-            if option.id == currentWord?.id {
-                score += 1
-            }
+        guard !isAnswered else { return }
+        selectedOption = option
+        isAnswered = true
+        total += 1
+        
+        if option.id == currentWord?.id {
+            score += 1
+            FeedbackManager.playCorrect()
+        } else {
+            FeedbackManager.playIncorrect()
         }
+    }
 
-        func restartSession() {
-            score = 0
-            total = 0
-            isSessionFinished = false
-            nextQuestion()
-        }
+    func restartSession() {
+        score = 0
+        total = 0
+        isSessionFinished = false
+        nextQuestion()
+    }
 }
