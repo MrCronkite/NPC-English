@@ -22,7 +22,7 @@ struct QuizView: View {
             Spacer()
 
             if let word = viewModel.currentWord {
-                Text(word.english)
+                Text(viewModel.questionText)
                     .font(.system(size: 40, weight: .bold))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
@@ -80,7 +80,7 @@ struct QuizView: View {
         Button {
             viewModel.select(option)
         } label: {
-            Text(option.translation)
+            Text(viewModel.optionText(for: option))
                 .font(.body.weight(.medium))
                 .frame(maxWidth: .infinity)
                 .padding()

@@ -6,7 +6,7 @@
 //
 
 
-import Foundation
+import SwiftUI
 import Combine
 
 @MainActor
@@ -23,15 +23,33 @@ final class QuizViewModel: ObservableObject {
     @Published var score = 0
     @Published var total = 0
 
+    @AppStorage("translationDirection")
+    private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
+
+    private var direction: TranslationDirection {
+        TranslationDirection(rawValue: directionRaw) ?? .englishToRussian
+    }
+
     init(wordSet: WordSet) {
         self.wordSet = wordSet
         self.allWords = WordsLoader.loadWords(for: wordSet)
         nextQuestion()
     }
 
+    var questionText: String {
+        guard let word = currentWord else { return "" }
+        return direction == .englishToRussian ? word.english : word.translation
+    }
+
     var isCorrect: Bool {
         guard let selected = selectedOption, let current = currentWord else { return false }
         return selected.id == current.id
+    }
+
+    func optionText(for word: Word) -> String {
+        direction == .englishToRussian
+        ? word.translation
+        : word.english
     }
 
     func nextQuestion() {

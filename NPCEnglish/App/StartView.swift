@@ -20,6 +20,15 @@ struct StartView: View {
             .navigationDestination(for: WordSet.self) { wordSet in
                 QuizView(wordSet: wordSet)
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
+            }
         }
     }
 
