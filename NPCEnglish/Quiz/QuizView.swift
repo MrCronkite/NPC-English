@@ -16,6 +16,46 @@ struct QuizView: View {
     }
 
     var body: some View {
+        if viewModel.isSessionFinished {
+            sessionResultView
+        } else {
+            quizContent
+        }
+    }
+}
+
+extension QuizView {
+    private var sessionResultView: some View {
+        VStack(spacing: 24) {
+            Spacer()
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 60))
+                .foregroundStyle(.green)
+            Text("Сессия завершена!")
+                .font(.title.bold())
+            Text("Результат: \(viewModel.score)/\(viewModel.total)")
+                .font(.title2)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button(action: viewModel.restartSession) {
+                Text("Начать заново")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.accentColor)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+            .padding(.horizontal)
+        }
+        .padding(.vertical)
+        .navigationTitle(viewModel.wordSet.title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+extension QuizView {
+    private var quizContent: some View {
         VStack(spacing: 32) {
             header
 
@@ -68,6 +108,11 @@ struct QuizView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Spacer()
+            if viewModel.isLimited {
+                Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
         .padding(.horizontal)
     }
