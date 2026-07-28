@@ -11,6 +11,8 @@ import Combine
 
 @MainActor
 final class QuizViewModel: ObservableObject {
+    let wordSet: WordSet
+
     @Published private(set) var allWords: [Word] = []
     @Published private(set) var currentWord: Word?
     @Published private(set) var options: [Word] = []
@@ -18,29 +20,17 @@ final class QuizViewModel: ObservableObject {
     @Published var selectedOption: Word?
     @Published var isAnswered = false
 
-    @Published var correctAnswers = 0
-    @Published var wrongAnswers = 0
+    @Published var score = 0
+    @Published var total = 0
 
-    init(words: [Word] = WordsLoader.loadWords()) {
-        self.allWords = words
+    init(wordSet: WordSet) {
+        self.wordSet = wordSet
+        self.allWords = WordsLoader.loadWords(for: wordSet)
         nextQuestion()
     }
 
-    var totalQuestions: Int {
-        correctAnswers + wrongAnswers
-    }
-
-    var accuracy: Int {
-        guard totalQuestions > 0 else { return 0 }
-        return correctAnswers * 100 / totalQuestions
-    }
-
     var isCorrect: Bool {
-        guard let selected = selectedOption,
-              let current = currentWord else {
-            return false
-        }
-
+        guard let selected = selectedOption, let current = currentWord else { return false }
         return selected.id == current.id
     }
 
@@ -57,24 +47,20 @@ final class QuizViewModel: ObservableObject {
         let word = allWords.randomElement()!
         currentWord = word
 
-        let wrongOptions = allWords
-            .filter { $0.id != word.id }
-            .shuffled()
-            .prefix(3)
+        var wrongOptions = allWords.filter { $0.id != word.id }
+        wrongOptions.shuffle()
+        let wrongThree = Array(wrongOptions.prefix(3))
 
-        options = (Array(wrongOptions) + [word]).shuffled()
+        options = (wrongThree + [word]).shuffled()
     }
 
     func select(_ option: Word) {
         guard !isAnswered else { return }
-
         selectedOption = option
         isAnswered = true
-
+        total += 1
         if option.id == currentWord?.id {
-            correctAnswers += 1
-        } else {
-            wrongAnswers += 1
+            score += 1
         }
     }
 }

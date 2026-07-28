@@ -1,0 +1,1817 @@
+[
+  {
+    "id": 1,
+    "english": "wake up",
+    "translation": "просыпаться"
+  },
+  {
+    "id": 2,
+    "english": "get up",
+    "translation": "вставать (с кровати)"
+  },
+  {
+    "id": 3,
+    "english": "stand up",
+    "translation": "вставать (на ноги)"
+  },
+  {
+    "id": 4,
+    "english": "sit down",
+    "translation": "садиться"
+  },
+  {
+    "id": 5,
+    "english": "lie down",
+    "translation": "ложиться"
+  },
+  {
+    "id": 6,
+    "english": "turn on",
+    "translation": "включать"
+  },
+  {
+    "id": 7,
+    "english": "turn off",
+    "translation": "выключать"
+  },
+  {
+    "id": 8,
+    "english": "switch on",
+    "translation": "включать"
+  },
+  {
+    "id": 9,
+    "english": "switch off",
+    "translation": "выключать"
+  },
+  {
+    "id": 10,
+    "english": "put on",
+    "translation": "надевать"
+  },
+  {
+    "id": 11,
+    "english": "take off",
+    "translation": "снимать (одежду)/взлетать"
+  },
+  {
+    "id": 12,
+    "english": "get dressed",
+    "translation": "одеваться"
+  },
+  {
+    "id": 13,
+    "english": "get on",
+    "translation": "садиться (в транспорт)"
+  },
+  {
+    "id": 14,
+    "english": "get off",
+    "translation": "выходить (из транспорта)"
+  },
+  {
+    "id": 15,
+    "english": "get in",
+    "translation": "садиться (в машину)"
+  },
+  {
+    "id": 16,
+    "english": "get out",
+    "translation": "выходить (из машины)"
+  },
+  {
+    "id": 17,
+    "english": "get back",
+    "translation": "возвращаться"
+  },
+  {
+    "id": 18,
+    "english": "get away",
+    "translation": "убегать/сбежать"
+  },
+  {
+    "id": 19,
+    "english": "get up to",
+    "translation": "заниматься чем-то (обычно плохим)"
+  },
+  {
+    "id": 20,
+    "english": "go on",
+    "translation": "продолжать"
+  },
+  {
+    "id": 21,
+    "english": "go out",
+    "translation": "выходить (гулять)"
+  },
+  {
+    "id": 22,
+    "english": "go away",
+    "translation": "уходить прочь"
+  },
+  {
+    "id": 23,
+    "english": "go back",
+    "translation": "возвращаться"
+  },
+  {
+    "id": 24,
+    "english": "go off",
+    "translation": "срабатывать (сигнализация)/испортиться"
+  },
+  {
+    "id": 25,
+    "english": "go through",
+    "translation": "проходить через/переживать"
+  },
+  {
+    "id": 26,
+    "english": "go over",
+    "translation": "повторять/просматривать"
+  },
+  {
+    "id": 27,
+    "english": "go up",
+    "translation": "подниматься"
+  },
+  {
+    "id": 28,
+    "english": "go down",
+    "translation": "спускаться/падать"
+  },
+  {
+    "id": 29,
+    "english": "go ahead",
+    "translation": "продолжать/действовать"
+  },
+  {
+    "id": 30,
+    "english": "come back",
+    "translation": "возвращаться"
+  },
+  {
+    "id": 31,
+    "english": "come in",
+    "translation": "входить"
+  },
+  {
+    "id": 32,
+    "english": "come on",
+    "translation": "давай!/поторопись"
+  },
+  {
+    "id": 33,
+    "english": "come out",
+    "translation": "выходить/выясняться"
+  },
+  {
+    "id": 34,
+    "english": "come up",
+    "translation": "возникать (вопрос)"
+  },
+  {
+    "id": 35,
+    "english": "come up with",
+    "translation": "придумать"
+  },
+  {
+    "id": 36,
+    "english": "come across",
+    "translation": "натолкнуться на"
+  },
+  {
+    "id": 37,
+    "english": "come over",
+    "translation": "заходить в гости"
+  },
+  {
+    "id": 38,
+    "english": "come round",
+    "translation": "заходить в гости/приходить в себя"
+  },
+  {
+    "id": 39,
+    "english": "look at",
+    "translation": "смотреть на"
+  },
+  {
+    "id": 40,
+    "english": "look for",
+    "translation": "искать"
+  },
+  {
+    "id": 41,
+    "english": "look after",
+    "translation": "заботиться о"
+  },
+  {
+    "id": 42,
+    "english": "look up",
+    "translation": "искать информацию"
+  },
+  {
+    "id": 43,
+    "english": "look forward to",
+    "translation": "с нетерпением ждать"
+  },
+  {
+    "id": 44,
+    "english": "look into",
+    "translation": "расследовать"
+  },
+  {
+    "id": 45,
+    "english": "look out",
+    "translation": "быть осторожным"
+  },
+  {
+    "id": 46,
+    "english": "look around",
+    "translation": "осматриваться"
+  },
+  {
+    "id": 47,
+    "english": "look up to",
+    "translation": "восхищаться кем-то"
+  },
+  {
+    "id": 48,
+    "english": "look down on",
+    "translation": "презирать"
+  },
+  {
+    "id": 49,
+    "english": "look like",
+    "translation": "выглядеть как"
+  },
+  {
+    "id": 50,
+    "english": "take away",
+    "translation": "забирать с собой/уносить"
+  },
+  {
+    "id": 51,
+    "english": "take back",
+    "translation": "забирать обратно"
+  },
+  {
+    "id": 52,
+    "english": "take out",
+    "translation": "выносить/приглашать куда-то"
+  },
+  {
+    "id": 53,
+    "english": "take up",
+    "translation": "заняться (хобби)"
+  },
+  {
+    "id": 54,
+    "english": "take over",
+    "translation": "брать на себя управление"
+  },
+  {
+    "id": 55,
+    "english": "take care of",
+    "translation": "заботиться о"
+  },
+  {
+    "id": 56,
+    "english": "take part in",
+    "translation": "участвовать в"
+  },
+  {
+    "id": 57,
+    "english": "take place",
+    "translation": "происходить (о событии)"
+  },
+  {
+    "id": 58,
+    "english": "take down",
+    "translation": "снимать/записывать"
+  },
+  {
+    "id": 59,
+    "english": "take in",
+    "translation": "воспринимать/принимать (людей)"
+  },
+  {
+    "id": 60,
+    "english": "take after",
+    "translation": "быть похожим на (родственника)"
+  },
+  {
+    "id": 61,
+    "english": "give up",
+    "translation": "сдаваться/бросать"
+  },
+  {
+    "id": 62,
+    "english": "give back",
+    "translation": "возвращать (вещь)"
+  },
+  {
+    "id": 63,
+    "english": "give away",
+    "translation": "раздавать/выдавать секрет"
+  },
+  {
+    "id": 64,
+    "english": "give in",
+    "translation": "уступать/сдаваться"
+  },
+  {
+    "id": 65,
+    "english": "give out",
+    "translation": "раздавать"
+  },
+  {
+    "id": 66,
+    "english": "give off",
+    "translation": "испускать (запах, свет)"
+  },
+  {
+    "id": 67,
+    "english": "put off",
+    "translation": "откладывать"
+  },
+  {
+    "id": 68,
+    "english": "put away",
+    "translation": "убирать на место"
+  },
+  {
+    "id": 69,
+    "english": "put down",
+    "translation": "класть/положить/принижать"
+  },
+  {
+    "id": 70,
+    "english": "put up",
+    "translation": "вешать/строить/размещать (гостя)"
+  },
+  {
+    "id": 71,
+    "english": "put up with",
+    "translation": "мириться с чем-то"
+  },
+  {
+    "id": 72,
+    "english": "put out",
+    "translation": "тушить (огонь)"
+  },
+  {
+    "id": 73,
+    "english": "put together",
+    "translation": "собирать вместе"
+  },
+  {
+    "id": 74,
+    "english": "put back",
+    "translation": "класть обратно"
+  },
+  {
+    "id": 75,
+    "english": "bring up",
+    "translation": "воспитывать/поднимать тему"
+  },
+  {
+    "id": 76,
+    "english": "bring back",
+    "translation": "возвращать/вызывать воспоминания"
+  },
+  {
+    "id": 77,
+    "english": "bring about",
+    "translation": "вызывать/приводить к"
+  },
+  {
+    "id": 78,
+    "english": "bring in",
+    "translation": "вносить/приглашать"
+  },
+  {
+    "id": 79,
+    "english": "bring out",
+    "translation": "выпускать (продукт)"
+  },
+  {
+    "id": 80,
+    "english": "bring down",
+    "translation": "снижать/свергать"
+  },
+  {
+    "id": 81,
+    "english": "break down",
+    "translation": "ломаться/расплакаться"
+  },
+  {
+    "id": 82,
+    "english": "break up",
+    "translation": "расставаться (о паре)"
+  },
+  {
+    "id": 83,
+    "english": "break out",
+    "translation": "вспыхивать (пожар, война)"
+  },
+  {
+    "id": 84,
+    "english": "break in",
+    "translation": "вламываться"
+  },
+  {
+    "id": 85,
+    "english": "break into",
+    "translation": "взламывать"
+  },
+  {
+    "id": 86,
+    "english": "break away",
+    "translation": "вырваться/отделиться"
+  },
+  {
+    "id": 87,
+    "english": "check in",
+    "translation": "регистрироваться (в отеле/аэропорту)"
+  },
+  {
+    "id": 88,
+    "english": "check out",
+    "translation": "выписываться/проверять"
+  },
+  {
+    "id": 89,
+    "english": "check up on",
+    "translation": "проверять состояние кого-то"
+  },
+  {
+    "id": 90,
+    "english": "check in on",
+    "translation": "навещать/проверять кого-то"
+  },
+  {
+    "id": 91,
+    "english": "find out",
+    "translation": "узнавать/выяснять"
+  },
+  {
+    "id": 92,
+    "english": "figure out",
+    "translation": "разобраться/понять"
+  },
+  {
+    "id": 93,
+    "english": "work out",
+    "translation": "получаться/заниматься спортом/решить"
+  },
+  {
+    "id": 94,
+    "english": "work on",
+    "translation": "работать над"
+  },
+  {
+    "id": 95,
+    "english": "carry on",
+    "translation": "продолжать"
+  },
+  {
+    "id": 96,
+    "english": "carry out",
+    "translation": "выполнять"
+  },
+  {
+    "id": 97,
+    "english": "carry away",
+    "translation": "увлекаться (get carried away)"
+  },
+  {
+    "id": 98,
+    "english": "hold on",
+    "translation": "подождать/держаться"
+  },
+  {
+    "id": 99,
+    "english": "hold up",
+    "translation": "задерживать/держаться"
+  },
+  {
+    "id": 100,
+    "english": "hold on to",
+    "translation": "держаться за"
+  },
+  {
+    "id": 101,
+    "english": "hold back",
+    "translation": "сдерживать(ся)"
+  },
+  {
+    "id": 102,
+    "english": "hang on",
+    "translation": "подождать"
+  },
+  {
+    "id": 103,
+    "english": "hang out",
+    "translation": "проводить время (с друзьями)"
+  },
+  {
+    "id": 104,
+    "english": "hang up",
+    "translation": "вешать трубку"
+  },
+  {
+    "id": 105,
+    "english": "hang around",
+    "translation": "слоняться без дела"
+  },
+  {
+    "id": 106,
+    "english": "run away",
+    "translation": "убегать"
+  },
+  {
+    "id": 107,
+    "english": "run into",
+    "translation": "случайно встретить/столкнуться"
+  },
+  {
+    "id": 108,
+    "english": "run out of",
+    "translation": "заканчиваться (о запасах)"
+  },
+  {
+    "id": 109,
+    "english": "run over",
+    "translation": "переехать (машиной)"
+  },
+  {
+    "id": 110,
+    "english": "run through",
+    "translation": "бегло просмотреть/прогнать"
+  },
+  {
+    "id": 111,
+    "english": "set up",
+    "translation": "устанавливать/организовывать"
+  },
+  {
+    "id": 112,
+    "english": "set off",
+    "translation": "отправляться в путь"
+  },
+  {
+    "id": 113,
+    "english": "set out",
+    "translation": "отправляться/намереваться"
+  },
+  {
+    "id": 114,
+    "english": "show up",
+    "translation": "появляться/приходить"
+  },
+  {
+    "id": 115,
+    "english": "show off",
+    "translation": "хвастаться"
+  },
+  {
+    "id": 116,
+    "english": "show around",
+    "translation": "показывать окрестности"
+  },
+  {
+    "id": 117,
+    "english": "turn out",
+    "translation": "оказываться (в итоге)"
+  },
+  {
+    "id": 118,
+    "english": "turn into",
+    "translation": "превращаться в"
+  },
+  {
+    "id": 119,
+    "english": "turn down",
+    "translation": "отклонять/убавлять звук"
+  },
+  {
+    "id": 120,
+    "english": "turn up",
+    "translation": "появляться/прибавлять звук"
+  },
+  {
+    "id": 121,
+    "english": "turn around",
+    "translation": "разворачиваться"
+  },
+  {
+    "id": 122,
+    "english": "turn back",
+    "translation": "повернуть назад"
+  },
+  {
+    "id": 123,
+    "english": "call back",
+    "translation": "перезванивать"
+  },
+  {
+    "id": 124,
+    "english": "call off",
+    "translation": "отменять"
+  },
+  {
+    "id": 125,
+    "english": "call for",
+    "translation": "требовать/заходить за кем-то"
+  },
+  {
+    "id": 126,
+    "english": "call on",
+    "translation": "обращаться к/навестить"
+  },
+  {
+    "id": 127,
+    "english": "cheer up",
+    "translation": "подбадривать(ся)"
+  },
+  {
+    "id": 128,
+    "english": "clean up",
+    "translation": "убирать(ся)"
+  },
+  {
+    "id": 129,
+    "english": "clear up",
+    "translation": "убирать/проясняться (о погоде)"
+  },
+  {
+    "id": 130,
+    "english": "close down",
+    "translation": "закрываться (о бизнесе)"
+  },
+  {
+    "id": 131,
+    "english": "cut down",
+    "translation": "сокращать/срубать"
+  },
+  {
+    "id": 132,
+    "english": "cut off",
+    "translation": "отрезать/прерывать"
+  },
+  {
+    "id": 133,
+    "english": "cut out",
+    "translation": "вырезать/переставать делать"
+  },
+  {
+    "id": 134,
+    "english": "deal with",
+    "translation": "иметь дело с/разбираться с"
+  },
+  {
+    "id": 135,
+    "english": "die out",
+    "translation": "вымирать/исчезать"
+  },
+  {
+    "id": 136,
+    "english": "drop by",
+    "translation": "заходить ненадолго"
+  },
+  {
+    "id": 137,
+    "english": "drop off",
+    "translation": "высаживать/засыпать"
+  },
+  {
+    "id": 138,
+    "english": "drop out",
+    "translation": "бросать (учёбу)"
+  },
+  {
+    "id": 139,
+    "english": "eat out",
+    "translation": "есть вне дома"
+  },
+  {
+    "id": 140,
+    "english": "end up",
+    "translation": "в итоге оказаться"
+  },
+  {
+    "id": 141,
+    "english": "fall apart",
+    "translation": "разваливаться"
+  },
+  {
+    "id": 142,
+    "english": "fall behind",
+    "translation": "отставать"
+  },
+  {
+    "id": 143,
+    "english": "fall down",
+    "translation": "падать"
+  },
+  {
+    "id": 144,
+    "english": "fall for",
+    "translation": "влюбиться/попасться на удочку"
+  },
+  {
+    "id": 145,
+    "english": "fall out",
+    "translation": "ссориться/выпадать"
+  },
+  {
+    "id": 146,
+    "english": "fill in",
+    "translation": "заполнять (форму)"
+  },
+  {
+    "id": 147,
+    "english": "fill out",
+    "translation": "заполнять (документ)"
+  },
+  {
+    "id": 148,
+    "english": "fill up",
+    "translation": "заполнять(ся) полностью"
+  },
+  {
+    "id": 149,
+    "english": "get along",
+    "translation": "ладить"
+  },
+  {
+    "id": 150,
+    "english": "get along with",
+    "translation": "ладить с кем-то"
+  },
+  {
+    "id": 151,
+    "english": "get by",
+    "translation": "перебиваться/справляться"
+  },
+  {
+    "id": 152,
+    "english": "get over",
+    "translation": "оправиться (после болезни/расставания)"
+  },
+  {
+    "id": 153,
+    "english": "get through",
+    "translation": "пройти через/дозвониться"
+  },
+  {
+    "id": 154,
+    "english": "get together",
+    "translation": "собираться вместе"
+  },
+  {
+    "id": 155,
+    "english": "get used to",
+    "translation": "привыкать к"
+  },
+  {
+    "id": 156,
+    "english": "get rid of",
+    "translation": "избавляться от"
+  },
+  {
+    "id": 157,
+    "english": "get down",
+    "translation": "спускаться/расстраиваться"
+  },
+  {
+    "id": 158,
+    "english": "get into",
+    "translation": "увлечься/попасть в"
+  },
+  {
+    "id": 159,
+    "english": "grow up",
+    "translation": "взрослеть"
+  },
+  {
+    "id": 160,
+    "english": "grow apart",
+    "translation": "отдаляться друг от друга"
+  },
+  {
+    "id": 161,
+    "english": "keep on",
+    "translation": "продолжать"
+  },
+  {
+    "id": 162,
+    "english": "keep up",
+    "translation": "не отставать"
+  },
+  {
+    "id": 163,
+    "english": "keep up with",
+    "translation": "не отставать от"
+  },
+  {
+    "id": 164,
+    "english": "keep away",
+    "translation": "держаться подальше"
+  },
+  {
+    "id": 165,
+    "english": "keep on doing",
+    "translation": "продолжать делать"
+  },
+  {
+    "id": 166,
+    "english": "let down",
+    "translation": "подводить (не оправдать ожиданий)"
+  },
+  {
+    "id": 167,
+    "english": "let in",
+    "translation": "впускать"
+  },
+  {
+    "id": 168,
+    "english": "let out",
+    "translation": "выпускать"
+  },
+  {
+    "id": 169,
+    "english": "live on",
+    "translation": "жить на (доход)/продолжать существовать"
+  },
+  {
+    "id": 170,
+    "english": "log in",
+    "translation": "входить в систему"
+  },
+  {
+    "id": 171,
+    "english": "log out",
+    "translation": "выходить из системы"
+  },
+  {
+    "id": 172,
+    "english": "make up",
+    "translation": "мириться/выдумывать/составлять"
+  },
+  {
+    "id": 173,
+    "english": "make up for",
+    "translation": "компенсировать"
+  },
+  {
+    "id": 174,
+    "english": "make out",
+    "translation": "разобрать/понять с трудом"
+  },
+  {
+    "id": 175,
+    "english": "move in",
+    "translation": "переезжать (в новое жильё)"
+  },
+  {
+    "id": 176,
+    "english": "move out",
+    "translation": "съезжать (из жилья)"
+  },
+  {
+    "id": 177,
+    "english": "move on",
+    "translation": "двигаться дальше"
+  },
+  {
+    "id": 178,
+    "english": "pass away",
+    "translation": "умереть"
+  },
+  {
+    "id": 179,
+    "english": "pass out",
+    "translation": "терять сознание"
+  },
+  {
+    "id": 180,
+    "english": "pass by",
+    "translation": "проходить мимо"
+  },
+  {
+    "id": 181,
+    "english": "pay back",
+    "translation": "возвращать долг"
+  },
+  {
+    "id": 182,
+    "english": "pay off",
+    "translation": "окупаться/погасить долг"
+  },
+  {
+    "id": 183,
+    "english": "pick up",
+    "translation": "поднимать/забирать кого-то"
+  },
+  {
+    "id": 184,
+    "english": "pick out",
+    "translation": "выбирать"
+  },
+  {
+    "id": 185,
+    "english": "point out",
+    "translation": "указывать на"
+  },
+  {
+    "id": 186,
+    "english": "pull over",
+    "translation": "останавливаться (на обочине)"
+  },
+  {
+    "id": 187,
+    "english": "pull up",
+    "translation": "подъехать и остановиться"
+  },
+  {
+    "id": 188,
+    "english": "push forward",
+    "translation": "продвигаться вперёд"
+  },
+  {
+    "id": 189,
+    "english": "run away with",
+    "translation": "увлечься/сбежать с кем-то"
+  },
+  {
+    "id": 190,
+    "english": "run down",
+    "translation": "истощаться/сбить (машиной)"
+  },
+  {
+    "id": 191,
+    "english": "send back",
+    "translation": "отправлять обратно"
+  },
+  {
+    "id": 192,
+    "english": "send off",
+    "translation": "отправлять/провожать"
+  },
+  {
+    "id": 193,
+    "english": "settle down",
+    "translation": "обосноваться/успокоиться"
+  },
+  {
+    "id": 194,
+    "english": "sort out",
+    "translation": "разобраться/уладить"
+  },
+  {
+    "id": 195,
+    "english": "speak up",
+    "translation": "говорить громче/высказаться"
+  },
+  {
+    "id": 196,
+    "english": "stand out",
+    "translation": "выделяться"
+  },
+  {
+    "id": 197,
+    "english": "stand up for",
+    "translation": "заступаться за"
+  },
+  {
+    "id": 198,
+    "english": "stand for",
+    "translation": "означать/поддерживать"
+  },
+  {
+    "id": 199,
+    "english": "stay up",
+    "translation": "не ложиться спать"
+  },
+  {
+    "id": 200,
+    "english": "stay in",
+    "translation": "оставаться дома"
+  },
+  {
+    "id": 201,
+    "english": "stay out",
+    "translation": "не приходить домой допоздна"
+  },
+  {
+    "id": 202,
+    "english": "step in",
+    "translation": "вмешаться"
+  },
+  {
+    "id": 203,
+    "english": "step back",
+    "translation": "отступить/сделать шаг назад"
+  },
+  {
+    "id": 204,
+    "english": "stick to",
+    "translation": "придерживаться"
+  },
+  {
+    "id": 205,
+    "english": "stick around",
+    "translation": "оставаться поблизости"
+  },
+  {
+    "id": 206,
+    "english": "switch places",
+    "translation": "поменяться местами"
+  },
+  {
+    "id": 207,
+    "english": "talk over",
+    "translation": "обсуждать"
+  },
+  {
+    "id": 208,
+    "english": "talk into",
+    "translation": "уговорить"
+  },
+  {
+    "id": 209,
+    "english": "talk out of",
+    "translation": "отговорить"
+  },
+  {
+    "id": 210,
+    "english": "think over",
+    "translation": "обдумывать"
+  },
+  {
+    "id": 211,
+    "english": "think through",
+    "translation": "тщательно обдумать"
+  },
+  {
+    "id": 212,
+    "english": "throw away",
+    "translation": "выбрасывать"
+  },
+  {
+    "id": 213,
+    "english": "throw out",
+    "translation": "выбрасывать/выгонять"
+  },
+  {
+    "id": 214,
+    "english": "try on",
+    "translation": "примерять (одежду)"
+  },
+  {
+    "id": 215,
+    "english": "try out",
+    "translation": "опробовать"
+  },
+  {
+    "id": 216,
+    "english": "tidy up",
+    "translation": "прибираться"
+  },
+  {
+    "id": 217,
+    "english": "wait for",
+    "translation": "ждать"
+  },
+  {
+    "id": 218,
+    "english": "wait up",
+    "translation": "не ложиться спать, дожидаясь кого-то"
+  },
+  {
+    "id": 219,
+    "english": "wake someone up",
+    "translation": "будить кого-то"
+  },
+  {
+    "id": 220,
+    "english": "warm up",
+    "translation": "разогревать(ся)"
+  },
+  {
+    "id": 221,
+    "english": "watch out",
+    "translation": "быть осторожным"
+  },
+  {
+    "id": 222,
+    "english": "watch out for",
+    "translation": "остерегаться"
+  },
+  {
+    "id": 223,
+    "english": "wear out",
+    "translation": "изнашивать(ся)/уставать"
+  },
+  {
+    "id": 224,
+    "english": "write down",
+    "translation": "записывать"
+  },
+  {
+    "id": 225,
+    "english": "zip up",
+    "translation": "застёгивать на молнию"
+  },
+  {
+    "id": 226,
+    "english": "add up",
+    "translation": "складывать/сходиться (о фактах)"
+  },
+  {
+    "id": 227,
+    "english": "back up",
+    "translation": "подкреплять/делать резервную копию"
+  },
+  {
+    "id": 228,
+    "english": "back away",
+    "translation": "отступать"
+  },
+  {
+    "id": 229,
+    "english": "blow up",
+    "translation": "взрывать(ся)"
+  },
+  {
+    "id": 230,
+    "english": "boil down to",
+    "translation": "сводиться к"
+  },
+  {
+    "id": 231,
+    "english": "build up",
+    "translation": "наращивать/накапливать"
+  },
+  {
+    "id": 232,
+    "english": "burn down",
+    "translation": "сгорать дотла"
+  },
+  {
+    "id": 233,
+    "english": "burn out",
+    "translation": "перегорать/выгорать (эмоционально)"
+  },
+  {
+    "id": 234,
+    "english": "catch up",
+    "translation": "догонять"
+  },
+  {
+    "id": 235,
+    "english": "catch up on",
+    "translation": "наверстать упущенное"
+  },
+  {
+    "id": 236,
+    "english": "close up",
+    "translation": "закрываться (на замок)"
+  },
+  {
+    "id": 237,
+    "english": "come along",
+    "translation": "идти вместе/прогрессировать"
+  },
+  {
+    "id": 238,
+    "english": "count on",
+    "translation": "рассчитывать на"
+  },
+  {
+    "id": 239,
+    "english": "cover up",
+    "translation": "скрывать/прикрывать"
+  },
+  {
+    "id": 240,
+    "english": "cross out",
+    "translation": "вычёркивать"
+  },
+  {
+    "id": 241,
+    "english": "dress up",
+    "translation": "наряжаться"
+  },
+  {
+    "id": 242,
+    "english": "drag on",
+    "translation": "затягиваться (о событии)"
+  },
+  {
+    "id": 243,
+    "english": "draw up",
+    "translation": "составлять (документ)"
+  },
+  {
+    "id": 244,
+    "english": "dry up",
+    "translation": "высыхать"
+  },
+  {
+    "id": 245,
+    "english": "ease off",
+    "translation": "ослабевать/успокаиваться"
+  },
+  {
+    "id": 246,
+    "english": "end up doing",
+    "translation": "в итоге сделать"
+  },
+  {
+    "id": 247,
+    "english": "fade away",
+    "translation": "исчезать постепенно"
+  },
+  {
+    "id": 248,
+    "english": "fall through",
+    "translation": "срываться (о плане)"
+  },
+  {
+    "id": 249,
+    "english": "fight back",
+    "translation": "сопротивляться"
+  },
+  {
+    "id": 250,
+    "english": "fit in",
+    "translation": "вписываться/подходить"
+  },
+  {
+    "id": 251,
+    "english": "flip through",
+    "translation": "пролистывать"
+  },
+  {
+    "id": 252,
+    "english": "focus on",
+    "translation": "сосредотачиваться на"
+  },
+  {
+    "id": 253,
+    "english": "follow up",
+    "translation": "продолжать/уточнять"
+  },
+  {
+    "id": 254,
+    "english": "freak out",
+    "translation": "паниковать"
+  },
+  {
+    "id": 255,
+    "english": "get across",
+    "translation": "доносить (мысль)"
+  },
+  {
+    "id": 256,
+    "english": "get ahead",
+    "translation": "продвигаться вперёд/преуспевать"
+  },
+  {
+    "id": 257,
+    "english": "get around",
+    "translation": "обходить (проблему)/передвигаться"
+  },
+  {
+    "id": 258,
+    "english": "get back at",
+    "translation": "мстить"
+  },
+  {
+    "id": 259,
+    "english": "get back to",
+    "translation": "связаться позже с"
+  },
+  {
+    "id": 260,
+    "english": "get on with",
+    "translation": "ладить с/продолжать заниматься"
+  },
+  {
+    "id": 261,
+    "english": "go against",
+    "translation": "противоречить/идти против"
+  },
+  {
+    "id": 262,
+    "english": "go along with",
+    "translation": "соглашаться с"
+  },
+  {
+    "id": 263,
+    "english": "go by",
+    "translation": "проходить (о времени)"
+  },
+  {
+    "id": 264,
+    "english": "go for",
+    "translation": "выбирать/пытаться добиться"
+  },
+  {
+    "id": 265,
+    "english": "go with",
+    "translation": "сочетаться с"
+  },
+  {
+    "id": 266,
+    "english": "hand in",
+    "translation": "сдавать (работу)"
+  },
+  {
+    "id": 267,
+    "english": "hand out",
+    "translation": "раздавать"
+  },
+  {
+    "id": 268,
+    "english": "hand over",
+    "translation": "передавать"
+  },
+  {
+    "id": 269,
+    "english": "hold off",
+    "translation": "откладывать/сдерживать"
+  },
+  {
+    "id": 270,
+    "english": "hurry up",
+    "translation": "поторопиться"
+  },
+  {
+    "id": 271,
+    "english": "iron out",
+    "translation": "улаживать (проблемы)"
+  },
+  {
+    "id": 272,
+    "english": "join in",
+    "translation": "присоединяться"
+  },
+  {
+    "id": 273,
+    "english": "jump in",
+    "translation": "вмешаться/присоединиться"
+  },
+  {
+    "id": 274,
+    "english": "keep off",
+    "translation": "держаться подальше от"
+  },
+  {
+    "id": 275,
+    "english": "kick off",
+    "translation": "начинать(ся)"
+  },
+  {
+    "id": 276,
+    "english": "knock down",
+    "translation": "сбивать/сносить"
+  },
+  {
+    "id": 277,
+    "english": "knock out",
+    "translation": "вырубать/нокаутировать"
+  },
+  {
+    "id": 278,
+    "english": "lay off",
+    "translation": "увольнять"
+  },
+  {
+    "id": 279,
+    "english": "lead to",
+    "translation": "приводить к"
+  },
+  {
+    "id": 280,
+    "english": "leave out",
+    "translation": "пропускать/исключать"
+  },
+  {
+    "id": 281,
+    "english": "lighten up",
+    "translation": "расслабиться, не принимать близко к сердцу"
+  },
+  {
+    "id": 282,
+    "english": "line up",
+    "translation": "выстраиваться в очередь"
+  },
+  {
+    "id": 283,
+    "english": "liven up",
+    "translation": "оживлять"
+  },
+  {
+    "id": 284,
+    "english": "lock up",
+    "translation": "запирать"
+  },
+  {
+    "id": 285,
+    "english": "look down",
+    "translation": "опускать взгляд"
+  },
+  {
+    "id": 286,
+    "english": "look over",
+    "translation": "бегло просмотреть"
+  },
+  {
+    "id": 287,
+    "english": "look through",
+    "translation": "просматривать"
+  },
+  {
+    "id": 288,
+    "english": "mess up",
+    "translation": "напортачить"
+  },
+  {
+    "id": 289,
+    "english": "miss out on",
+    "translation": "упускать (возможность)"
+  },
+  {
+    "id": 290,
+    "english": "mix up",
+    "translation": "путать"
+  },
+  {
+    "id": 291,
+    "english": "narrow down",
+    "translation": "сужать (выбор)"
+  },
+  {
+    "id": 292,
+    "english": "nod off",
+    "translation": "задремать"
+  },
+  {
+    "id": 293,
+    "english": "open up",
+    "translation": "открываться (эмоционально)"
+  },
+  {
+    "id": 294,
+    "english": "own up",
+    "translation": "признаться"
+  },
+  {
+    "id": 295,
+    "english": "pass down",
+    "translation": "передавать по наследству"
+  },
+  {
+    "id": 296,
+    "english": "pass on",
+    "translation": "передавать/скончаться"
+  },
+  {
+    "id": 297,
+    "english": "patch up",
+    "translation": "мириться/чинить наспех"
+  },
+  {
+    "id": 298,
+    "english": "phase out",
+    "translation": "постепенно выводить из употребления"
+  },
+  {
+    "id": 299,
+    "english": "play down",
+    "translation": "преуменьшать значение"
+  },
+  {
+    "id": 300,
+    "english": "plug in",
+    "translation": "подключать"
+  },
+  {
+    "id": 301,
+    "english": "polish off",
+    "translation": "доедать/добивать"
+  },
+  {
+    "id": 302,
+    "english": "pop up",
+    "translation": "внезапно появляться"
+  },
+  {
+    "id": 303,
+    "english": "pour out",
+    "translation": "изливать(ся)"
+  },
+  {
+    "id": 304,
+    "english": "press on",
+    "translation": "продолжать несмотря на трудности"
+  },
+  {
+    "id": 305,
+    "english": "prop up",
+    "translation": "подпирать/поддерживать"
+  },
+  {
+    "id": 306,
+    "english": "psych up",
+    "translation": "морально настраиваться"
+  },
+  {
+    "id": 307,
+    "english": "read up on",
+    "translation": "изучать вопрос"
+  },
+  {
+    "id": 308,
+    "english": "reel off",
+    "translation": "перечислять быстро"
+  },
+  {
+    "id": 309,
+    "english": "rely on",
+    "translation": "полагаться на"
+  },
+  {
+    "id": 310,
+    "english": "rip off",
+    "translation": "обдирать (обманывать с ценой)"
+  },
+  {
+    "id": 311,
+    "english": "round up",
+    "translation": "собирать вместе/округлять"
+  },
+  {
+    "id": 312,
+    "english": "rule out",
+    "translation": "исключать (возможность)"
+  },
+  {
+    "id": 313,
+    "english": "save up",
+    "translation": "копить деньги"
+  },
+  {
+    "id": 314,
+    "english": "scale down",
+    "translation": "сокращать масштаб"
+  },
+  {
+    "id": 315,
+    "english": "see off",
+    "translation": "провожать"
+  },
+  {
+    "id": 316,
+    "english": "see through",
+    "translation": "видеть насквозь/доводить до конца"
+  },
+  {
+    "id": 317,
+    "english": "sell out",
+    "translation": "распродавать(ся)"
+  },
+  {
+    "id": 318,
+    "english": "shake off",
+    "translation": "избавляться от"
+  },
+  {
+    "id": 319,
+    "english": "shop around",
+    "translation": "сравнивать цены в разных магазинах"
+  },
+  {
+    "id": 320,
+    "english": "shut down",
+    "translation": "закрывать(ся)/выключать"
+  },
+  {
+    "id": 321,
+    "english": "shut up",
+    "translation": "замолчать"
+  },
+  {
+    "id": 322,
+    "english": "sign up",
+    "translation": "записываться/регистрироваться"
+  },
+  {
+    "id": 323,
+    "english": "sink in",
+    "translation": "доходить (о понимании)"
+  },
+  {
+    "id": 324,
+    "english": "sleep in",
+    "translation": "долго спать утром"
+  },
+  {
+    "id": 325,
+    "english": "sleep over",
+    "translation": "ночевать в гостях"
+  },
+  {
+    "id": 326,
+    "english": "slow down",
+    "translation": "замедляться"
+  },
+  {
+    "id": 327,
+    "english": "sneak out",
+    "translation": "тайком выходить"
+  },
+  {
+    "id": 328,
+    "english": "sort through",
+    "translation": "перебирать/разбирать"
+  },
+  {
+    "id": 329,
+    "english": "speed up",
+    "translation": "ускоряться"
+  },
+  {
+    "id": 330,
+    "english": "spell out",
+    "translation": "разъяснять подробно"
+  },
+  {
+    "id": 331,
+    "english": "split up",
+    "translation": "расставаться/разделяться"
+  },
+  {
+    "id": 332,
+    "english": "spread out",
+    "translation": "распространяться/раскладывать"
+  },
+  {
+    "id": 333,
+    "english": "stand by",
+    "translation": "поддерживать/быть наготове"
+  },
+  {
+    "id": 334,
+    "english": "stem from",
+    "translation": "происходить от"
+  },
+  {
+    "id": 335,
+    "english": "stir up",
+    "translation": "вызывать (проблемы, эмоции)"
+  },
+  {
+    "id": 336,
+    "english": "storm off",
+    "translation": "уходить в гневе"
+  },
+  {
+    "id": 337,
+    "english": "straighten up",
+    "translation": "убираться/выпрямляться"
+  },
+  {
+    "id": 338,
+    "english": "strike back",
+    "translation": "наносить ответный удар"
+  },
+  {
+    "id": 339,
+    "english": "sum up",
+    "translation": "подытоживать"
+  },
+  {
+    "id": 340,
+    "english": "swear by",
+    "translation": "полностью доверять чему-то"
+  },
+  {
+    "id": 341,
+    "english": "sweep up",
+    "translation": "подметать"
+  },
+  {
+    "id": 342,
+    "english": "tag along",
+    "translation": "увязаться за кем-то"
+  },
+  {
+    "id": 343,
+    "english": "take on",
+    "translation": "браться за/нанимать"
+  },
+  {
+    "id": 344,
+    "english": "tear apart",
+    "translation": "разрывать на части"
+  },
+  {
+    "id": 345,
+    "english": "tear down",
+    "translation": "сносить"
+  },
+  {
+    "id": 346,
+    "english": "tell apart",
+    "translation": "различать"
+  },
+  {
+    "id": 347,
+    "english": "tell off",
+    "translation": "отчитывать, ругать"
+  },
+  {
+    "id": 348,
+    "english": "tie up",
+    "translation": "связывать/занимать (время)"
+  },
+  {
+    "id": 349,
+    "english": "tip over",
+    "translation": "опрокидывать(ся)"
+  },
+  {
+    "id": 350,
+    "english": "tone down",
+    "translation": "смягчать"
+  },
+  {
+    "id": 351,
+    "english": "top up",
+    "translation": "пополнять (счёт, баланс)"
+  },
+  {
+    "id": 352,
+    "english": "touch down",
+    "translation": "приземляться"
+  },
+  {
+    "id": 353,
+    "english": "trade in",
+    "translation": "сдавать в счёт покупки нового"
+  },
+  {
+    "id": 354,
+    "english": "tune in",
+    "translation": "настраиваться (на канал)"
+  },
+  {
+    "id": 355,
+    "english": "type up",
+    "translation": "печатать (набело)"
+  },
+  {
+    "id": 356,
+    "english": "use up",
+    "translation": "израсходовать полностью"
+  },
+  {
+    "id": 357,
+    "english": "wear off",
+    "translation": "проходить (о действии, эффекте)"
+  },
+  {
+    "id": 358,
+    "english": "weigh up",
+    "translation": "взвешивать (за и против)"
+  },
+  {
+    "id": 359,
+    "english": "wind down",
+    "translation": "расслабляться перед сном"
+  },
+  {
+    "id": 360,
+    "english": "wind up",
+    "translation": "заканчивать/заводить"
+  },
+  {
+    "id": 361,
+    "english": "wipe out",
+    "translation": "уничтожать полностью"
+  },
+  {
+    "id": 362,
+    "english": "wrap up",
+    "translation": "заканчивать/укутывать"
+  },
+  {
+    "id": 363,
+    "english": "zone out",
+    "translation": "отвлекаться, витать в облаках"
+  }
+]

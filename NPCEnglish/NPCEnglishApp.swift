@@ -11,7 +11,7 @@ import SwiftUI
 struct NPCEnglishApp: App {
     var body: some Scene {
         WindowGroup {
-            QuizView()
+            StartView()
         }
     }
 }

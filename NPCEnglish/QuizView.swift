@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct QuizView: View {
-    @StateObject private var viewModel = QuizViewModel()
+    @StateObject private var viewModel: QuizViewModel
+
+    init(wordSet: WordSet) {
+        _viewModel = StateObject(wrappedValue: QuizViewModel(wordSet: wordSet))
+    }
 
     var body: some View {
         VStack(spacing: 32) {
@@ -54,14 +58,13 @@ struct QuizView: View {
         }
         .padding(.vertical)
         .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
+        .navigationTitle(viewModel.wordSet.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private var header: some View {
         HStack {
-            Text("✅ \(viewModel.correctAnswers)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            Text("❌ \(viewModel.wrongAnswers)")
+            Text("Счёт: \(viewModel.score)/\(viewModel.total)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Spacer()
@@ -109,3 +112,4 @@ struct QuizView: View {
         return (isCorrectOption || isSelected) ? .white : .primary
     }
 }
+
