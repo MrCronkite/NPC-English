@@ -13,6 +13,9 @@ struct NPCEnglishApp: App {
     @AppStorage("appTheme")
     private var themeRaw: String = AppTheme.system.rawValue
 
+    private let coreDataStack: CoreDataStack
+    private let favoritesManager: FavoritesManaging
+
     private var theme: AppTheme {
         AppTheme(rawValue: themeRaw) ?? .system
     }
@@ -22,12 +25,18 @@ struct NPCEnglishApp: App {
             "soundEnabled": true,
             "hapticsEnabled": true
         ])
+
+        let stack = CoreDataStack()
+        self.coreDataStack = stack
+        self.favoritesManager = CoreDataFavoritesManager(context: stack.viewContext)
     }
 
     var body: some Scene {
         WindowGroup {
-            StartView()
-                .preferredColorScheme(theme.colorScheme)
+            StartView(
+                favoritesManager: favoritesManager
+            )
+            .preferredColorScheme(theme.colorScheme)
         }
     }
 }

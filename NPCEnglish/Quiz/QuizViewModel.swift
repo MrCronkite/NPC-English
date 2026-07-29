@@ -12,6 +12,7 @@ import Combine
 @MainActor
 final class QuizViewModel: ObservableObject {
     let wordSet: WordSet
+    private let favoritesManager: FavoritesManaging
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -23,6 +24,7 @@ final class QuizViewModel: ObservableObject {
     @Published private(set) var currentWord: Word?
     @Published private(set) var options: [Word] = []
     @Published private(set) var isSessionFinished = false
+    @Published private(set) var isCurrentFavorite = false
 
     @Published var selectedOption: Word?
     @Published var isAnswered = false
@@ -32,13 +34,42 @@ final class QuizViewModel: ObservableObject {
 
     private(set) var plannedQuestions: Int = 0
 
+    private var wordSources: [Int: WordSet] = [:]
+    private var currentWordSource: WordSet?
+
     private var direction: TranslationDirection {
         TranslationDirection(rawValue: directionRaw) ?? .englishToRussian
     }
 
-    init(wordSet: WordSet) {
+    /// Обычный набор слов из JSON (A1, фразовые глаголы)
+    init(wordSet: WordSet, favoritesManager: FavoritesManaging) {
         self.wordSet = wordSet
+        self.favoritesManager = favoritesManager
         self.allWords = WordsLoader.loadWords(for: wordSet)
+        self.plannedQuestions = sessionLength
+        nextQuestion()
+    }
+
+    /// Сессия повторения избранных слов — собирает слова из всех обычных наборов
+    init(favoritesManager: FavoritesManaging) {
+        self.wordSet = .favorites
+        self.favoritesManager = favoritesManager
+
+        var collected: [Word] = []
+        var sources: [Int: WordSet] = [:]
+
+        for set in WordSet.regularSets {
+            let ids = Set(favoritesManager.favoriteWordIDs(in: set))
+            guard !ids.isEmpty else { continue }
+            let words = WordsLoader.loadWords(for: set)
+            for word in words where ids.contains(word.id) {
+                collected.append(word)
+                sources[word.id] = set
+            }
+        }
+
+        self.allWords = collected
+        self.wordSources = sources
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
@@ -47,16 +78,11 @@ final class QuizViewModel: ObservableObject {
 
     var questionText: String {
         guard let word = currentWord else { return "" }
-
-        return direction == .englishToRussian
-        ? word.english
-        : word.translation
+        return direction == .englishToRussian ? word.english : word.translation
     }
 
     func optionText(for word: Word) -> String {
-        direction == .englishToRussian
-        ? word.translation
-        : word.english
+        direction == .englishToRussian ? word.translation : word.english
     }
 
     var isCorrect: Bool {
@@ -81,12 +107,14 @@ final class QuizViewModel: ObservableObject {
 
         let word = allWords.randomElement()!
         currentWord = word
+        currentWordSource = wordSet == .favorites ? wordSources[word.id] : wordSet
 
         var wrongOptions = allWords.filter { $0.id != word.id }
         wrongOptions.shuffle()
         let wrongThree = Array(wrongOptions.prefix(3))
 
         options = (wrongThree + [word]).shuffled()
+        refreshFavoriteStatus()
     }
 
     func select(_ option: Word) {
@@ -94,7 +122,7 @@ final class QuizViewModel: ObservableObject {
         selectedOption = option
         isAnswered = true
         total += 1
-        
+
         if option.id == currentWord?.id {
             score += 1
             FeedbackManager.playCorrect()
@@ -108,5 +136,19 @@ final class QuizViewModel: ObservableObject {
         total = 0
         isSessionFinished = false
         nextQuestion()
+    }
+
+    func toggleFavorite() {
+        guard let word = currentWord, let source = currentWordSource else { return }
+        favoritesManager.toggleFavorite(wordID: word.id, in: source)
+        refreshFavoriteStatus()
+    }
+
+    private func refreshFavoriteStatus() {
+        guard let word = currentWord, let source = currentWordSource else {
+            isCurrentFavorite = false
+            return
+        }
+        isCurrentFavorite = favoritesManager.isFavorite(wordID: word.id, in: source)
     }
 }

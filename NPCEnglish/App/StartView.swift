@@ -8,17 +8,33 @@
 import SwiftUI
 
 struct StartView: View {
+    let favoritesManager: FavoritesManaging
+
     var body: some View {
         NavigationStack {
-            List(WordSet.allCases) { wordSet in
-                NavigationLink(value: wordSet) {
-                    wordSetRow(wordSet)
+            List {
+                Section("Наборы слов") {
+                    ForEach(WordSet.regularSets) { wordSet in
+                        NavigationLink(value: wordSet) {
+                            wordSetRow(wordSet)
+                        }
+                    }
+                }
+
+                Section("Повторение") {
+                    NavigationLink(value: WordSet.favorites) {
+                        wordSetRow(.favorites)
+                    }
                 }
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Учим английский")
             .navigationDestination(for: WordSet.self) { wordSet in
-                QuizView(wordSet: wordSet)
+                if wordSet == .favorites {
+                    QuizView(favoritesManager: favoritesManager)
+                } else {
+                    QuizView(wordSet: wordSet, favoritesManager: favoritesManager)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -52,5 +68,3 @@ struct StartView: View {
         .padding(.vertical, 6)
     }
 }
-
-

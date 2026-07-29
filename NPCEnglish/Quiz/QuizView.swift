@@ -11,8 +11,19 @@ import SwiftUI
 struct QuizView: View {
     @StateObject private var viewModel: QuizViewModel
 
-    init(wordSet: WordSet) {
-        _viewModel = StateObject(wrappedValue: QuizViewModel(wordSet: wordSet))
+    init(wordSet: WordSet, favoritesManager: FavoritesManaging) {
+        _viewModel = StateObject(
+            wrappedValue: QuizViewModel(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager
+            )
+        )
+    }
+
+    init(favoritesManager: FavoritesManaging) {
+        _viewModel = StateObject(
+            wrappedValue: QuizViewModel(favoritesManager: favoritesManager)
+        )
     }
 
     var body: some View {
@@ -93,23 +104,51 @@ extension QuizView {
         .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
         .navigationTitle(viewModel.wordSet.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if viewModel.currentWord != nil {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.toggleFavorite()
+                    } label: {
+                        Image(systemName: viewModel.isCurrentFavorite
+                              ? "heart.fill"
+                              : "heart"
+                        )
+                        .foregroundStyle(.red)
+                    }
+                }
+            }
+        }
     }
 
     private var header: some View {
-        HStack {
-            Text("Счёт: \(viewModel.score)/\(viewModel.total)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            Spacer()
+        VStack(spacing: 10) {
+            HStack {
+                Label {
+                    Text("\(viewModel.score) / \(viewModel.total)")
+                        .font(.subheadline.weight(.semibold))
+                } icon: {
+                    Image(systemName: "star.fill")
+                        .foregroundStyle(.yellow)
+                }
+
+                Spacer()
+
+                if viewModel.isLimited {
+                    Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.secondary)
+                }
+            }
+
             if viewModel.isLimited {
-                Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                ProgressView(value: Double(viewModel.total), total: Double(viewModel.plannedQuestions))
+                    .tint(.accentColor)
             }
         }
         .padding(.horizontal)
     }
-
+    
     @ViewBuilder
     private func optionButton(for option: Word) -> some View {
         let isSelected = viewModel.selectedOption?.id == option.id
