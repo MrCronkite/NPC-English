@@ -53,9 +53,4 @@ struct StartView: View {
     }
 }
 
-// Нужно для navigationDestination(for: WordSet.self)
-extension WordSet: Hashable {}
 
-#Preview {
-    StartView()
-}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Тип набора слов для квиза. rawValue = имя JSON-файла в бандле (без расширения).
+
 enum WordSet: String, CaseIterable, Identifiable {
     case a1Words = "words_a1"
     case phrasalVerbs = "phrasal_verbs"
@@ -41,6 +41,7 @@ enum WordSet: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Имя JSON-файла в бандле приложения (без расширения)
     var fileName: String { rawValue }
 }
+
+extension WordSet: Hashable {}
