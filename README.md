@@ -18,22 +18,7 @@
   <tr>
     <td><img src="screenshots/start_screen.png" width="250"/></td>
     <td><img src="screenshots/quiz_screen.png" width="250"/></td>
-    <td><img src="screenshots/results_screen.png" width="250"/></td>
-  </tr>
-  <tr>
-    <td align="center">Главный экран</td>
-    <td align="center">Квиз</td>
-    <td align="center">Результат сессии</td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/stats_screen.png" width="250"/></td>
-    <td><img src="screenshots/settings_screen.png" width="250"/></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="center">Статистика</td>
-    <td align="center">Настройки</td>
-    <td></td>
+    <td><img src="screenshots/resultts_screen.png" width="250"/></td>
   </tr>
 </table>
 
