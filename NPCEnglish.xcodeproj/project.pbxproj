@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		848176C63017B37200F6E534 /* NPCEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = NPCEnglish.app; path = "/Users/admin/NPC-English/build/Debug-iphoneos/NPCEnglish.app"; sourceTree = "<absolute>"; };
+		84B71107301B4020003330FB /* NPCEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPCEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +33,7 @@
 			isa = PBXGroup;
 			children = (
 				848176C83017B37200F6E534 /* NPCEnglish */,
+				84B71107301B4020003330FB /* NPCEnglish.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = NPCEnglish;
-			productReference = 848176C63017B37200F6E534 /* NPCEnglish.app */;
+			productReference = 84B71107301B4020003330FB /* NPCEnglish.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -247,6 +248,7 @@
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglish;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -280,6 +282,7 @@
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglish;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
