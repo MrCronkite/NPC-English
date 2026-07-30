@@ -15,6 +15,7 @@ struct NPCEnglishApp: App {
 
     private let coreDataStack: CoreDataStack
     private let favoritesManager: FavoritesManaging
+    private let statsManager: StatsManaging
 
     private var theme: AppTheme {
         AppTheme(rawValue: themeRaw) ?? .system
@@ -29,12 +30,14 @@ struct NPCEnglishApp: App {
         let stack = CoreDataStack()
         self.coreDataStack = stack
         self.favoritesManager = CoreDataFavoritesManager(context: stack.viewContext)
+        self.statsManager = CoreDataStatsManager(context: stack.viewContext)
     }
 
     var body: some Scene {
         WindowGroup {
             StartView(
-                favoritesManager: favoritesManager
+                favoritesManager: favoritesManager,
+                statsManager: statsManager
             )
             .preferredColorScheme(theme.colorScheme)
         }

@@ -13,6 +13,7 @@ import Combine
 final class QuizViewModel: ObservableObject {
     let wordSet: WordSet
     private let favoritesManager: FavoritesManaging
+    private let statsManager: StatsManaging
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -41,19 +42,26 @@ final class QuizViewModel: ObservableObject {
         TranslationDirection(rawValue: directionRaw) ?? .englishToRussian
     }
 
-    /// Обычный набор слов из JSON (A1, фразовые глаголы)
-    init(wordSet: WordSet, favoritesManager: FavoritesManaging) {
+    init(
+        wordSet: WordSet,
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging
+    ) {
         self.wordSet = wordSet
         self.favoritesManager = favoritesManager
+        self.statsManager = statsManager
         self.allWords = WordsLoader.loadWords(for: wordSet)
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
 
-    /// Сессия повторения избранных слов — собирает слова из всех обычных наборов
-    init(favoritesManager: FavoritesManaging) {
+    init(
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging
+    ) {
         self.wordSet = .favorites
         self.favoritesManager = favoritesManager
+        self.statsManager = statsManager
 
         var collected: [Word] = []
         var sources: [Int: WordSet] = [:]
@@ -74,6 +82,8 @@ final class QuizViewModel: ObservableObject {
         nextQuestion()
     }
 
+    // isLimited больше не нужен как условие (сессия всегда ограничена),
+    // но оставляю для безопасности и для UI прогресс-бара
     var isLimited: Bool { plannedQuestions > 0 }
 
     var questionText: String {
@@ -98,6 +108,9 @@ final class QuizViewModel: ObservableObject {
         }
 
         if isLimited && total >= plannedQuestions {
+            if !isSessionFinished {
+                statsManager.recordSessionCompleted(score: score, total: total)
+            }
             isSessionFinished = true
             return
         }

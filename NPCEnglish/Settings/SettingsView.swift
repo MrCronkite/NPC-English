@@ -37,7 +37,7 @@ struct SettingsView: View {
         )
     }
 
-    private let sessionLengthOptions = [10, 20, 30, 50, 0]
+    private let sessionLengthOptions = [10, 20, 30, 50]
 
     var body: some View {
         Form {
@@ -55,12 +55,14 @@ struct SettingsView: View {
             Section {
                 Picker("Количество слов", selection: $sessionLength) {
                     ForEach(sessionLengthOptions, id: \.self) { count in
-                        Text(count == 0 ? "Без ограничений" : "\(count) слов").tag(count)
+                        Text("\(count) слов").tag(count)
                     }
                 }
                 .pickerStyle(.inline)
             } header: {
                 Text("Длина сессии")
+            } footer: {
+                Text("Сколько слов будет в одной сессии квиза, прежде чем показать результат.")
             }
 
             Section {

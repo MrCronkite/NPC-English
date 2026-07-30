@@ -11,18 +11,29 @@ import SwiftUI
 struct QuizView: View {
     @StateObject private var viewModel: QuizViewModel
 
-    init(wordSet: WordSet, favoritesManager: FavoritesManaging) {
+    init(
+        wordSet: WordSet,
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging
+    ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
                 wordSet: wordSet,
-                favoritesManager: favoritesManager
+                favoritesManager: favoritesManager,
+                statsManager: statsManager
             )
         )
     }
 
-    init(favoritesManager: FavoritesManaging) {
+    init(
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging
+    ) {
         _viewModel = StateObject(
-            wrappedValue: QuizViewModel(favoritesManager: favoritesManager)
+            wrappedValue: QuizViewModel(
+                favoritesManager: favoritesManager,
+                statsManager: statsManager
+            )
         )
     }
 

@@ -36,7 +36,11 @@ final class CoreDataStack {
 
     private static func makeModel() -> NSManagedObjectModel {
         let model = NSManagedObjectModel()
-        model.entities = [WordProgressEntity.entityDescription()]
+        model.entities = [
+            WordProgressEntity.entityDescription(),
+            AppStatsEntity.entityDescription(),
+            DailyStatEntity.entityDescription()
+        ]
         return model
     }
 }
