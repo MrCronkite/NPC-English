@@ -11,15 +11,27 @@ import CoreData
 final class CoreDataStack {
     let persistentContainer: NSPersistentContainer
 
+    private static let sharedModel: NSManagedObjectModel = {
+        let model = NSManagedObjectModel()
+        model.entities = [
+            WordProgressEntity.entityDescription(),
+            AppStatsEntity.entityDescription(),
+            DailyStatEntity.entityDescription()
+        ]
+        return model
+    }()
+
+    var viewContext: NSManagedObjectContext {
+        persistentContainer.viewContext
+    }
+
     init(
         modelName: String = "EnglishWordsModel",
         inMemory: Bool = false
     ) {
-        let model = CoreDataStack.makeModel()
-        
         persistentContainer = NSPersistentContainer(
             name: modelName,
-            managedObjectModel: model
+            managedObjectModel: Self.sharedModel
         )
 
         if inMemory {
@@ -35,10 +47,6 @@ final class CoreDataStack {
         }
 
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-    }
-
-    var viewContext: NSManagedObjectContext {
-        persistentContainer.viewContext
     }
 
     private static func makeModel() -> NSManagedObjectModel {
