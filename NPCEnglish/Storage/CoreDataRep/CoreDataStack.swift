@@ -11,9 +11,16 @@ import CoreData
 final class CoreDataStack {
     let persistentContainer: NSPersistentContainer
 
-    init(modelName: String = "EnglishWordsModel", inMemory: Bool = false) {
+    init(
+        modelName: String = "EnglishWordsModel",
+        inMemory: Bool = false
+    ) {
         let model = CoreDataStack.makeModel()
-        persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        
+        persistentContainer = NSPersistentContainer(
+            name: modelName,
+            managedObjectModel: model
+        )
 
         if inMemory {
             let description = NSPersistentStoreDescription()
