@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct StartView: View {
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
+
+    @State private var refreshTrigger = 0
 
     var body: some View {
         NavigationStack {
@@ -18,7 +21,7 @@ struct StartView: View {
                     NavigationLink {
                         StatsView(statsManager: statsManager)
                     } label: {
-                        miniStatsWidget
+                        MiniStatsWidgetView(statsManager: statsManager)
                     }
                 }
 
@@ -55,22 +58,6 @@ struct StartView: View {
                 }
             }
         }
-    }
-
-    private var miniStatsWidget: some View {
-        HStack(spacing: 20) {
-            VStack(alignment: .leading, spacing: 2) {
-                Label("\(statsManager.currentStreak) дней подряд", systemImage: "flame.fill")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.orange)
-                Text("Лучший результат: \(statsManager.longestStreak)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            miniWeekBars
-        }
-        .padding(.vertical, 4)
     }
 
     private var miniWeekBars: some View {

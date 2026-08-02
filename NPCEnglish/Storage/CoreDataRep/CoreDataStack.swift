@@ -25,7 +25,7 @@ final class CoreDataStack {
         persistentContainer.viewContext
     }
 
-    private static let appGroupID = "group.com.main.englishwords"
+    private static let appGroupID = "group.com.main.npcenglish"
 
     init(
         modelName: String = "EnglishWordsModel",
