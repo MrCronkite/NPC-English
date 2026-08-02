@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import WidgetKit
 
 protocol StatsManaging {
     var currentStreak: Int { get }
@@ -54,6 +55,7 @@ final class CoreDataStatsManager: StatsManaging {
 
         do {
             try appStatsRepository.save()
+            WidgetCenter.shared.reloadTimelines(ofKind: "StreakWidget")
         } catch {
             print("⚠️ Не удалось сохранить статистику: \(error)")
         }

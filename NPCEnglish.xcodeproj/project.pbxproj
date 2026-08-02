@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		84AA9B92301FA47000550B74 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AA9B91301FA46F00550B74 /* WidgetKit.framework */; };
+		84AA9B94301FA47000550B74 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AA9B93301FA47000550B74 /* SwiftUI.framework */; };
+		84AA9BA5301FA47100550B74 /* NPCEnglishWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 84AA9B8F301FA46F00550B74 /* NPCEnglishWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		84AA9B3E301F9D3500550B74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -14,22 +20,91 @@
 			remoteGlobalIDString = 848176C53017B37200F6E534;
 			remoteInfo = NPCEnglish;
 		};
+		84AA9BA3301FA47100550B74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 848176BE3017B37200F6E534 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84AA9B8E301FA46F00550B74;
+			remoteInfo = NPCEnglishWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84AA9BAA301FA47100550B74 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				84AA9BA5301FA47100550B74 /* NPCEnglishWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		84AA9AFC301F9C6300550B74 /* NPCEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPCEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA9B3A301F9D3500550B74 /* NPCEnglishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NPCEnglishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84AA9B8F301FA46F00550B74 /* NPCEnglishWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NPCEnglishWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		84AA9B91301FA46F00550B74 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		84AA9B93301FA47000550B74 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		84AA9BAB301FA4C900550B74 /* NPCEnglishWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NPCEnglishWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		84AA9BA6301FA47100550B74 /* Exceptions for "NPCEnglishWidget" folder in "NPCEnglishWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
+		};
+		84AA9BAD301FA53800550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglishWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Loader/Word.swift,
+				Loader/WordSet.swift,
+				Stats/DailyStat.swift,
+				Storage/CoreDataRep/CoreDataRepository.swift,
+				Storage/CoreDataRep/CoreDataStack.swift,
+				Storage/CoreDataRep/CoreDataStatsManager.swift,
+				Storage/Entity/AppStatsEntity.swift,
+				Storage/Entity/DailyStatEntity.swift,
+				Storage/Entity/WordProgressEntity.swift,
+			);
+			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
+		};
+		84AA9BB7301FA60600550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglish" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 848176C53017B37200F6E534 /* NPCEnglish */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		848176C83017B37200F6E534 /* NPCEnglish */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				84AA9BB7301FA60600550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglish" target */,
+				84AA9BAD301FA53800550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglishWidgetExtension" target */,
+			);
 			path = NPCEnglish;
 			sourceTree = "<group>";
 		};
 		84AA9B3B301F9D3500550B74 /* NPCEnglishTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NPCEnglishTests;
+			sourceTree = "<group>";
+		};
+		84AA9B95301FA47000550B74 /* NPCEnglishWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				84AA9BA6301FA47100550B74 /* Exceptions for "NPCEnglishWidget" folder in "NPCEnglishWidgetExtension" target */,
+			);
+			path = NPCEnglishWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -49,17 +124,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84AA9B8C301FA46F00550B74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84AA9B94301FA47000550B74 /* SwiftUI.framework in Frameworks */,
+				84AA9B92301FA47000550B74 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		848176BD3017B37200F6E534 = {
 			isa = PBXGroup;
 			children = (
+				84AA9BAB301FA4C900550B74 /* NPCEnglishWidgetExtension.entitlements */,
 				848176C83017B37200F6E534 /* NPCEnglish */,
 				84AA9AFC301F9C6300550B74 /* NPCEnglish.app */,
 				84AA9B3A301F9D3500550B74 /* NPCEnglishTests.xctest */,
 				84AA9B3B301F9D3500550B74 /* NPCEnglishTests */,
+				84AA9B8F301FA46F00550B74 /* NPCEnglishWidgetExtension.appex */,
+				84AA9B95301FA47000550B74 /* NPCEnglishWidget */,
+				84AA9B90301FA46F00550B74 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		84AA9B90301FA46F00550B74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84AA9B91301FA46F00550B74 /* WidgetKit.framework */,
+				84AA9B93301FA47000550B74 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,10 +169,12 @@
 				848176C23017B37200F6E534 /* Sources */,
 				848176C33017B37200F6E534 /* Frameworks */,
 				848176C43017B37200F6E534 /* Resources */,
+				84AA9BAA301FA47100550B74 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84AA9BA4301FA47100550B74 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				848176C83017B37200F6E534 /* NPCEnglish */,
@@ -110,6 +209,28 @@
 			productReference = 84AA9B3A301F9D3500550B74 /* NPCEnglishTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84AA9BA7301FA47100550B74 /* Build configuration list for PBXNativeTarget "NPCEnglishWidgetExtension" */;
+			buildPhases = (
+				84AA9B8B301FA46F00550B74 /* Sources */,
+				84AA9B8C301FA46F00550B74 /* Frameworks */,
+				84AA9B8D301FA46F00550B74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				84AA9B95301FA47000550B74 /* NPCEnglishWidget */,
+			);
+			name = NPCEnglishWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = NPCEnglishWidgetExtension;
+			productReference = 84AA9B8F301FA46F00550B74 /* NPCEnglishWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -126,6 +247,9 @@
 					84AA9B39301F9D3500550B74 = {
 						CreatedOnToolsVersion = 26.4.1;
 						TestTargetID = 848176C53017B37200F6E534;
+					};
+					84AA9B8E301FA46F00550B74 = {
+						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
 			};
@@ -145,6 +269,7 @@
 			targets = (
 				848176C53017B37200F6E534 /* NPCEnglish */,
 				84AA9B39301F9D3500550B74 /* NPCEnglishTests */,
+				84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -158,6 +283,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84AA9B38301F9D3500550B74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84AA9B8D301FA46F00550B74 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,6 +313,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84AA9B8B301FA46F00550B74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -188,6 +327,11 @@
 			isa = PBXTargetDependency;
 			target = 848176C53017B37200F6E534 /* NPCEnglish */;
 			targetProxy = 84AA9B3E301F9D3500550B74 /* PBXContainerItemProxy */;
+		};
+		84AA9BA4301FA47100550B74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
+			targetProxy = 84AA9BA3301FA47100550B74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -318,11 +462,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NPCEnglish/NPCEnglish.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NPCEnglish/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglish;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,11 +498,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NPCEnglish/NPCEnglish.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NPCEnglish/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglish;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -423,6 +571,68 @@
 			};
 			name = Release;
 		};
+		84AA9BA8301FA47100550B74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NPCEnglishWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LUQ926BAHR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NPCEnglishWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglishWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-2.NPCEnglish.NPCEnglishWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84AA9BA9301FA47100550B74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NPCEnglishWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LUQ926BAHR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NPCEnglishWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NPCEnglishWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-2.NPCEnglish.NPCEnglishWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -449,6 +659,15 @@
 			buildConfigurations = (
 				84AA9B40301F9D3500550B74 /* Debug */,
 				84AA9B41301F9D3500550B74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84AA9BA7301FA47100550B74 /* Build configuration list for PBXNativeTarget "NPCEnglishWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84AA9BA8301FA47100550B74 /* Debug */,
+				84AA9BA9301FA47100550B74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

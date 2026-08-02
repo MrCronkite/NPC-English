@@ -21,6 +21,8 @@ struct NPCEnglishApp: App {
         AppTheme(rawValue: themeRaw) ?? .system
     }
 
+    @State private var deepLinkedWordSet: WordSet?
+
     init() {
         UserDefaults.standard.register(defaults: [
             "soundEnabled": true,
@@ -40,6 +42,15 @@ struct NPCEnglishApp: App {
                 statsManager: statsManager
             )
             .preferredColorScheme(theme.colorScheme)
+            .onOpenURL { url in
+                handleDeepLink(url)
+            }
         }
     }
+
+    private func handleDeepLink(_ url: URL) {
+            // englishwords://quiz — открываем набор A1 по умолчанию.
+            guard url.host == "quiz" else { return }
+            deepLinkedWordSet = .a1Words
+        }
 }

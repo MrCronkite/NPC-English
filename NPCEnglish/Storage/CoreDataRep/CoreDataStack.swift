@@ -25,6 +25,8 @@ final class CoreDataStack {
         persistentContainer.viewContext
     }
 
+    private static let appGroupID = "group.com.main.englishwords"
+
     init(
         modelName: String = "EnglishWordsModel",
         inMemory: Bool = false
@@ -38,6 +40,12 @@ final class CoreDataStack {
             let description = NSPersistentStoreDescription()
             description.url = URL(fileURLWithPath: "/dev/null")
             persistentContainer.persistentStoreDescriptions = [description]
+        } else if let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupID) {
+            let storeURL = groupURL.appendingPathComponent("\(modelName).sqlite")
+            let description = NSPersistentStoreDescription(url: storeURL)
+            persistentContainer.persistentStoreDescriptions = [description]
+        } else {
+            print("⚠️ Не удалось получить App Group container — проверь идентификатор группы в Xcode")
         }
 
         persistentContainer.loadPersistentStores { _, error in
