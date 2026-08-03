@@ -12,6 +12,7 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
     case travel
     case health
     case technology
+    case food
 
     var id: String { rawValue }
 
@@ -21,6 +22,7 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .travel: return "Путешествия"
         case .health: return "Здоровье"
         case .technology: return "Технологии"
+        case .food: return "Еда и готовка"
         }
     }
 
@@ -30,6 +32,7 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .travel: return "airplane"
         case .health: return "cross.case.fill"
         case .technology: return "laptopcomputer"
+        case .food: return "fork.knife"
         }
     }
 }

@@ -47,6 +47,7 @@ final class CoreDataFavoritesManagerTests: XCTestCase {
         sut.toggleFavorite(wordID: 5, in: .a1Words)
         sut.toggleFavorite(wordID: 10, in: .a1Words)
         sut.toggleFavorite(wordID: 10, in: .a1Words) // снова — снимаем избранное
+        sut.toggleFavorite(wordID: 120, in: .a2Words)
 
         let ids = sut.favoriteWordIDs(in: .a1Words)
 
