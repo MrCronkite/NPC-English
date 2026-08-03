@@ -43,9 +43,22 @@ struct StartView: View {
             .navigationTitle("Учим английский")
             .navigationDestination(for: WordSet.self) { wordSet in
                 if wordSet == .favorites {
-                    QuizView(favoritesManager: favoritesManager, statsManager: statsManager)
+                    QuizView(
+                        favoritesManager: favoritesManager,
+                        statsManager: statsManager
+                    )
+                } else if wordSet.hasCategories {
+                    CategoryPickerView(
+                        wordSet: wordSet,
+                        favoritesManager: favoritesManager,
+                        statsManager: statsManager
+                    )
                 } else {
-                    QuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager)
+                    QuizView(
+                        wordSet: wordSet,
+                        favoritesManager: favoritesManager,
+                        statsManager: statsManager
+                    )
                 }
             }
             .toolbar {

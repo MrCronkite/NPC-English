@@ -44,13 +44,21 @@ final class QuizViewModel: ObservableObject {
 
     init(
         wordSet: WordSet,
+        category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging
     ) {
         self.wordSet = wordSet
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
-        self.allWords = WordsLoader.loadWords(for: wordSet)
+
+        let words = WordsLoader.loadWords(for: wordSet)
+        if let category {
+            self.allWords = words.filter { $0.category == category.rawValue }
+        } else {
+            self.allWords = words
+        }
+        
         self.plannedQuestions = sessionLength
         nextQuestion()
     }

@@ -27,7 +27,11 @@ struct MiniStatsWidgetView: View {
         }
         .padding(.vertical, 4)
         .id(refreshTrigger)
-        .onReceive(NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)) { _ in
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: .NSManagedObjectContextDidSave
+            )
+        ) { _ in
             refreshTrigger += 1
         }
     }

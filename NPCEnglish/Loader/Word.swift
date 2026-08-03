@@ -12,4 +12,5 @@ struct Word: Identifiable, Codable, Equatable {
     let id: Int
     let english: String
     let translation: String
+    let category: String?
 }

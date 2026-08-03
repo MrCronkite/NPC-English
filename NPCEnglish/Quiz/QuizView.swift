@@ -13,12 +13,14 @@ struct QuizView: View {
 
     init(
         wordSet: WordSet,
+        category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging
     ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
                 wordSet: wordSet,
+                category: category,
                 favoritesManager: favoritesManager,
                 statsManager: statsManager
             )

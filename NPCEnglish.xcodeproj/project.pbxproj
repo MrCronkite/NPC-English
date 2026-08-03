@@ -64,6 +64,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Loader/Word.swift,
+				Loader/WordCategory.swift,
 				Loader/WordSet.swift,
 				Stats/DailyStat.swift,
 				Storage/CoreDataRep/CoreDataRepository.swift,
