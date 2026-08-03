@@ -38,6 +38,30 @@ struct StartView: View {
                         wordSetRow(.favorites)
                     }
                 }
+
+                Section("Поддержать приложение") {
+                    NavigationLink {
+                        SupportView()
+                    } label: {
+                        HStack(spacing: 16) {
+                            Image(systemName: "heart.fill")
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                                .frame(width: 44, height: 44)
+                                .background(Color.red)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Поддержать проект")
+                                    .font(.headline)
+                                Text("Приложение бесплатное — но спасибо не помешает")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 6)
+                    }
+                }
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Учим английский")
