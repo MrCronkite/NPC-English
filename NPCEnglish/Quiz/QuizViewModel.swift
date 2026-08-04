@@ -104,6 +104,10 @@ final class QuizViewModel: ObservableObject {
         return direction == .englishToRussian ? word.english : word.translation
     }
 
+    var isQuestionInEnglish: Bool {
+        direction == .englishToRussian
+    }
+
     func optionText(for word: Word) -> String {
         direction == .englishToRussian ? word.translation : word.english
     }

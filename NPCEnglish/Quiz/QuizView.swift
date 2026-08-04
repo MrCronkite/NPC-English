@@ -93,17 +93,18 @@ extension QuizView {
                 Text(viewModel.questionText)
                     .font(.system(size: 40, weight: .bold))
                     .multilineTextAlignment(.center)
-                
-                Button {
-                    viewModel.speakCurrentWord()
-                } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .font(.title2)
-                        .foregroundStyle(Color.accentColor)
+                if viewModel.isQuestionInEnglish {
+                    Button {
+                        viewModel.speakCurrentWord()
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .font(.title2)
+                            .foregroundStyle(Color.accentColor)
+                    }
                 }
             }
             .padding(.horizontal)
-            
+
             VStack(spacing: 14) {
                 ForEach(viewModel.options) { option in
                     optionButton(for: option)
