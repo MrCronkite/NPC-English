@@ -14,6 +14,7 @@ final class QuizViewModel: ObservableObject {
     let wordSet: WordSet
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
+    private let speechManager: SpeechSynthesizing
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -46,11 +47,13 @@ final class QuizViewModel: ObservableObject {
         wordSet: WordSet,
         category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing
     ) {
         self.wordSet = wordSet
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
+        self.speechManager = speechManager
 
         let words = WordsLoader.loadWords(for: wordSet)
         if let category {
@@ -65,11 +68,13 @@ final class QuizViewModel: ObservableObject {
 
     init(
         favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing
     ) {
         self.wordSet = .favorites
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
+        self.speechManager = speechManager
 
         var collected: [Word] = []
         var sources: [Int: WordSet] = [:]
@@ -163,6 +168,11 @@ final class QuizViewModel: ObservableObject {
         guard let word = currentWord, let source = currentWordSource else { return }
         favoritesManager.toggleFavorite(wordID: word.id, in: source)
         refreshFavoriteStatus()
+    }
+
+    func speakCurrentWord() {
+        guard let word = currentWord else { return }
+        speechManager.speak(word.english)
     }
 
     private func refreshFavoriteStatus() {

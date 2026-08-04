@@ -16,6 +16,7 @@ struct NPCEnglishApp: App {
     private let coreDataStack: CoreDataStack
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
+    private let speechManager: SpeechSynthesizing
 
     private var theme: AppTheme {
         AppTheme(rawValue: themeRaw) ?? .system
@@ -33,13 +34,15 @@ struct NPCEnglishApp: App {
         self.coreDataStack = stack
         self.favoritesManager = CoreDataFavoritesManager(context: stack.viewContext)
         self.statsManager = CoreDataStatsManager(context: stack.viewContext)
+        self.speechManager = SpeechManager()
     }
 
     var body: some Scene {
         WindowGroup {
             StartView(
                 favoritesManager: favoritesManager,
-                statsManager: statsManager
+                statsManager: statsManager,
+                speechManager: speechManager
             )
             .preferredColorScheme(theme.colorScheme)
             .onOpenURL { url in

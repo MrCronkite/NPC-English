@@ -11,6 +11,7 @@ import CoreData
 struct StartView: View {
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
+    let speechManager: SpeechSynthesizing
 
     @State private var refreshTrigger = 0
 
@@ -69,19 +70,22 @@ struct StartView: View {
                 if wordSet == .favorites {
                     QuizView(
                         favoritesManager: favoritesManager,
-                        statsManager: statsManager
+                        statsManager: statsManager,
+                        speechManager: speechManager
                     )
                 } else if wordSet.hasCategories {
                     CategoryPickerView(
                         wordSet: wordSet,
                         favoritesManager: favoritesManager,
-                        statsManager: statsManager
+                        statsManager: statsManager,
+                        speechManager: speechManager
                     )
                 } else {
                     QuizView(
                         wordSet: wordSet,
                         favoritesManager: favoritesManager,
-                        statsManager: statsManager
+                        statsManager: statsManager,
+                        speechManager: speechManager
                     )
                 }
             }
@@ -135,6 +139,7 @@ struct StartView: View {
 #Preview {
     StartView(
         favoritesManager: MockFavoritesManager(),
-        statsManager: MockStatsManager()
+        statsManager: MockStatsManager(),
+        speechManager: MockSpeechManager()
     )
 }

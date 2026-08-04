@@ -15,26 +15,30 @@ struct QuizView: View {
         wordSet: WordSet,
         category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing
     ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
                 wordSet: wordSet,
                 category: category,
                 favoritesManager: favoritesManager,
-                statsManager: statsManager
+                statsManager: statsManager,
+                speechManager: speechManager
             )
         )
     }
 
     init(
         favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing
     ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
                 favoritesManager: favoritesManager,
-                statsManager: statsManager
+                statsManager: statsManager,
+                speechManager: speechManager
             )
         )
     }
@@ -85,11 +89,21 @@ extension QuizView {
 
             Spacer()
 
-            Text(viewModel.questionText)
-                .font(.system(size: 40, weight: .bold))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-
+            HStack(spacing: 12) {
+                Text(viewModel.questionText)
+                    .font(.system(size: 40, weight: .bold))
+                    .multilineTextAlignment(.center)
+                
+                Button {
+                    viewModel.speakCurrentWord()
+                } label: {
+                    Image(systemName: "speaker.wave.2.fill")
+                        .font(.title2)
+                        .foregroundStyle(Color.accentColor)
+                }
+            }
+            .padding(.horizontal)
+            
             VStack(spacing: 14) {
                 ForEach(viewModel.options) { option in
                     optionButton(for: option)

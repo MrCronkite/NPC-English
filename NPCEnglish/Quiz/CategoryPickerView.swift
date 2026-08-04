@@ -11,6 +11,7 @@ struct CategoryPickerView: View {
     let wordSet: WordSet
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
+    let speechManager: SpeechSynthesizing
 
     private var allWords: [Word] {
         WordsLoader.loadWords(for: wordSet)
@@ -28,7 +29,8 @@ struct CategoryPickerView: View {
                     wordSet: wordSet,
                     category: category,
                     favoritesManager: favoritesManager,
-                    statsManager: statsManager
+                    statsManager: statsManager,
+                    speechManager: speechManager
                 )
             } label: {
                 categoryRow(category)

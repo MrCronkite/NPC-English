@@ -23,6 +23,13 @@ struct SettingsView: View {
     @AppStorage("hapticsEnabled")
     private var hapticsEnabled: Bool = true
 
+    @AppStorage("speechAccent") private var speechAccent: String = "en-US"
+
+    private let accentOptions: [(code: String, title: String)] = [
+        ("en-US", "Американский"),
+        ("en-GB", "Британский")
+    ]
+
     private var direction: Binding<TranslationDirection> {
         Binding(
             get: { TranslationDirection(rawValue: directionRaw) ?? .englishToRussian },
@@ -74,6 +81,19 @@ struct SettingsView: View {
                 .pickerStyle(.inline)
             } header: {
                 Text("Оформление")
+            }
+
+            Section {
+                Picker("Акцент озвучки", selection: $speechAccent) {
+                    ForEach(accentOptions, id: \.code) { option in
+                        Text(option.title).tag(option.code)
+                    }
+                }
+                .pickerStyle(.inline)
+            } header: {
+                Text("Произношение")
+            } footer: {
+                Text("Используется при озвучке английских слов. Работает офлайн; для более качественного голоса можно скачать Enhanced-голос в настройках iOS (Спец. возможности → Контент речи → Голоса).")
             }
 
             Section {
