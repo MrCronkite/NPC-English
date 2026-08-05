@@ -1,3 +1,4 @@
+![Tests](https://github.com/MrCronkite/NPC-English/actions/workflows/main.yml/badge.svg)
 # 📚 NPCEnglish
 
 Приложение для изучения английских слов на SwiftUI. Слова берутся из локального JSON — никакого бэкенда, никакого интернета, всё работает офлайн.
