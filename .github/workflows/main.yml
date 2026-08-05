@@ -13,11 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: List Applications
-        run: ls /Applications
-
-      - name: Select Xcode version
-        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
       - name: Show available simulators
         run: xcrun simctl list devices available
