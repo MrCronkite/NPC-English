@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+
+      - name: Show available simulators
+        run: xcrun simctl list devices available
+
+      - name: Install xcpretty
+        run: gem install xcpretty
+
+      - name: Run tests
+        run: |
+          xcodebuild test \
+            -project NPCEnglish.xcodeproj \
+            -scheme NPCEnglish \
+            -destination 'platform=iOS Simulator,name=iPhone 17,OS=17.5' \
+            -resultBundlePath TestResults.xcresult \
+            | xcpretty && exit ${PIPESTATUS[0]}
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults.xcresult
