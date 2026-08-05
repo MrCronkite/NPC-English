@@ -15,7 +15,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         XCTAssertNotNil(sut.currentWord)
@@ -27,7 +28,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
@@ -47,7 +49,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         guard let wrongOption = sut.options.first(where: { $0.id != sut.currentWord?.id }) else {
@@ -66,7 +69,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         let firstOption = sut.options[0]
@@ -86,7 +90,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         for _ in 0..<3 {
@@ -103,7 +108,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             wordSet: .a1Words,
             favoritesManager: favoritesManager,
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
         )
 
         XCTAssertFalse(sut.isCurrentFavorite)
@@ -127,7 +133,11 @@ final class QuizViewModelTests: XCTestCase {
         let favoritedIDs = allA1Words.prefix(4).map(\.id)
         favoritedIDs.forEach { favoritesManager.toggleFavorite(wordID: $0, in: .a1Words) }
 
-        let sut = QuizViewModel(favoritesManager: favoritesManager, statsManager: MockStatsManager())
+        let sut = QuizViewModel(
+            favoritesManager: favoritesManager,
+            statsManager: MockStatsManager(),
+            speechManager: MockSpeechManager()
+        )
 
         XCTAssertEqual(sut.allWords.count, 4)
         XCTAssertTrue(sut.allWords.allSatisfy { favoritedIDs.contains($0.id) })
