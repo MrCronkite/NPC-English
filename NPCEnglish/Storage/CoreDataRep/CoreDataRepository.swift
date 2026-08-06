@@ -27,7 +27,10 @@ final class GenericCoreDataRepository<Entity: NSManagedObject>: CoreDataReposito
         self.entityName = entityName
     }
 
-    func fetch(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = []) -> [Entity] {
+    func fetch(
+        predicate: NSPredicate? = nil,
+        sortDescriptors: [NSSortDescriptor] = []
+    ) -> [Entity] {
         let request = NSFetchRequest<Entity>(entityName: entityName)
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors

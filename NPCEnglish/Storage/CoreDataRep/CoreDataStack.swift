@@ -40,7 +40,9 @@ final class CoreDataStack {
             let description = NSPersistentStoreDescription()
             description.url = URL(fileURLWithPath: "/dev/null")
             persistentContainer.persistentStoreDescriptions = [description]
-        } else if let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupID) {
+        } else if let groupURL = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: Self.appGroupID
+        ) {
             let storeURL = groupURL.appendingPathComponent("\(modelName).sqlite")
             let description = NSPersistentStoreDescription(url: storeURL)
             persistentContainer.persistentStoreDescriptions = [description]
