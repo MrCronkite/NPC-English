@@ -20,7 +20,9 @@ struct StreakEntry: TimelineEntry {
 struct StreakProvider: TimelineProvider {
     private let statsManager: StatsManaging = {
         let stack = CoreDataStack()
-        return CoreDataStatsManager(context: stack.viewContext)
+        return CoreDataStatsManager(
+            context: stack.viewContext,
+            notificationManager: MockNotificationManager())
     }()
 
     func placeholder(in context: Context) -> StreakEntry {

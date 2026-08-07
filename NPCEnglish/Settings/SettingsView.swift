@@ -11,6 +11,11 @@ struct SettingsView: View {
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
 
+    @AppStorage("streakRemindersEnabled")
+    private var streakRemindersEnabled: Bool = false
+
+    let notificationManager: NotificationScheduling
+
     @AppStorage("sessionLength")
     private var sessionLength: Int = 10
 
@@ -70,6 +75,31 @@ struct SettingsView: View {
                 Text("Длина сессии")
             } footer: {
                 Text("Сколько слов будет в одной сессии квиза, прежде чем показать результат.")
+            }
+
+            Section {
+                Toggle("Напоминание в 20:00", isOn: Binding(
+                    get: { streakRemindersEnabled },
+                    set: { newValue in
+                        if newValue {
+                            notificationManager.requestAuthorization { granted in
+                                if granted {
+                                    streakRemindersEnabled = true
+                                    notificationManager.scheduleDailyStreakReminder()
+                                } else {
+                                    streakRemindersEnabled = false
+                                }
+                            }
+                        } else {
+                            streakRemindersEnabled = false
+                            notificationManager.cancelTodayStreakReminder()
+                        }
+                    }
+                ))
+            } header: {
+                Text("Напоминания")
+            } footer: {
+                Text("Ежедневное напоминание в 20:00, если сегодня ты ещё не проходил квиз. Если разрешение на уведомления не выдано в системных настройках, переключатель не включится.")
             }
 
             Section {

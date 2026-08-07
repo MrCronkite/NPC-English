@@ -66,6 +66,7 @@
 				Loader/Word.swift,
 				Loader/WordCategory.swift,
 				Loader/WordSet.swift,
+				Notification/StreakNotificationManager.swift,
 				Stats/DailyStat.swift,
 				Storage/CoreDataRep/CoreDataRepository.swift,
 				Storage/CoreDataRep/CoreDataStack.swift,

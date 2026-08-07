@@ -25,9 +25,13 @@ protocol StatsManaging {
 final class CoreDataStatsManager: StatsManaging {
     private let appStatsRepository: GenericCoreDataRepository<AppStatsEntity>
     private let dailyStatsRepository: GenericCoreDataRepository<DailyStatEntity>
+    private let notificationManager: NotificationScheduling
     private let calendar = Calendar.current
 
-    init(context: NSManagedObjectContext) {
+    init(
+        context: NSManagedObjectContext,
+        notificationManager: NotificationScheduling
+    ) {
         appStatsRepository = GenericCoreDataRepository(
             context: context,
             entityName: "AppStatsEntity"
@@ -37,6 +41,8 @@ final class CoreDataStatsManager: StatsManaging {
             context: context,
             entityName: "DailyStatEntity"
         )
+
+        self.notificationManager = notificationManager
     }
 
     var currentStreak: Int { Int(fetchOrCreateAppStats().currentStreak) }
@@ -49,13 +55,14 @@ final class CoreDataStatsManager: StatsManaging {
 
     func recordSessionCompleted(score: Int, total: Int) {
         let today = calendar.startOfDay(for: Date())
-
+        
         updateDailyStat(day: today, questionsAnswered: total, correctAnswers: score)
         updateStreakAndTotals(day: today, questionsAnswered: total, correctAnswers: score)
-
+        
         do {
             try appStatsRepository.save()
             WidgetCenter.shared.reloadTimelines(ofKind: "StreakWidget")
+            notificationManager.cancelTodayStreakReminder()
         } catch {
             print("⚠️ Не удалось сохранить статистику: \(error)")
         }

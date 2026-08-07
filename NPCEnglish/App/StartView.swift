@@ -12,6 +12,7 @@ struct StartView: View {
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
     let speechManager: SpeechSynthesizing
+    let notificationManager: NotificationScheduling
 
     @State private var refreshTrigger = 0
 
@@ -92,7 +93,9 @@ struct StartView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SettingsView()
+                        SettingsView(
+                            notificationManager: notificationManager
+                        )
                     } label: {
                         Image(systemName: "gearshape")
                     }
@@ -140,6 +143,7 @@ struct StartView: View {
     StartView(
         favoritesManager: MockFavoritesManager(),
         statsManager: MockStatsManager(),
-        speechManager: MockSpeechManager()
+        speechManager: MockSpeechManager(),
+        notificationManager: MockNotificationManager()
     )
 }

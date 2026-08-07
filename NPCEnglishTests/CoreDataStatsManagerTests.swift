@@ -11,16 +11,21 @@ import XCTest
 final class CoreDataStatsManagerTests: XCTestCase {
     private var stack: CoreDataStack!
     private var sut: CoreDataStatsManager!
+    private var notificationManager: MockNotificationManager!
 
     override func setUp() {
         super.setUp()
         stack = CoreDataStack(inMemory: true)
-        sut = CoreDataStatsManager(context: stack.viewContext)
+        sut = CoreDataStatsManager(
+            context: stack.viewContext,
+            notificationManager: notificationManager
+        )
     }
 
     override func tearDown() {
         stack = nil
         sut = nil
+        notificationManager = nil
         super.tearDown()
     }
 
@@ -50,5 +55,11 @@ final class CoreDataStatsManagerTests: XCTestCase {
         XCTAssertEqual(today.count, 1)
         XCTAssertEqual(today.first?.questionsAnswered, 20)
         XCTAssertEqual(today.first?.correctAnswers, 12)
+    }
+
+    func testRecordSessionCompletedCancelsStreakReminder() {
+        sut.recordSessionCompleted(score: 8, total: 10)
+
+        XCTAssertEqual(notificationManager.cancelCallCount, 1)
     }
 }
