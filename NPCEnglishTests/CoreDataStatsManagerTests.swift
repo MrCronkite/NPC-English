@@ -16,6 +16,7 @@ final class CoreDataStatsManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         stack = CoreDataStack(inMemory: true)
+        notificationManager = MockNotificationManager()
         sut = CoreDataStatsManager(
             context: stack.viewContext,
             notificationManager: notificationManager
