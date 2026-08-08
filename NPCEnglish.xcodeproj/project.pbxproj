@@ -44,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		841C81B130270C7C003219F8 /* NPCEnglish.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NPCEnglish.xctestplan; sourceTree = "<group>"; };
 		84AA9AFC301F9C6300550B74 /* NPCEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NPCEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA9B3A301F9D3500550B74 /* NPCEnglishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NPCEnglishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA9B8F301FA46F00550B74 /* NPCEnglishWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NPCEnglishWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +142,7 @@
 		848176BD3017B37200F6E534 = {
 			isa = PBXGroup;
 			children = (
+				841C81B130270C7C003219F8 /* NPCEnglish.xctestplan */,
 				84AA9BAB301FA4C900550B74 /* NPCEnglishWidgetExtension.entitlements */,
 				848176C83017B37200F6E534 /* NPCEnglish */,
 				84AA9AFC301F9C6300550B74 /* NPCEnglish.app */,

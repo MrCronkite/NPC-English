@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "E8F40360-31B3-4CE0-AC1B-891ABA02E0A9",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:NPCEnglish.xcodeproj",
+      "identifier" : "848176C53017B37200F6E534",
+      "name" : "NPCEnglish"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:NPCEnglish.xcodeproj",
+        "identifier" : "84AA9B39301F9D3500550B74",
+        "name" : "NPCEnglishTests"
+      }
+    }
+  ],
+  "version" : 1
+}
