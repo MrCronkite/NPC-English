@@ -21,6 +21,20 @@
                ReferencedContainer = "container:NPCEnglish.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "84AA9B39301F9D3500550B74"
+               BuildableName = "NPCEnglishTests.xctest"
+               BlueprintName = "NPCEnglishTests"
+               ReferencedContainer = "container:NPCEnglish.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
