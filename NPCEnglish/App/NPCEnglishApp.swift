@@ -13,6 +13,9 @@ struct NPCEnglishApp: App {
     @AppStorage("appTheme")
     private var themeRaw: String = AppTheme.system.rawValue
 
+    @AppStorage("accentColor")
+    private var accentColorRaw: String = AccentColorOption.blue.rawValue
+
     private let coreDataStack: CoreDataStack
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
@@ -21,6 +24,10 @@ struct NPCEnglishApp: App {
 
     private var theme: AppTheme {
         AppTheme(rawValue: themeRaw) ?? .system
+    }
+
+    private var accentColor: Color {
+        (AccentColorOption(rawValue: accentColorRaw) ?? .blue).color
     }
 
     @State private var deepLinkedWordSet: WordSet?
@@ -51,6 +58,7 @@ struct NPCEnglishApp: App {
                 notificationManager: notificationManager
             )
             .preferredColorScheme(theme.colorScheme)
+            .tint(accentColor)
             .onOpenURL { url in
                 handleDeepLink(url)
             }

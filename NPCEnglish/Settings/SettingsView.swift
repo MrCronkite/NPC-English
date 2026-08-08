@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    @AppStorage("accentColor")
+    private var accentColorRaw: String = AccentColorOption.blue.rawValue
+
+    private var selectedAccentColor: AccentColorOption {
+        AccentColorOption(rawValue: accentColorRaw) ?? .blue
+    }
+
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
 
@@ -127,6 +135,20 @@ struct SettingsView: View {
             }
 
             Section {
+                HStack(spacing: 16) {
+                    ForEach(AccentColorOption.allCases) { option in
+                        accentColorSwatch(option)
+                    }
+                }
+                .padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+            } header: {
+                Text("Акцентный цвет")
+            } footer: {
+                Text("Цвет кнопок, прогресс-бара и выделений во всём приложении.")
+            }
+
+            Section {
                 Toggle("Звук", isOn: $soundEnabled)
                 Toggle("Вибрация", isOn: $hapticsEnabled)
             } header: {
@@ -136,5 +158,36 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("Настройки")
+    }
+}
+
+extension SettingsView {
+    private func accentColorSwatch(_ option: AccentColorOption) -> some View {
+        let isSelected = selectedAccentColor == option
+
+        return Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                accentColorRaw = option.rawValue
+            }
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(option.color)
+                    .frame(width: 40, height: 40)
+
+                if isSelected {
+                    Circle()
+                        .stroke(option.color, lineWidth: 2)
+                        .frame(width: 52, height: 52)
+
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+            }
+            .frame(width: 52, height: 52)
+            .scaleEffect(isSelected ? 1.0 : 0.92)
+        }
+        .buttonStyle(.plain)
     }
 }
