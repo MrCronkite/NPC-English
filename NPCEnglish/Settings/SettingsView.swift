@@ -9,6 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @AppStorage("streakRemindersEnabled")
+    private var streakRemindersEnabled: Bool = false
+
+    @AppStorage("streakReminderHour")
+    private var reminderHour: Int = 20
+
+    @AppStorage("streakReminderMinute")
+    private var reminderMinute: Int = 0
+
     @AppStorage("accentColor")
     private var accentColorRaw: String = AccentColorOption.blue.rawValue
 
@@ -18,9 +27,6 @@ struct SettingsView: View {
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
-
-    @AppStorage("streakRemindersEnabled")
-    private var streakRemindersEnabled: Bool = false
 
     let notificationManager: NotificationScheduling
 
@@ -57,6 +63,27 @@ struct SettingsView: View {
         )
     }
 
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                var components = DateComponents()
+                components.hour = reminderHour
+                components.minute = reminderMinute
+                return Calendar.current.date(from: components) ?? Date()
+            },
+            set: { newDate in
+                let components = Calendar.current.dateComponents([.hour, .minute], from: newDate)
+                reminderHour = components.hour ?? 20
+                reminderMinute = components.minute ?? 0
+
+                // Если напоминания уже включены — перепланируем на новое время сразу
+                if streakRemindersEnabled {
+                    notificationManager.scheduleDailyStreakReminder(hour: reminderHour, minute: reminderMinute)
+                }
+            }
+        )
+    }
+
     private let sessionLengthOptions = [10, 20, 30, 50]
 
     var body: some View {
@@ -86,14 +113,14 @@ struct SettingsView: View {
             }
 
             Section {
-                Toggle("Напоминание в 20:00", isOn: Binding(
+                Toggle("Напоминание о занятии", isOn: Binding(
                     get: { streakRemindersEnabled },
                     set: { newValue in
                         if newValue {
                             notificationManager.requestAuthorization { granted in
                                 if granted {
                                     streakRemindersEnabled = true
-                                    notificationManager.scheduleDailyStreakReminder()
+                                    notificationManager.scheduleDailyStreakReminder(hour: reminderHour, minute: reminderMinute)
                                 } else {
                                     streakRemindersEnabled = false
                                 }
@@ -104,10 +131,14 @@ struct SettingsView: View {
                         }
                     }
                 ))
+
+                if streakRemindersEnabled {
+                    DatePicker("Время", selection: reminderTime, displayedComponents: .hourAndMinute)
+                }
             } header: {
                 Text("Напоминания")
             } footer: {
-                Text("Ежедневное напоминание в 20:00, если сегодня ты ещё не проходил квиз. Если разрешение на уведомления не выдано в системных настройках, переключатель не включится.")
+                Text("Ежедневное напоминание, если сегодня ты ещё не проходил квиз.")
             }
 
             Section {
