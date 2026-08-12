@@ -67,6 +67,9 @@ final class TypingQuizViewModel: ObservableObject {
         }
 
         if total >= plannedQuestions {
+            if !isSessionFinished {
+                statsManager.recordSessionCompleted(score: score, total: total)
+            }
             isSessionFinished = true
             return
         }
@@ -76,7 +79,6 @@ final class TypingQuizViewModel: ObservableObject {
         wasCorrect = false
         currentWord = allWords.randomElement()
     }
-
     func submitAnswer() {
         guard !isAnswered, let word = currentWord else { return }
 

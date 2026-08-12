@@ -18,6 +18,15 @@ enum AnswerChecker {
         let normalizedInput = normalize(input)
         guard !normalizedInput.isEmpty else { return false }
 
+        let normalizedExpected = normalize(expected)
+
+        // Если пользователь ввёл ответ целиком (или близко к целому) — сразу засчитываем
+        if normalizedInput == normalizedExpected || levenshteinDistance(normalizedInput, normalizedExpected) <= 1 {
+            return true
+        }
+
+        // Иначе проверяем совпадение с отдельными значимыми словами (для многословных переводов
+        // вроде "снимать деньги (со счёта)", где ожидать точное совпадение всей фразы нечестно)
         let candidates = significantWords(from: expected)
 
         return candidates.contains { candidate in

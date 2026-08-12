@@ -37,8 +37,7 @@ struct TypingQuizView: View {
 
                 VStack(spacing: 16) {
                     TextField("Введи перевод", text: $viewModel.userInput)
-                        .textFieldStyle(.roundedBorder)
-                        .font(.title3)
+                        .font(.title2.weight(.medium))
                         .multilineTextAlignment(.center)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -47,6 +46,16 @@ struct TypingQuizView: View {
                         .onSubmit {
                             viewModel.submitAnswer()
                         }
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.secondarySystemBackground))
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(borderColor, lineWidth: 2)
+                        )
                         .padding(.horizontal)
 
                     if viewModel.isAnswered {
@@ -96,6 +105,7 @@ struct TypingQuizView: View {
         }
         .padding(.vertical)
         .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
+        .animation(.easeInOut(duration: 0.2), value: isInputFocused)
         .navigationTitle("\(viewModel.wordSet.title) · Напиши перевод")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -157,5 +167,12 @@ struct TypingQuizView: View {
         .padding(.vertical)
         .navigationTitle(viewModel.wordSet.title)
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var borderColor: Color {
+        if viewModel.isAnswered {
+            return viewModel.wasCorrect ? .green : .red
+        }
+        return isInputFocused ? Color.accentColor : Color.clear
     }
 }
