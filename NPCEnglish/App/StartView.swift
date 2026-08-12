@@ -35,6 +35,20 @@ struct StartView: View {
                     }
                 }
 
+                Section("Режим: напиши перевод") {
+                    ForEach(WordSet.regularSets) { wordSet in
+                        NavigationLink {
+                            if wordSet.hasCategories {
+                                TypingCategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager)
+                            } else {
+                                TypingQuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager)
+                            }
+                        } label: {
+                            wordSetRow(wordSet)
+                        }
+                    }
+                }
+
                 Section("Повторение") {
                     NavigationLink(value: WordSet.favorites) {
                         wordSetRow(.favorites)
