@@ -130,15 +130,12 @@ struct TypingQuizView: View {
     }
 
     private var header: some View {
-        HStack {
-            Text("\(viewModel.score) / \(viewModel.total)")
-                .font(.subheadline.weight(.semibold))
-            Spacer()
-            Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .padding(.horizontal)
+        CircularProgressView(
+            current: viewModel.total,
+            total: viewModel.plannedQuestions,
+            score: viewModel.score
+        )
+        .padding(.top, 8)
     }
 
     private var sessionResultView: some View {

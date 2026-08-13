@@ -93,6 +93,10 @@ extension QuizView {
                 Text(viewModel.questionText)
                     .font(.system(size: 40, weight: .bold))
                     .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.4)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal)
                 if viewModel.isQuestionInEnglish {
                     Button {
                         viewModel.speakCurrentWord()
@@ -150,31 +154,12 @@ extension QuizView {
     }
 
     private var header: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Label {
-                    Text("\(viewModel.score) / \(viewModel.total)")
-                        .font(.subheadline.weight(.semibold))
-                } icon: {
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(.yellow)
-                }
-
-                Spacer()
-
-                if viewModel.isLimited {
-                    Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            if viewModel.isLimited {
-                ProgressView(value: Double(viewModel.total), total: Double(viewModel.plannedQuestions))
-                    .tint(.accentColor)
-            }
-        }
-        .padding(.horizontal)
+        CircularProgressView(
+            current: viewModel.total,
+            total: viewModel.plannedQuestions,
+            score: viewModel.score
+        )
+        .padding(.top, 8)
     }
     
     @ViewBuilder

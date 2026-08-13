@@ -95,10 +95,6 @@ final class QuizViewModel: ObservableObject {
         nextQuestion()
     }
 
-    // isLimited больше не нужен как условие (сессия всегда ограничена),
-    // но оставляю для безопасности и для UI прогресс-бара
-    var isLimited: Bool { plannedQuestions > 0 }
-
     var questionText: String {
         guard let word = currentWord else { return "" }
         return direction == .englishToRussian
@@ -128,7 +124,7 @@ final class QuizViewModel: ObservableObject {
             return
         }
 
-        if isLimited && total >= plannedQuestions {
+        if total >= plannedQuestions {
             if !isSessionFinished {
                 statsManager.recordSessionCompleted(score: score, total: total)
             }
