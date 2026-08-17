@@ -14,8 +14,6 @@ struct StartView: View {
     let speechManager: SpeechSynthesizing
     let notificationManager: NotificationScheduling
 
-    @State private var refreshTrigger = 0
-
     var body: some View {
         NavigationStack {
             List {
@@ -27,35 +25,16 @@ struct StartView: View {
                     }
                 }
 
-                Section("Наборы слов") {
-                    ForEach(WordSet.regularSets) { wordSet in
-                        NavigationLink(value: wordSet) {
-                            wordSetRow(wordSet)
-                        }
-                    }
-                }
-
-                Section("Режим: напиши перевод") {
-                    ForEach(WordSet.regularSets) { wordSet in
-                        NavigationLink {
-                            if wordSet.hasCategories {
-                                TypingCategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager)
-                            } else {
-                                TypingQuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager)
-                            }
-                        } label: {
-                            wordSetRow(wordSet)
-                        }
-                    }
-                }
+                wordSetSection(title: "Наборы слов", mode: .multipleChoice)
+                wordSetSection(title: "Режим: напиши перевод", mode: .typing)
 
                 Section("Повторение") {
-                    NavigationLink(value: WordSet.favorites) {
+                    NavigationLink(value: WordSetSelection(wordSet: .favorites, mode: .multipleChoice)) {
                         wordSetRow(.favorites)
                     }
                 }
 
-                Section("Поддержать приложение") {
+                Section {
                     NavigationLink {
                         SupportView()
                     } label: {
@@ -81,35 +60,13 @@ struct StartView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Учим английский")
-            .navigationDestination(for: WordSet.self) { wordSet in
-                if wordSet == .favorites {
-                    QuizView(
-                        favoritesManager: favoritesManager,
-                        statsManager: statsManager,
-                        speechManager: speechManager
-                    )
-                } else if wordSet.hasCategories {
-                    CategoryPickerView(
-                        wordSet: wordSet,
-                        favoritesManager: favoritesManager,
-                        statsManager: statsManager,
-                        speechManager: speechManager
-                    )
-                } else {
-                    QuizView(
-                        wordSet: wordSet,
-                        favoritesManager: favoritesManager,
-                        statsManager: statsManager,
-                        speechManager: speechManager
-                    )
-                }
+            .navigationDestination(for: WordSetSelection.self) { selection in
+                destinationView(for: selection)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SettingsView(
-                            notificationManager: notificationManager
-                        )
+                        SettingsView(notificationManager: notificationManager)
                     } label: {
                         Image(systemName: "gearshape")
                     }
@@ -118,19 +75,63 @@ struct StartView: View {
         }
     }
 
-    private var miniWeekBars: some View {
-        let last7Days = statsManager.dailyStats(lastDays: 7)
-        let maxValue = max(last7Days.map(\.questionsAnswered).max() ?? 1, 1)
+    // MARK: - Sections
 
-        return HStack(alignment: .bottom, spacing: 4) {
-            ForEach(last7Days) { stat in
-                RoundedRectangle(cornerRadius: 2)
-                    .fill(stat.questionsAnswered > 0 ? Color.accentColor : Color(.systemGray5))
-                    .frame(width: 6, height: max(4, CGFloat(stat.questionsAnswered) / CGFloat(maxValue) * 32))
+    private func wordSetSection(title: String, mode: QuizMode) -> some View {
+        Section(title) {
+            ForEach(WordSet.regularSets) { wordSet in
+                NavigationLink(value: WordSetSelection(wordSet: wordSet, mode: mode)) {
+                    wordSetRow(wordSet)
+                }
             }
         }
-        .frame(height: 32)
     }
+
+    // MARK: - Navigation
+
+    @ViewBuilder
+    private func destinationView(for selection: WordSetSelection) -> some View {
+        switch (selection.wordSet, selection.mode) {
+        case (.favorites, _):
+            QuizView(
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager
+            )
+
+        case (let wordSet, .multipleChoice) where wordSet.hasCategories:
+            CategoryPickerView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager
+            )
+
+        case (let wordSet, .multipleChoice):
+            QuizView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager
+            )
+
+        case (let wordSet, .typing) where wordSet.hasCategories:
+            TypingCategoryPickerView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager
+            )
+
+        case (let wordSet, .typing):
+            TypingQuizView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager
+            )
+        }
+    }
+
+    // MARK: - Row
 
     private func wordSetRow(_ wordSet: WordSet) -> some View {
         HStack(spacing: 16) {
@@ -151,13 +152,4 @@ struct StartView: View {
         }
         .padding(.vertical, 6)
     }
-}
-
-#Preview {
-    StartView(
-        favoritesManager: MockFavoritesManager(),
-        statsManager: MockStatsManager(),
-        speechManager: MockSpeechManager(),
-        notificationManager: MockNotificationManager()
-    )
 }
