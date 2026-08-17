@@ -62,13 +62,23 @@ struct TypingQuizView: View {
                         feedbackView
                     } else {
                         HStack(spacing: 12) {
-                            Button("Не знаю") {
+                            Button {
                                 viewModel.revealAnswer()
+                            } label: {
+                                Label(
+                                    "Не знаю",
+                                    systemImage: "questionmark.circle"
+                                )
                             }
                             .buttonStyle(.bordered)
 
-                            Button("Проверить") {
+                            Button {
                                 viewModel.submitAnswer()
+                            } label: {
+                                Label(
+                                    "Проверить",
+                                    systemImage: "checkmark.circle"
+                                )
                             }
                             .buttonStyle(.borderedProminent)
                             .disabled(viewModel.userInput.trimmingCharacters(in: .whitespaces).isEmpty)
