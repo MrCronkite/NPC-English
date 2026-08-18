@@ -15,7 +15,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         XCTAssertFalse(sut.allWords.isEmpty)
@@ -28,7 +29,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         // direction по умолчанию englishToRussian, questionText = word.english,
@@ -47,7 +49,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.userInput = "совершенно неверный ответ xyz"
@@ -64,7 +67,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.userInput = sut.correctAnswerText
@@ -79,7 +83,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.revealAnswer()
@@ -94,7 +99,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.userInput = sut.correctAnswerText
@@ -109,7 +115,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.userInput = "test"
@@ -126,7 +133,8 @@ final class TypingQuizViewModelTests: XCTestCase {
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager()
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         for _ in 0..<3 {
@@ -140,11 +148,11 @@ final class TypingQuizViewModelTests: XCTestCase {
     func testSessionCompletionRecordsStats() {
         UserDefaults.standard.set(2, forKey: "sessionLength")
 
-        let statsManager = MockStatsManager()
         let sut = TypingQuizViewModel(
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
-            statsManager: statsManager
+            statsManager: MockStatsManager(),
+            progressTracker: MockProgressManager()
         )
 
         sut.userInput = sut.correctAnswerText

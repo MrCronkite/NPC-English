@@ -16,7 +16,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         XCTAssertNotNil(sut.currentWord)
@@ -29,7 +30,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
@@ -50,7 +52,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         guard let wrongOption = sut.options.first(where: { $0.id != sut.currentWord?.id }) else {
@@ -70,7 +73,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         let firstOption = sut.options[0]
@@ -91,7 +95,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: MockFavoritesManager(),
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         for _ in 0..<3 {
@@ -109,7 +114,8 @@ final class QuizViewModelTests: XCTestCase {
             wordSet: .a1Words,
             favoritesManager: favoritesManager,
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         XCTAssertFalse(sut.isCurrentFavorite)
@@ -136,7 +142,8 @@ final class QuizViewModelTests: XCTestCase {
         let sut = QuizViewModel(
             favoritesManager: favoritesManager,
             statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager()
+            speechManager: MockSpeechManager(),
+            progressTracker: MockProgressManager()
         )
 
         XCTAssertEqual(sut.allWords.count, 4)
