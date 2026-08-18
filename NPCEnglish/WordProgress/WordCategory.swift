@@ -18,6 +18,8 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
     case relationships
     case directions
     case media
+    case education
+    case shopping
 
     var id: String { rawValue }
 
@@ -33,6 +35,8 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .relationships: return "Отношения"
         case .directions: return "Направления и город"
         case .media: return "Медиа и новости"
+        case .education: return "Образование"
+        case .shopping: return "Покупки и услуги"
         }
     }
 
@@ -48,6 +52,8 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .relationships: return "heart.fill"
         case .directions: return "signpost.right.fill"
         case .media: return "newspaper.fill"
+        case .education: return "graduationcap.fill"
+        case .shopping: return "cart.fill"
         }
     }
 }
