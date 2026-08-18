@@ -13,6 +13,7 @@ struct StartView: View {
     let statsManager: StatsManaging
     let speechManager: SpeechSynthesizing
     let notificationManager: NotificationScheduling
+    let progressTracker: WordProgressTracking
 
     var body: some View {
         NavigationStack {
@@ -96,7 +97,8 @@ struct StartView: View {
             QuizView(
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
-                speechManager: speechManager
+                speechManager: speechManager,
+                progressTracker: progressTracker
             )
 
         case (let wordSet, .multipleChoice) where wordSet.hasCategories:
@@ -104,7 +106,8 @@ struct StartView: View {
                 wordSet: wordSet,
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
-                speechManager: speechManager
+                speechManager: speechManager,
+                progressTracker: progressTracker
             )
 
         case (let wordSet, .multipleChoice):
@@ -112,21 +115,24 @@ struct StartView: View {
                 wordSet: wordSet,
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
-                speechManager: speechManager
+                speechManager: speechManager,
+                progressTracker: progressTracker
             )
 
         case (let wordSet, .typing) where wordSet.hasCategories:
             TypingCategoryPickerView(
                 wordSet: wordSet,
                 favoritesManager: favoritesManager,
-                statsManager: statsManager
+                statsManager: statsManager,
+                progressTracker: progressTracker
             )
 
         case (let wordSet, .typing):
             TypingQuizView(
                 wordSet: wordSet,
                 favoritesManager: favoritesManager,
-                statsManager: statsManager
+                statsManager: statsManager,
+                progressTracker: progressTracker
             )
         }
     }
