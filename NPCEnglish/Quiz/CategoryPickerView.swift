@@ -12,6 +12,7 @@ struct CategoryPickerView: View {
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
     let speechManager: SpeechSynthesizing
+    let progressTracker: WordProgressTracking
 
     private var allWords: [Word] {
         WordsLoader.loadWords(for: wordSet)
@@ -30,7 +31,8 @@ struct CategoryPickerView: View {
                     category: category,
                     favoritesManager: favoritesManager,
                     statsManager: statsManager,
-                    speechManager: speechManager
+                    speechManager: speechManager,
+                    progressTracker: progressTracker
                 )
             } label: {
                 categoryRow(category)

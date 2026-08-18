@@ -11,8 +11,22 @@ struct TypingQuizView: View {
     @StateObject private var viewModel: TypingQuizViewModel
     @FocusState private var isInputFocused: Bool
 
-    init(wordSet: WordSet, category: WordCategory? = nil, favoritesManager: FavoritesManaging, statsManager: StatsManaging) {
-        _viewModel = StateObject(wrappedValue: TypingQuizViewModel(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager))
+    init(
+        wordSet: WordSet,
+        category: WordCategory? = nil,
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging,
+        progressTracker: WordProgressTracking
+    ) {
+        _viewModel = StateObject(
+            wrappedValue: TypingQuizViewModel(
+                wordSet: wordSet,
+                category: category,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                progressTracker: progressTracker
+            )
+        )
     }
 
     var body: some View {
@@ -30,11 +44,25 @@ struct TypingQuizView: View {
             Spacer()
 
             if let word = viewModel.currentWord {
+
                 Text(viewModel.questionText)
                     .font(.system(size: 40, weight: .bold))
                     .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.4)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal)
 
+                if viewModel.isCurrentWordReview {
+                    Label("Повторение", systemImage: "arrow.clockwise")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.orange)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(Color.orange.opacity(0.15))
+                        .clipShape(Capsule())
+                }
+                
                 VStack(spacing: 16) {
                     TextField("Введи перевод", text: $viewModel.userInput)
                         .font(.title2.weight(.medium))
