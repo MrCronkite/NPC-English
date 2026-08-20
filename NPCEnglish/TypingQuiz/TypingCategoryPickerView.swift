@@ -11,6 +11,7 @@ struct TypingCategoryPickerView: View {
     let wordSet: WordSet
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
+    let progressTracker: WordProgressTracking
 
     private var allWords: [Word] {
         WordsLoader.loadWords(for: wordSet)
@@ -24,7 +25,13 @@ struct TypingCategoryPickerView: View {
     var body: some View {
         List(availableCategories) { category in
             NavigationLink {
-                TypingQuizView(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager)
+                TypingQuizView(
+                    wordSet: wordSet,
+                    category: category,
+                    favoritesManager: favoritesManager,
+                    statsManager: statsManager,
+                    progressTracker: progressTracker
+                )
             } label: {
                 HStack(spacing: 16) {
                     Image(systemName: category.systemImage)

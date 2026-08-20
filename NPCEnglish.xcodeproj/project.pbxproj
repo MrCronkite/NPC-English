@@ -64,17 +64,20 @@
 		84AA9BAD301FA53800550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglishWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Loader/Word.swift,
-				Loader/WordCategory.swift,
-				Loader/WordSet.swift,
 				Notification/StreakNotificationManager.swift,
 				Stats/DailyStat.swift,
+				Storage/CoreDataRep/CoreDataProgressManager.swift,
 				Storage/CoreDataRep/CoreDataRepository.swift,
 				Storage/CoreDataRep/CoreDataStack.swift,
 				Storage/CoreDataRep/CoreDataStatsManager.swift,
 				Storage/Entity/AppStatsEntity.swift,
 				Storage/Entity/DailyStatEntity.swift,
 				Storage/Entity/WordProgressEntity.swift,
+				WordProgress/SpacedRepetitionSelector.swift,
+				WordProgress/Word.swift,
+				WordProgress/WordCategory.swift,
+				WordProgress/WordProgressTracking.swift,
+				WordProgress/WordSet.swift,
 			);
 			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
 		};
@@ -596,7 +599,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-2.NPCEnglish.NPCEnglishWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -628,7 +631,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-2.NPCEnglish.NPCEnglishWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

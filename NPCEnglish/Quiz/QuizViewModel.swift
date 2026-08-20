@@ -15,6 +15,7 @@ final class QuizViewModel: ObservableObject {
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
     private let speechManager: SpeechSynthesizing
+    private let progressTracker: WordProgressTracking
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -27,6 +28,7 @@ final class QuizViewModel: ObservableObject {
     @Published private(set) var options: [Word] = []
     @Published private(set) var isSessionFinished = false
     @Published private(set) var isCurrentFavorite = false
+    @Published private(set) var isCurrentWordReview = false
 
     @Published var selectedOption: Word?
     @Published var isAnswered = false
@@ -38,6 +40,7 @@ final class QuizViewModel: ObservableObject {
 
     private var wordSources: [Int: WordSet] = [:]
     private var currentWordSource: WordSet?
+    private var progressSnapshot: [Int: WordProgressSnapshot] = [:]
 
     private var direction: TranslationDirection {
         TranslationDirection(rawValue: directionRaw) ?? .englishToRussian
@@ -48,12 +51,14 @@ final class QuizViewModel: ObservableObject {
         category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking
     ) {
         self.wordSet = wordSet
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
         self.speechManager = speechManager
+        self.progressTracker = progressTracker
 
         let words = WordsLoader.loadWords(for: wordSet)
         if let category {
@@ -61,7 +66,8 @@ final class QuizViewModel: ObservableObject {
         } else {
             self.allWords = words
         }
-        
+
+        self.progressSnapshot = progressTracker.snapshot(for: wordSet)
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
@@ -69,12 +75,14 @@ final class QuizViewModel: ObservableObject {
     init(
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking
     ) {
         self.wordSet = .favorites
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
         self.speechManager = speechManager
+        self.progressTracker = progressTracker
 
         var collected: [Word] = []
         var sources: [Int: WordSet] = [:]
@@ -91,13 +99,23 @@ final class QuizViewModel: ObservableObject {
 
         self.allWords = collected
         self.wordSources = sources
+
+        // В режиме избранного слова из разных наборов — снэпшот собираем по всем сразу,
+        // индексируем по word.id (тут пересечения id между наборами не страшны,
+        // потому что мы не мешаем данные из разных wordSet в одном ключе словаря снаружи —
+        // здесь просто читаем прогресс каждого источника отдельно и сводим в одну карту).
+        var mergedSnapshot: [Int: WordProgressSnapshot] = [:]
+        for set in WordSet.regularSets {
+            let setSnapshot = progressTracker.snapshot(for: set)
+            for word in collected where sources[word.id] == set {
+                mergedSnapshot[word.id] = setSnapshot[word.id]
+            }
+        }
+        self.progressSnapshot = mergedSnapshot
+
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
-
-    // isLimited больше не нужен как условие (сессия всегда ограничена),
-    // но оставляю для безопасности и для UI прогресс-бара
-    var isLimited: Bool { plannedQuestions > 0 }
 
     var questionText: String {
         guard let word = currentWord else { return "" }
@@ -128,7 +146,7 @@ final class QuizViewModel: ObservableObject {
             return
         }
 
-        if isLimited && total >= plannedQuestions {
+        if total >= plannedQuestions {
             if !isSessionFinished {
                 statsManager.recordSessionCompleted(score: score, total: total)
             }
@@ -139,8 +157,16 @@ final class QuizViewModel: ObservableObject {
         selectedOption = nil
         isAnswered = false
 
-        let word = allWords.randomElement()!
+        let weighted = SpacedRepetitionSelector.weightedWords(from: allWords, snapshot: progressSnapshot)
+        guard let picked = SpacedRepetitionSelector.pickRandom(from: weighted) else {
+            currentWord = nil
+            options = []
+            return
+        }
+
+        let word = picked.word
         currentWord = word
+        isCurrentWordReview = picked.isReviewWord
         currentWordSource = wordSet == .favorites ? wordSources[word.id] : wordSet
 
         var wrongOptions = allWords.filter { $0.id != word.id }
@@ -152,19 +178,22 @@ final class QuizViewModel: ObservableObject {
     }
 
     func select(_ option: Word) {
-        guard !isAnswered else { return }
+        guard !isAnswered, let word = currentWord, let source = currentWordSource else { return }
         selectedOption = option
         isAnswered = true
         total += 1
-
-        if option.id == currentWord?.id {
+        
+        let correct = option.id == word.id
+        progressTracker.recordAnswer(wordID: word.id, in: source, isCorrect: correct)
+        
+        if correct {
             score += 1
             FeedbackManager.playCorrect()
         } else {
             FeedbackManager.playIncorrect()
         }
     }
-
+    
     func restartSession() {
         score = 0
         total = 0

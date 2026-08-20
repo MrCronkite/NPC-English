@@ -13,9 +13,13 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
     case health
     case technology
     case food
+    case money
     case personality
     case relationships
-    case money
+    case directions
+    case media
+    case education
+    case shopping
 
     var id: String { rawValue }
 
@@ -26,9 +30,13 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .health: return "Здоровье"
         case .technology: return "Технологии"
         case .food: return "Еда и готовка"
+        case .money: return "Деньги"
         case .personality: return "Характер"
         case .relationships: return "Отношения"
-        case .money: return "Деньги"
+        case .directions: return "Направления и город"
+        case .media: return "Медиа и новости"
+        case .education: return "Образование"
+        case .shopping: return "Покупки и услуги"
         }
     }
 
@@ -39,9 +47,13 @@ enum WordCategory: String, CaseIterable, Identifiable, Hashable {
         case .health: return "cross.case.fill"
         case .technology: return "laptopcomputer"
         case .food: return "fork.knife"
+        case .money: return "banknote.fill"
         case .personality: return "person.fill.questionmark"
         case .relationships: return "heart.fill"
-        case .money: return "banknote.fill"
+        case .directions: return "signpost.right.fill"
+        case .media: return "newspaper.fill"
+        case .education: return "graduationcap.fill"
+        case .shopping: return "cart.fill"
         }
     }
 }

@@ -16,7 +16,8 @@ struct QuizView: View {
         category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking
     ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
@@ -24,7 +25,8 @@ struct QuizView: View {
                 category: category,
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
-                speechManager: speechManager
+                speechManager: speechManager,
+                progressTracker: progressTracker
             )
         )
     }
@@ -32,13 +34,15 @@ struct QuizView: View {
     init(
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking
     ) {
         _viewModel = StateObject(
             wrappedValue: QuizViewModel(
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
-                speechManager: speechManager
+                speechManager: speechManager,
+                progressTracker: progressTracker
             )
         )
     }
@@ -89,18 +93,34 @@ extension QuizView {
 
             Spacer()
 
-            HStack(spacing: 12) {
-                Text(viewModel.questionText)
-                    .font(.system(size: 40, weight: .bold))
-                    .multilineTextAlignment(.center)
-                if viewModel.isQuestionInEnglish {
-                    Button {
-                        viewModel.speakCurrentWord()
-                    } label: {
-                        Image(systemName: "speaker.wave.2.fill")
-                            .font(.title2)
-                            .foregroundStyle(Color.accentColor)
+            VStack(spacing: 8) {
+                HStack(spacing: 12) {
+                    Text(viewModel.questionText)
+                        .font(.system(size: 40, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.4)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    if viewModel.isQuestionInEnglish {
+                        Button {
+                            viewModel.speakCurrentWord()
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.title2)
+                                .foregroundStyle(Color.accentColor)
+                        }
                     }
+                }
+
+                if viewModel.isCurrentWordReview {
+                    Label("Повторение", systemImage: "arrow.clockwise")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.orange)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(Color.orange.opacity(0.15))
+                        .clipShape(Capsule())
                 }
             }
             .padding(.horizontal)
@@ -150,31 +170,12 @@ extension QuizView {
     }
 
     private var header: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Label {
-                    Text("\(viewModel.score) / \(viewModel.total)")
-                        .font(.subheadline.weight(.semibold))
-                } icon: {
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(.yellow)
-                }
-
-                Spacer()
-
-                if viewModel.isLimited {
-                    Text("\(viewModel.total)/\(viewModel.plannedQuestions)")
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            if viewModel.isLimited {
-                ProgressView(value: Double(viewModel.total), total: Double(viewModel.plannedQuestions))
-                    .tint(.accentColor)
-            }
-        }
-        .padding(.horizontal)
+        CircularProgressView(
+            current: viewModel.total,
+            total: viewModel.plannedQuestions,
+            score: viewModel.score
+        )
+        .padding(.top, 8)
     }
     
     @ViewBuilder

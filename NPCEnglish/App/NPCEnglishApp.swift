@@ -21,6 +21,7 @@ struct NPCEnglishApp: App {
     private let statsManager: StatsManaging
     private let speechManager: SpeechSynthesizing
     private let notificationManager: NotificationScheduling
+    private let progressTracker: WordProgressTracking
 
     private var theme: AppTheme {
         AppTheme(rawValue: themeRaw) ?? .system
@@ -47,6 +48,7 @@ struct NPCEnglishApp: App {
             notificationManager: notificationManager
         )
         self.speechManager = SpeechManager()
+        self.progressTracker = CoreDataProgressManager(context: stack.viewContext)
     }
 
     var body: some Scene {
@@ -55,7 +57,8 @@ struct NPCEnglishApp: App {
                 favoritesManager: favoritesManager,
                 statsManager: statsManager,
                 speechManager: speechManager,
-                notificationManager: notificationManager
+                notificationManager: notificationManager,
+                progressTracker: progressTracker
             )
             .preferredColorScheme(theme.colorScheme)
             .tint(accentColor)
