@@ -15,14 +15,27 @@ struct StartView: View {
     let notificationManager: NotificationScheduling
     let progressTracker: WordProgressTracking
 
+    @State private var selectedMode: QuizMode = .multipleChoice
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 28) {
-                    streakCard
+                    NavigationLink {
+                        StatsView(statsManager: statsManager)
+                    } label: {
+                        streakCard
+                    }
+                    .buttonStyle(.plain)
 
-                    sectionGroup(title: "Наборы слов", mode: .multipleChoice)
-                    sectionGroup(title: "Режим: напиши перевод", mode: .typing)
+                    modePicker
+
+                    sectionGroup(title: selectedMode == .typing ? "Напиши перевод" : "Квиз", mode: selectedMode)
+                        .id(selectedMode)
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .trailing).combined(with: .scale),
+                            removal: .move(edge: .trailing).combined(with: .slide)
+                        ))
 
                     sectionGroup(
                         title: "Избранное",
@@ -73,6 +86,39 @@ struct StartView: View {
                 }
             }
         }
+    }
+
+    private var modePicker: some View {
+        HStack(spacing: 4) {
+            modeButton(title: "Квиз", mode: .multipleChoice)
+            modeButton(title: "Напиши перевод", mode: .typing)
+        }
+        .padding(4)
+        .background(Color(.systemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .padding(.horizontal)
+    }
+
+    private func modeButton(title: String, mode: QuizMode) -> some View {
+        let isSelected = selectedMode == mode
+
+        return Button {
+            withAnimation(.spring(response: 0.55, dampingFraction: 0.95)) {
+                selectedMode = mode
+            }
+        } label: {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(isSelected ? Color.accentColor : .secondary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 11)
+                        .fill(isSelected ? Color(.secondarySystemGroupedBackground) : Color.clear)
+                        .shadow(color: .black.opacity(isSelected ? 0.08 : 0), radius: 4, y: 2)
+                )
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Streak card
