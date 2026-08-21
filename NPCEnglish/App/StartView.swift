@@ -15,52 +15,59 @@ struct StartView: View {
     let notificationManager: NotificationScheduling
     let progressTracker: WordProgressTracking
 
+    @State private var selectedMode: QuizMode = .multipleChoice
+
     var body: some View {
         NavigationStack {
-            List {
-                Section {
+            ScrollView {
+                VStack(spacing: 28) {
                     NavigationLink {
                         StatsView(statsManager: statsManager)
                     } label: {
-                        MiniStatsWidgetView(statsManager: statsManager)
+                        streakCard
                     }
-                }
+                    .buttonStyle(.plain)
 
-                wordSetSection(title: "Наборы слов", mode: .multipleChoice)
-                wordSetSection(title: "Режим: напиши перевод", mode: .typing)
+                    modePicker
 
-                Section("Повторение") {
-                    NavigationLink(value: WordSetSelection(wordSet: .favorites, mode: .multipleChoice)) {
-                        wordSetRow(.favorites)
-                    }
-                }
+                    sectionGroup(title: selectedMode == .typing ? "Напиши перевод" : "Квиз", mode: selectedMode)
+                        .id(selectedMode)
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .trailing).combined(with: .scale),
+                            removal: .move(edge: .trailing).combined(with: .slide)
+                        ))
 
-                Section {
-                    NavigationLink {
-                        SupportView()
-                    } label: {
-                        HStack(spacing: 16) {
-                            Image(systemName: "heart.fill")
-                                .font(.title2)
-                                .foregroundStyle(.white)
-                                .frame(width: 44, height: 44)
-                                .background(Color.red)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                    sectionGroup(
+                        title: "Избранное",
+                        rows: [
+                            (wordSet: WordSet.favorites, icon: "star.fill", iconColor: RowIconColor.orange,
+                             title: "Мои избранные слова", subtitle: "Повторить сохранённые слова")
+                        ],
+                        mode: .multipleChoice
+                    )
 
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Поддержать проект")
-                                    .font(.headline)
-                                Text("Приложение бесплатное — но спасибо не помешает")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                            }
+                    VStack(spacing: 0) {
+                        NavigationLink {
+                            SupportView()
+                        } label: {
+                            rowContent(
+                                icon: "heart.fill",
+                                iconColor: .red,
+                                title: "Поддержать проект",
+                                subtitle: "Приложение бесплатное — но спасибо не помешает"
+                            )
                         }
-                        .padding(.vertical, 6)
                     }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .padding(.horizontal)
                 }
+                .padding(.top, 8)
+                .padding(.bottom, 24)
             }
-            .listStyle(.insetGrouped)
+            .background(Color(.systemGroupedBackground))
             .navigationTitle("Учим английский")
+            .navigationBarTitleDisplayMode(.large)
             .navigationDestination(for: WordSetSelection.self) { selection in
                 destinationView(for: selection)
             }
@@ -69,22 +76,214 @@ struct StartView: View {
                     NavigationLink {
                         SettingsView(notificationManager: notificationManager)
                     } label: {
-                        Image(systemName: "gearshape")
+                        Image(systemName: "gearshape.fill")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 36, height: 36)
+                            .background(Color(.secondarySystemGroupedBackground))
+                            .clipShape(Circle())
                     }
                 }
             }
         }
     }
 
-    // MARK: - Sections
+    private var modePicker: some View {
+        HStack(spacing: 4) {
+            modeButton(title: "Квиз", mode: .multipleChoice)
+            modeButton(title: "Напиши перевод", mode: .typing)
+        }
+        .padding(4)
+        .background(Color(.systemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .padding(.horizontal)
+    }
 
-    private func wordSetSection(title: String, mode: QuizMode) -> some View {
-        Section(title) {
-            ForEach(WordSet.regularSets) { wordSet in
-                NavigationLink(value: WordSetSelection(wordSet: wordSet, mode: mode)) {
-                    wordSetRow(wordSet)
+    private func modeButton(title: String, mode: QuizMode) -> some View {
+        let isSelected = selectedMode == mode
+
+        return Button {
+            withAnimation(.spring(response: 0.55, dampingFraction: 0.95)) {
+                selectedMode = mode
+            }
+        } label: {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(isSelected ? Color.accentColor : .secondary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 11)
+                        .fill(isSelected ? Color(.secondarySystemGroupedBackground) : Color.clear)
+                        .shadow(color: .black.opacity(isSelected ? 0.08 : 0), radius: 4, y: 2)
+                )
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Streak card
+
+    private var streakCard: some View {
+        HStack(alignment: .top, spacing: 20) {
+            VStack(alignment: .leading, spacing: 6) {
+                Image(systemName: "flame.fill")
+                    .font(.title3)
+                    .foregroundStyle(.orange)
+                    .padding(12)
+                    .background(Color.orange.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text("\(statsManager.currentStreak)")
+                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                        .foregroundStyle(.orange)
+                    Text("дней подряд")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundStyle(.orange)
+                }
+
+                Text("Так держать!")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 10) {
+                Text("На этой неделе")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.secondary)
+
+                weekBars
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(20)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .padding(.horizontal)
+    }
+
+    private var weekBars: some View {
+        let days = statsManager.dailyStats(lastDays: 7)
+        let maxValue = max(days.map(\.questionsAnswered).max() ?? 1, 1)
+        let labels = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+
+        return HStack(alignment: .bottom, spacing: 10) {
+            ForEach(Array(days.enumerated()), id: \.offset) { index, stat in
+                VStack(spacing: 6) {
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(stat.questionsAnswered > 0 ? Color.orange : Color(.systemGray4))
+                        .frame(width: 8, height: max(6, CGFloat(stat.questionsAnswered) / CGFloat(maxValue) * 44))
+
+                    Text(index < labels.count ? labels[index] : "")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
                 }
             }
+        }
+        .frame(height: 64, alignment: .bottom)
+    }
+
+    // MARK: - Section group (обычные наборы слов)
+
+    private func sectionGroup(title: String, mode: QuizMode) -> some View {
+        let rows: [(wordSet: WordSet, icon: String, iconColor: RowIconColor, title: String, subtitle: String)] =
+            WordSet.regularSets.map { wordSet in
+                (wordSet, iconName(for: wordSet, mode: mode), rowIconColor(for: wordSet, mode: mode), wordSet.title, wordSet.subtitle)
+            }
+
+        return sectionGroup(title: title, rows: rows, mode: mode)
+    }
+
+    // MARK: - Section group (обобщённая версия, для избранного и обычных наборов)
+
+    private func sectionGroup(
+        title: String,
+        rows: [(wordSet: WordSet, icon: String, iconColor: RowIconColor, title: String, subtitle: String)],
+        mode: QuizMode
+    ) -> some View {
+        VStack(spacing: 0) {
+            Text(title)
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 12)
+
+            VStack(spacing: 0) {
+                ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
+                    NavigationLink(value: WordSetSelection(wordSet: row.wordSet, mode: mode)) {
+                        rowContent(icon: row.icon, iconColor: row.iconColor, title: row.title, subtitle: row.subtitle)
+                    }
+
+                    if index < rows.count - 1 {
+                        Divider().padding(.leading, 88)
+                    }
+                }
+            }
+            .background(Color(.secondarySystemGroupedBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Row
+
+    private func rowContent(icon: String, iconColor: RowIconColor, title: String, subtitle: String) -> some View {
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(.white)
+                .frame(width: 48, height: 48)
+                .background(iconColor.color)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .truncationMode(.tail)
+                    .multilineTextAlignment(.leading)
+            }
+
+            Spacer(minLength: 8)
+
+            Image(systemName: "chevron.right")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(Color(.tertiaryLabel))
+        }
+        .padding(16)
+        .frame(minHeight: 80)
+    }
+
+    private func iconName(for wordSet: WordSet, mode: QuizMode) -> String {
+        if mode == .typing { return "pencil" }
+        switch wordSet {
+        case .a1Words: return "book.fill"
+        case .a2Words: return "square.grid.2x2.fill"
+        case .phrasalVerbs: return "arrow.left.arrow.right"
+        case .favorites: return "star.fill"
+        }
+    }
+
+    private func rowIconColor(for wordSet: WordSet, mode: QuizMode) -> RowIconColor {
+        if mode == .typing {
+            switch wordSet {
+            case .a1Words: return .teal
+            case .a2Words: return .tealBlue
+            case .phrasalVerbs: return .lavender
+            default: return .blue
+            }
+        }
+        switch wordSet {
+        case .a1Words: return .green
+        case .a2Words: return .blue
+        case .phrasalVerbs: return .purple
+        case .favorites: return .orange
         }
     }
 
@@ -94,68 +293,15 @@ struct StartView: View {
     private func destinationView(for selection: WordSetSelection) -> some View {
         switch (selection.wordSet, selection.mode) {
         case (.favorites, _):
-            QuizView(
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                speechManager: speechManager,
-                progressTracker: progressTracker
-            )
-
+            QuizView(favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
         case (let wordSet, .multipleChoice) where wordSet.hasCategories:
-            CategoryPickerView(
-                wordSet: wordSet,
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                speechManager: speechManager,
-                progressTracker: progressTracker
-            )
-
+            CategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
         case (let wordSet, .multipleChoice):
-            QuizView(
-                wordSet: wordSet,
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                speechManager: speechManager,
-                progressTracker: progressTracker
-            )
-
+            QuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
         case (let wordSet, .typing) where wordSet.hasCategories:
-            TypingCategoryPickerView(
-                wordSet: wordSet,
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                progressTracker: progressTracker
-            )
-
+            TypingCategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
         case (let wordSet, .typing):
-            TypingQuizView(
-                wordSet: wordSet,
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                progressTracker: progressTracker
-            )
+            TypingQuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
         }
-    }
-
-    // MARK: - Row
-
-    private func wordSetRow(_ wordSet: WordSet) -> some View {
-        HStack(spacing: 16) {
-            Image(systemName: wordSet.systemImage)
-                .font(.title2)
-                .foregroundStyle(.white)
-                .frame(width: 44, height: 44)
-                .background(Color.accentColor)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(wordSet.title)
-                    .font(.headline)
-                Text(wordSet.subtitle)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.vertical, 6)
     }
 }
