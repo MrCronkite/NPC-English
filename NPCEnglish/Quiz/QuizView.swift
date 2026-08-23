@@ -8,43 +8,18 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct QuizView: View {
     @StateObject private var viewModel: QuizViewModel
+    @Environment(\.dismiss) private var dismiss
 
-    init(
-        wordSet: WordSet,
-        category: WordCategory? = nil,
-        favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing,
-        progressTracker: WordProgressTracking
-    ) {
-        _viewModel = StateObject(
-            wrappedValue: QuizViewModel(
-                wordSet: wordSet,
-                category: category,
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                speechManager: speechManager,
-                progressTracker: progressTracker
-            )
-        )
+    init(wordSet: WordSet, category: WordCategory? = nil, favoritesManager: FavoritesManaging, statsManager: StatsManaging, speechManager: SpeechSynthesizing, progressTracker: WordProgressTracking) {
+        _viewModel = StateObject(wrappedValue: QuizViewModel(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker))
     }
 
-    init(
-        favoritesManager: FavoritesManaging,
-        statsManager: StatsManaging,
-        speechManager: SpeechSynthesizing,
-        progressTracker: WordProgressTracking
-    ) {
-        _viewModel = StateObject(
-            wrappedValue: QuizViewModel(
-                favoritesManager: favoritesManager,
-                statsManager: statsManager,
-                speechManager: speechManager,
-                progressTracker: progressTracker
-            )
-        )
+    init(favoritesManager: FavoritesManaging, statsManager: StatsManaging, speechManager: SpeechSynthesizing, progressTracker: WordProgressTracking) {
+        _viewModel = StateObject(wrappedValue: QuizViewModel(favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker))
     }
 
     var body: some View {
@@ -54,168 +29,303 @@ struct QuizView: View {
             quizContent
         }
     }
-}
 
-extension QuizView {
-    private var sessionResultView: some View {
-        VStack(spacing: 24) {
-            Spacer()
-            Image(systemName: "checkmark.seal.fill")
-                .font(.system(size: 60))
-                .foregroundStyle(.green)
-            Text("Сессия завершена!")
-                .font(.title.bold())
-            Text("Результат: \(viewModel.score)/\(viewModel.total)")
-                .font(.title2)
-                .foregroundStyle(.secondary)
-            Spacer()
-            Button(action: viewModel.restartSession) {
-                Text("Начать заново")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
-            }
-            .padding(.horizontal)
-        }
-        .padding(.vertical)
-        .navigationTitle(viewModel.wordSet.title)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
+    // MARK: - Quiz content
 
-extension QuizView {
     private var quizContent: some View {
         VStack(spacing: 32) {
             header
 
-            Spacer()
+            progressRing
 
-            VStack(spacing: 8) {
-                HStack(spacing: 12) {
-                    Text(viewModel.questionText)
-                        .font(.system(size: 40, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.4)
-                        .fixedSize(horizontal: false, vertical: true)
+            if viewModel.currentWord != nil {
+                VStack(spacing: 12) {
+                    HStack(spacing: 12) {
+                        Text(viewModel.questionText)
+                            .font(.system(size: 40, weight: .heavy))
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.4)
+                            .fixedSize(horizontal: false, vertical: true)
 
-                    if viewModel.isQuestionInEnglish {
-                        Button {
-                            viewModel.speakCurrentWord()
-                        } label: {
-                            Image(systemName: "speaker.wave.2.fill")
-                                .font(.title2)
-                                .foregroundStyle(Color.accentColor)
+                        if viewModel.isQuestionInEnglish {
+                            Button {
+                                viewModel.speakCurrentWord()
+                            } label: {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.accentColor)
+                            }
                         }
                     }
-                }
 
-                if viewModel.isCurrentWordReview {
-                    Label("Повторение", systemImage: "arrow.clockwise")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.orange)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(Color.orange.opacity(0.15))
-                        .clipShape(Capsule())
+                    if viewModel.isCurrentWordReview {
+                        Label("Повторение", systemImage: "arrow.clockwise")
+                            .font(.subheadline.weight(.bold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color.orange)
+                            .clipShape(Capsule())
+                    }
                 }
-            }
-            .padding(.horizontal)
+                .padding(.horizontal)
 
-            VStack(spacing: 14) {
-                ForEach(viewModel.options) { option in
-                    optionButton(for: option)
+                Spacer()
+
+                VStack(spacing: 12) {
+                    ForEach(viewModel.options) { option in
+                        optionRow(for: option)
+                    }
                 }
+                .padding(.horizontal)
+            } else {
+                Spacer()
+                Text("Недостаточно слов в этом наборе")
+                    .foregroundStyle(.secondary)
+                    .padding()
+                Spacer()
             }
+
+            Button(action: viewModel.nextQuestion) {
+                Text("Дальше")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 18)
+                    .background(viewModel.isAnswered ? Color.accentColor : Color(.systemGray4))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+            .disabled(!viewModel.isAnswered)
             .padding(.horizontal)
+        }
+        .padding(.top, 16)
+        .padding(.bottom, 24)
+        .background(Color(.systemGroupedBackground))
+        .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
+        .navigationBarHidden(true)
+    }
+
+    // MARK: - Header (close, linear progress, settings)
+
+    private var header: some View {
+        HStack(spacing: 16) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.secondary)
+            }
 
             Spacer()
 
-            if viewModel.isAnswered {
-                Button(action: viewModel.nextQuestion) {
-                    Text("Дальше")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
-                }
-                .padding(.horizontal)
-                .transition(.opacity)
+            Button {
+                viewModel.toggleFavorite()
+            } label: {
+                Image(systemName: viewModel.isCurrentFavorite ? "heart.fill" : "heart")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.red)
             }
         }
-        .padding(.vertical)
-        .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
-        .navigationTitle(viewModel.wordSet.title)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            if viewModel.currentWord != nil {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        viewModel.toggleFavorite()
-                    } label: {
-                        Image(systemName: viewModel.isCurrentFavorite
-                              ? "heart.fill"
-                              : "heart"
-                        )
-                        .foregroundStyle(.red)
-                    }
-                }
-            }
-        }
+        .padding(.horizontal)
     }
 
-    private var header: some View {
-        CircularProgressView(
-            current: viewModel.total,
-            total: viewModel.plannedQuestions,
-            score: viewModel.score
-        )
-        .padding(.top, 8)
+    // MARK: - Circular progress + score ring
+
+    private var progressRing: some View {
+        ZStack {
+            Circle()
+                .stroke(Color(.systemGray5), lineWidth: 10)
+
+            Circle()
+                .trim(from: 0, to: viewModel.plannedQuestions > 0 ? Double(viewModel.total) / Double(viewModel.plannedQuestions) : 0)
+                .stroke(Color.green, style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .animation(.easeInOut(duration: 0.4), value: viewModel.total)
+
+            VStack(spacing: 4) {
+                HStack(alignment: .firstTextBaseline, spacing: 2) {
+                    Text("\(viewModel.total)")
+                        .font(.system(size: 42, weight: .heavy))
+                    Text("/\(viewModel.plannedQuestions)")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
+
+                HStack(spacing: 4) {
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 15))
+                        .foregroundStyle(.yellow)
+                    Text("\(viewModel.score)")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+        .frame(width: 140, height: 140)
     }
-    
-    @ViewBuilder
-    private func optionButton(for option: Word) -> some View {
+
+    // MARK: - Option row
+
+    private func optionRow(for option: Word) -> some View {
         let isSelected = viewModel.selectedOption?.id == option.id
         let isCorrectOption = option.id == viewModel.currentWord?.id
 
-        Button {
+        return Button {
             viewModel.select(option)
         } label: {
-            Text(viewModel.optionText(for: option))
-                .font(.body.weight(.medium))
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(backgroundColor(isSelected: isSelected, isCorrectOption: isCorrectOption))
-                .foregroundStyle(foregroundColor(isSelected: isSelected, isCorrectOption: isCorrectOption))
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(Color.gray.opacity(0.25), lineWidth: 1)
-                )
+            HStack {
+                Text(viewModel.optionText(for: option))
+                    .font(.body.weight(.medium))
+                    .foregroundStyle(.primary)
+
+                Spacer()
+
+                statusIcon(isSelected: isSelected, isCorrectOption: isCorrectOption)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 18)
+            .background(rowBackground(isSelected: isSelected, isCorrectOption: isCorrectOption))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(rowBorderColor(isSelected: isSelected, isCorrectOption: isCorrectOption), lineWidth: 2.5)
+            )
         }
         .disabled(viewModel.isAnswered)
     }
 
-    private func backgroundColor(isSelected: Bool, isCorrectOption: Bool) -> Color {
-        guard viewModel.isAnswered else { return Color(.secondarySystemBackground) }
-
-        if isCorrectOption {
-            return Color.green.opacity(0.85)
-        } else if isSelected {
-            return Color.red.opacity(0.85)
+    @ViewBuilder
+    private func statusIcon(isSelected: Bool, isCorrectOption: Bool) -> some View {
+        if viewModel.isAnswered && isCorrectOption {
+            Image(systemName: "checkmark")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(.white)
+                .frame(width: 26, height: 26)
+                .background(Color.green)
+                .clipShape(Circle())
+        } else if viewModel.isAnswered && isSelected {
+            Image(systemName: "xmark")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(.white)
+                .frame(width: 26, height: 26)
+                .background(Color.red)
+                .clipShape(Circle())
         } else {
-            return Color(.secondarySystemBackground)
+            Circle()
+                .stroke(Color(.systemGray4), lineWidth: 1.5)
+                .frame(width: 26, height: 26)
         }
     }
 
-    private func foregroundColor(isSelected: Bool, isCorrectOption: Bool) -> Color {
-        guard viewModel.isAnswered else { return .primary }
-        return (isCorrectOption || isSelected) ? .white : .primary
+    private func rowBackground(isSelected: Bool, isCorrectOption: Bool) -> Color {
+        guard viewModel.isAnswered else { return Color(.secondarySystemGroupedBackground) }
+
+        if isCorrectOption {
+            return Color.green.opacity(0.18)
+        } else if isSelected {
+            return Color.red.opacity(0.18)
+        }
+        return Color(.secondarySystemGroupedBackground)
+    }
+
+    private func rowBorderColor(isSelected: Bool, isCorrectOption: Bool) -> Color {
+        guard viewModel.isAnswered else { return Color.clear }
+
+        if isCorrectOption {
+            return Color.green
+        } else if isSelected {
+            return Color.red
+        }
+        return Color.clear
+    }
+
+    // MARK: - Session result
+
+    private var sessionResultView: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 16)
+
+            Spacer()
+
+            ZStack {
+                Circle()
+                    .fill(Color.green.opacity(0.12))
+                    .frame(width: 140, height: 140)
+
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 64))
+                    .foregroundStyle(.green)
+            }
+
+            VStack(spacing: 8) {
+                Text("Сессия завершена!")
+                    .font(.title.bold())
+
+                Text("Отличная работа")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.top, 24)
+
+            HStack(spacing: 16) {
+                resultStat(icon: "star.fill", color: .yellow, value: "\(viewModel.score)", label: "Правильно")
+                resultStat(icon: "list.bullet", color: .blue, value: "\(viewModel.total)", label: "Всего")
+                resultStat(icon: "percent", color: .green, value: accuracyText, label: "Точность")
+            }
+            .padding(.top, 32)
+            .padding(.horizontal)
+
+            Spacer()
+
+            Button(action: viewModel.restartSession) {
+                Text("Начать заново")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 18)
+                    .background(Color.accentColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+            .padding(.horizontal)
+            .padding(.bottom, 24)
+        }
+        .background(Color(.systemGroupedBackground))
+        .navigationBarHidden(true)
+    }
+
+    private var accuracyText: String {
+        guard viewModel.total > 0 else { return "0%" }
+        let percent = Int((Double(viewModel.score) / Double(viewModel.total)) * 100)
+        return "\(percent)%"
+    }
+
+    private func resultStat(icon: String, color: Color, value: String, label: String) -> some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(color)
+            Text(value)
+                .font(.title2.bold())
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
-
