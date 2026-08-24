@@ -64,20 +64,20 @@
 		84AA9BAD301FA53800550B74 /* Exceptions for "NPCEnglish" folder in "NPCEnglishWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Notification/StreakNotificationManager.swift,
-				Stats/DailyStat.swift,
-				Storage/CoreDataRep/CoreDataProgressManager.swift,
-				Storage/CoreDataRep/CoreDataRepository.swift,
-				Storage/CoreDataRep/CoreDataStack.swift,
-				Storage/CoreDataRep/CoreDataStatsManager.swift,
-				Storage/Entity/AppStatsEntity.swift,
-				Storage/Entity/DailyStatEntity.swift,
-				Storage/Entity/WordProgressEntity.swift,
-				WordProgress/SpacedRepetitionSelector.swift,
-				WordProgress/Word.swift,
-				WordProgress/WordCategory.swift,
-				WordProgress/WordProgressTracking.swift,
-				WordProgress/WordSet.swift,
+				Features/Stats/DailyStat.swift,
+				Features/WordProgress/SpacedRepetitionSelector.swift,
+				Features/WordProgress/WordProgressTracking.swift,
+				Models/Word.swift,
+				Models/WordCategory.swift,
+				Models/WordSet.swift,
+				Services/Notification/StreakNotificationManager.swift,
+				Services/Progress/CoreDataProgressManager.swift,
+				Services/Stats/CoreDataStatsManager.swift,
+				Services/Storage/CoreDataRep/CoreDataRepository.swift,
+				Services/Storage/CoreDataRep/CoreDataStack.swift,
+				Services/Storage/Entity/AppStatsEntity.swift,
+				Services/Storage/Entity/DailyStatEntity.swift,
+				Services/Storage/Entity/WordProgressEntity.swift,
 			);
 			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
 		};
