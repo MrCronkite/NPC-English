@@ -13,6 +13,11 @@ enum AccentColorOption: String, CaseIterable, Identifiable {
     case orange
     case green
     case pink
+    case red
+    case teal
+    case indigo
+    case yellow
+    case mint
 
     var id: String { rawValue }
 
@@ -23,6 +28,11 @@ enum AccentColorOption: String, CaseIterable, Identifiable {
         case .orange: return Color(red: 1.0, green: 0.58, blue: 0.0)
         case .green: return Color(red: 0.2, green: 0.78, blue: 0.35)
         case .pink: return Color(red: 1.0, green: 0.18, blue: 0.45)
+        case .red: return Color(red: 0.95, green: 0.23, blue: 0.19)
+        case .teal: return Color(red: 0.19, green: 0.69, blue: 0.78)
+        case .indigo: return Color(red: 0.35, green: 0.34, blue: 0.84)
+        case .yellow: return Color(red: 1.0, green: 0.80, blue: 0.0)
+        case .mint: return Color(red: 0.0, green: 0.78, blue: 0.75)
         }
     }
 
@@ -33,6 +43,11 @@ enum AccentColorOption: String, CaseIterable, Identifiable {
         case .orange: return "Оранжевый"
         case .green: return "Зелёный"
         case .pink: return "Розовый"
+        case .red: return "Красный"
+        case .teal: return "Бирюзовый"
+        case .indigo: return "Индиго"
+        case .yellow: return "Жёлтый"
+        case .mint: return "Мятный"
         }
     }
 }
