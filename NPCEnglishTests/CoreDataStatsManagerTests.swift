@@ -8,6 +8,7 @@
 import XCTest
 @testable import NPCEnglish
 
+@MainActor
 final class CoreDataStatsManagerTests: XCTestCase {
     private var stack: CoreDataStack!
     private var sut: CoreDataStatsManager!
