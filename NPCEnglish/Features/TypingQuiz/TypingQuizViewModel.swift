@@ -21,6 +21,7 @@ final class TypingQuizViewModel: ObservableObject {
     @AppStorage("sessionLength")
     private var sessionLength: Int = 10
 
+    @Published private(set) var isCurrentFavorite = false
     @Published private(set) var allWords: [Word] = []
     @Published private(set) var currentWord: Word?
     @Published private(set) var isSessionFinished = false
@@ -130,5 +131,19 @@ final class TypingQuizViewModel: ObservableObject {
         total = 0
         isSessionFinished = false
         nextQuestion()
+    }
+
+    func toggleFavorite() {
+        guard let word = currentWord else { return }
+        favoritesManager.toggleFavorite(wordID: word.id, in: wordSet)
+        refreshFavoriteStatus()
+    }
+
+    private func refreshFavoriteStatus() {
+        guard let word = currentWord else {
+            isCurrentFavorite = false
+            return
+        }
+        isCurrentFavorite = favoritesManager.isFavorite(wordID: word.id, in: wordSet)
     }
 }
