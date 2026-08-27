@@ -7,16 +7,9 @@
 
 import SwiftUI
 
-
-private struct SupportOption: Identifiable {
-    let id = UUID()
-    let title: String
-    let emoji: String
-    let price: String
-}
-
-
 struct SupportView: View {
+    @Environment(\.dismiss) private var dismiss
+
     private let supportOptions = [
         SupportOption(title: "Маленькое спасибо", emoji: "☕️", price: "$0.99"),
         SupportOption(title: "Хорошая поддержка", emoji: "🍰", price: "$2.99"),
@@ -30,69 +23,112 @@ struct SupportView: View {
             VStack(spacing: 28) {
                 header
 
+                VStack(spacing: 16) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.red.opacity(0.12))
+                            .frame(width: 100, height: 100)
+
+                        Image(systemName: "heart.fill")
+                            .font(.system(size: 44))
+                            .foregroundStyle(.red)
+                    }
+
+                    Text("Приложение полностью бесплатное")
+                        .font(.title3.weight(.bold))
+                        .multilineTextAlignment(.center)
+
+                    Text("Все функции доступны без ограничений и всегда будут такими. Если приложение оказалось полезным — можешь угостить разработчика чашкой кофе. Это ни на что не влияет и совершенно необязательно 🙂")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
+                }
+                .padding(.top, 8)
+
                 VStack(spacing: 12) {
                     ForEach(supportOptions) { option in
-                        supportButton(option)
+                        supportRow(option)
                     }
                 }
                 .padding(.horizontal)
 
-                footer
+                Text("Спасибо, что учишь английский вместе с нами! ✨")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 8)
             }
-            .padding(.vertical, 24)
+            .padding(.bottom, 24)
         }
-        .navigationTitle("Поддержать проект")
-        .navigationBarTitleDisplayMode(.inline)
+        .background(Color(.systemGroupedBackground))
+        .navigationBarHidden(true)
     }
 
     private var header: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "heart.fill")
-                .font(.system(size: 48))
-                .foregroundStyle(.red)
+        HStack(spacing: 16) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 36, height: 36)
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .clipShape(Circle())
+            }
 
-            Text("Приложение полностью бесплатное")
-                .font(.title3.weight(.semibold))
-                .multilineTextAlignment(.center)
+            Text("Поддержать проект")
+                .font(.largeTitle.bold())
 
-            Text("Все функции приложения доступны бесплатно и без ограничений — сейчас и в будущем. Если приложение помогает тебе учить английский и ты хочешь поддержать его развитие, можешь угостить разработчика чашкой кофе ☕️ \nЭто полностью добровольно и никак не влияет на возможности приложения. Спасибо за поддержку! ❤️")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 24)
+            Spacer()
         }
+        .padding(.horizontal)
+        .padding(.top, 16)
     }
 
-    private func supportButton(_ option: SupportOption) -> some View {
-        Button {
+    private func supportRow(_ option: SupportOption) -> some View {
+        let isSelected = selectedOption?.id == option.id
+
+        return Button {
             selectedOption = option
-            // TODO: интеграция с StoreKit / In-App Purchase, когда решишь её добавить
+            // TODO: интеграция с StoreKit / In-App Purchase
         } label: {
-            HStack {
+            HStack(spacing: 16) {
                 Text(option.emoji)
-                    .font(.title2)
+                    .font(.system(size: 32))
+                    .frame(width: 52, height: 52)
+                    .background(Color(.tertiarySystemGroupedBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
 
                 Text(option.title)
-                    .font(.body.weight(.medium))
+                    .font(.body.weight(.semibold))
                     .foregroundStyle(.primary)
 
                 Spacer()
 
                 Text(option.price)
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(.secondary)
+                    .font(.body.weight(.bold))
+                    .foregroundStyle(Color.accentColor)
             }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .padding(16)
+            .background(Color(.secondarySystemGroupedBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .overlay(
+                RoundedRectangle(cornerRadius: 18)
+                    .stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 2)
+            )
         }
-    }
-
-    private var footer: some View {
-        Text("Спасибо, что учишь английский вместе с нами! ✨")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-            .padding(.top, 8)
+        .buttonStyle(.plain)
     }
 }
 
+private struct SupportOption: Identifiable {
+    let id = UUID()
+    let title: String
+    let emoji: String
+    let price: String
+}
+
+#Preview {
+    SupportView()
+}
