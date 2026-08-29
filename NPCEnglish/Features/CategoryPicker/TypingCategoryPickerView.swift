@@ -13,6 +13,8 @@ struct TypingCategoryPickerView: View {
     let statsManager: StatsManaging
     let progressTracker: WordProgressTracking
 
+    @Environment(\.dismiss) private var dismiss
+
     private var allWords: [Word] {
         WordsLoader.loadWords(for: wordSet)
     }
@@ -23,31 +25,71 @@ struct TypingCategoryPickerView: View {
     }
 
     var body: some View {
-        List(availableCategories) { category in
-            NavigationLink {
-                TypingQuizView(
-                    wordSet: wordSet,
-                    category: category,
-                    favoritesManager: favoritesManager,
-                    statsManager: statsManager,
-                    progressTracker: progressTracker
-                )
-            } label: {
-                HStack(spacing: 16) {
-                    Image(systemName: category.systemImage)
-                        .font(.title2)
-                        .foregroundStyle(.white)
-                        .frame(width: 44, height: 44)
-                        .background(Color.accentColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+        ScrollView {
+            VStack(spacing: 20) {
+                header
 
-                    Text(category.title)
-                        .font(.headline)
+                VStack(spacing: 12) {
+                    ForEach(availableCategories) { category in
+                        NavigationLink {
+                            TypingQuizView(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
+                        } label: {
+                            categoryRow(category)
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
-                .padding(.vertical, 6)
+                .padding(.horizontal)
             }
+            .padding(.bottom, 24)
         }
-        .listStyle(.insetGrouped)
-        .navigationTitle("\(wordSet.title) · Напиши перевод")
+        .background(Color(.systemGroupedBackground))
+        .navigationBarHidden(true)
+    }
+
+    private var header: some View {
+        HStack(spacing: 16) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 36, height: 36)
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .clipShape(Circle())
+            }
+
+            Text(wordSet.title)
+                .font(.largeTitle.bold())
+
+            Spacer()
+        }
+        .padding(.horizontal)
+        .padding(.top, 16)
+    }
+
+    private func categoryRow(_ category: WordCategory) -> some View {
+        HStack(spacing: 16) {
+            Image(systemName: category.systemImage)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(.white)
+                .frame(width: 48, height: 48)
+                .background(Color.accentColor)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+
+            Text(category.title)
+                .font(.headline)
+                .foregroundStyle(.primary)
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(Color(.tertiaryLabel))
+        }
+        .padding(16)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 18))
     }
 }
