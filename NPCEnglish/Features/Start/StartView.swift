@@ -14,6 +14,7 @@ struct StartView: View {
     let speechManager: SpeechSynthesizing
     let notificationManager: NotificationScheduling
     let progressTracker: WordProgressTracking
+    let achievementsManager: AchievementsManaging
 
     @State private var selectedMode: QuizMode = .multipleChoice
 
@@ -45,6 +46,25 @@ struct StartView: View {
                         ],
                         mode: .multipleChoice
                     )
+
+                    VStack(spacing: 0) {
+                        NavigationLink {
+                            AchievementsView(
+                                achievementsManager: achievementsManager,
+                                progressTracker: progressTracker
+                            )
+                        } label: {
+                            rowContent(
+                                icon: "trophy.fill",
+                                iconColor: .lavender,
+                                title: "Достижения",
+                                subtitle: "Твой прогресс и награды"
+                            )
+                            }
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .padding(.horizontal)
 
                     VStack(spacing: 0) {
                         NavigationLink {
@@ -293,15 +313,47 @@ struct StartView: View {
     private func destinationView(for selection: WordSetSelection) -> some View {
         switch (selection.wordSet, selection.mode) {
         case (.favorites, _):
-            QuizView(favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
+            QuizView(
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
         case (let wordSet, .multipleChoice) where wordSet.hasCategories:
-            CategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
+            CategoryPickerView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
         case (let wordSet, .multipleChoice):
-            QuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
+            QuizView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
         case (let wordSet, .typing) where wordSet.hasCategories:
-            TypingCategoryPickerView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
+            TypingCategoryPickerView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
         case (let wordSet, .typing):
-            TypingQuizView(wordSet: wordSet, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
+            TypingQuizView(
+                wordSet: wordSet,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
         }
     }
 }

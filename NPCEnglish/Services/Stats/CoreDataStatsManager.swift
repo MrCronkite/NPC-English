@@ -142,7 +142,15 @@ final class MockStatsManager: StatsManaging {
     var longestStreak: Int = 7
     var totalStats: (answered: Int, correct: Int) = (120, 96)
 
-    func recordSessionCompleted(score: Int, total: Int) {}
+    private(set) var recordSessionCallCount = 0
+    private(set) var lastRecordedScore: Int?
+    private(set) var lastRecordedTotal: Int?
+
+    func recordSessionCompleted(score: Int, total: Int) {
+        recordSessionCallCount += 1
+        lastRecordedScore = score
+        lastRecordedTotal = total
+    }
 
     func dailyStats(lastDays: Int) -> [DailyStat] {
         (0..<lastDays).map { offset in

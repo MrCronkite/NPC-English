@@ -14,12 +14,44 @@ struct QuizView: View {
     @StateObject private var viewModel: QuizViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(wordSet: WordSet, category: WordCategory? = nil, favoritesManager: FavoritesManaging, statsManager: StatsManaging, speechManager: SpeechSynthesizing, progressTracker: WordProgressTracking) {
-        _viewModel = StateObject(wrappedValue: QuizViewModel(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker))
+    init(
+        wordSet: WordSet,
+        category: WordCategory? = nil,
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
+    ) {
+        _viewModel = StateObject(
+            wrappedValue: QuizViewModel(
+                wordSet: wordSet,
+                category: category,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
+        )
     }
 
-    init(favoritesManager: FavoritesManaging, statsManager: StatsManaging, speechManager: SpeechSynthesizing, progressTracker: WordProgressTracking) {
-        _viewModel = StateObject(wrappedValue: QuizViewModel(favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker))
+    init(
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging,
+        speechManager: SpeechSynthesizing,
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
+    ) {
+        _viewModel = StateObject(
+            wrappedValue: QuizViewModel(
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                speechManager: speechManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
+        )
     }
 
     var body: some View {
@@ -104,6 +136,18 @@ struct QuizView: View {
         .background(Color(.systemGroupedBackground))
         .animation(.easeInOut(duration: 0.2), value: viewModel.isAnswered)
         .navigationBarHidden(true)
+        .alert(
+            "🎉 Новое достижение!",
+            isPresented: Binding(
+                get: { viewModel.newlyUnlockedAchievement != nil },
+                set: { if !$0 { viewModel.newlyUnlockedAchievement = nil } }
+            ),
+            presenting: viewModel.newlyUnlockedAchievement
+        ) { _ in
+            Button("Ура!") { viewModel.newlyUnlockedAchievement = nil }
+        } message: { achievement in
+            Text(achievement.title)
+        }
     }
 
     // MARK: - Header (close, linear progress, settings)

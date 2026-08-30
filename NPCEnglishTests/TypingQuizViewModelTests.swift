@@ -11,13 +11,24 @@ import XCTest
 @MainActor
 final class TypingQuizViewModelTests: XCTestCase {
 
-    func testInitLoadsWordsAndSetsCurrentWord() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
+    private func makeSUT(
+        wordSet: WordSet = .a1Words,
+        favoritesManager: FavoritesManaging = MockFavoritesManager(),
+        statsManager: StatsManaging = MockStatsManager(),
+        progressTracker: WordProgressTracking = MockProgressManager(),
+        achievementsManager: AchievementsManaging = MockAchievementsManager()
+    ) -> TypingQuizViewModel {
+        TypingQuizViewModel(
+            wordSet: wordSet,
+            favoritesManager: favoritesManager,
+            statsManager: statsManager,
+            progressTracker: progressTracker,
+            achievementsManager: achievementsManager
         )
+    }
+
+    func testInitLoadsWordsAndSetsCurrentWord() {
+        let sut = makeSUT()
 
         XCTAssertFalse(sut.allWords.isEmpty)
         XCTAssertNotNil(sut.currentWord)
@@ -26,17 +37,9 @@ final class TypingQuizViewModelTests: XCTestCase {
     }
 
     func testSubmitCorrectAnswerIncrementsScore() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
-        // direction по умолчанию englishToRussian, questionText = word.english,
-        // ожидаемый ответ = word.translation
         sut.userInput = sut.correctAnswerText
-
         sut.submitAnswer()
 
         XCTAssertTrue(sut.isAnswered)
@@ -46,15 +49,9 @@ final class TypingQuizViewModelTests: XCTestCase {
     }
 
     func testSubmitWrongAnswerDoesNotIncrementScore() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         sut.userInput = "совершенно неверный ответ xyz"
-
         sut.submitAnswer()
 
         XCTAssertTrue(sut.isAnswered)
@@ -64,28 +61,18 @@ final class TypingQuizViewModelTests: XCTestCase {
     }
 
     func testSecondSubmitAfterAnswerIsIgnored() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         sut.userInput = sut.correctAnswerText
         sut.submitAnswer()
         sut.userInput = "что-то другое"
-        sut.submitAnswer() // должно быть проигнорировано guard !isAnswered
+        sut.submitAnswer()
 
-        XCTAssertEqual(sut.total, 1, "Повторный submit после ответа не должен засчитываться")
+        XCTAssertEqual(sut.total, 1)
     }
 
     func testRevealAnswerMarksAsIncorrectAndAnswered() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         sut.revealAnswer()
 
@@ -96,28 +83,18 @@ final class TypingQuizViewModelTests: XCTestCase {
     }
 
     func testRevealAnswerAfterAlreadyAnsweredIsIgnored() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         sut.userInput = sut.correctAnswerText
         sut.submitAnswer()
-        sut.revealAnswer() // должно быть проигнорировано guard !isAnswered
+        sut.revealAnswer()
 
-        XCTAssertEqual(sut.total, 1, "revealAnswer после ответа не должен засчитываться повторно")
-        XCTAssertTrue(sut.wasCorrect, "Результат первого (верного) ответа не должен перезаписаться")
+        XCTAssertEqual(sut.total, 1)
+        XCTAssertTrue(sut.wasCorrect)
     }
 
     func testNextQuestionResetsInputAndAnsweredState() {
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         sut.userInput = "test"
         sut.submitAnswer()
@@ -130,12 +107,7 @@ final class TypingQuizViewModelTests: XCTestCase {
     func testSessionFinishesAfterPlannedQuestions() {
         UserDefaults.standard.set(3, forKey: "sessionLength")
 
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         for _ in 0..<3 {
             sut.revealAnswer()
@@ -148,12 +120,8 @@ final class TypingQuizViewModelTests: XCTestCase {
     func testSessionCompletionRecordsStats() {
         UserDefaults.standard.set(2, forKey: "sessionLength")
 
-        let sut = TypingQuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            progressTracker: MockProgressManager()
-        )
+        let statsManager = MockStatsManager()
+        let sut = makeSUT(statsManager: statsManager)
 
         sut.userInput = sut.correctAnswerText
         sut.submitAnswer()
@@ -162,10 +130,54 @@ final class TypingQuizViewModelTests: XCTestCase {
         sut.revealAnswer()
         sut.nextQuestion()
 
-        XCTAssertTrue(sut.isSessionFinished)
-        // MockStatsManager не хранит переданные score/total явно (по нашей реализации),
-        // но recordSessionCompleted не должен падать/крашить при вызове.
-        // Если хочешь строже проверить именно вызов — расширим MockStatsManager счётчиком,
-        // как делали с MockNotificationManager для cancelCallCount.
+        XCTAssertEqual(statsManager.recordSessionCallCount, 1)
+        XCTAssertEqual(statsManager.lastRecordedScore, 1)
+        XCTAssertEqual(statsManager.lastRecordedTotal, 2)
+    }
+
+    // MARK: - Избранное (добавлено при редизайне)
+
+    func testToggleFavoriteUpdatesIsCurrentFavorite() {
+        let favoritesManager = MockFavoritesManager()
+        let sut = makeSUT(favoritesManager: favoritesManager)
+
+        XCTAssertFalse(sut.isCurrentFavorite)
+
+        sut.toggleFavorite()
+        XCTAssertTrue(sut.isCurrentFavorite)
+
+        sut.toggleFavorite()
+        XCTAssertFalse(sut.isCurrentFavorite)
+    }
+
+    // MARK: - Достижения (новое)
+
+    func testSubmitCorrectAnswerRecordsAnswerWithTypingMode() {
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+
+        XCTAssertEqual(progressTracker.totalLearnedWordsCount(mode: .typing), 1)
+        XCTAssertEqual(progressTracker.totalLearnedWordsCount(mode: .multipleChoice), 0)
+    }
+
+    func testRevealAnswerDoesNotCountAsLearned() {
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        sut.revealAnswer()
+
+        XCTAssertEqual(progressTracker.totalLearnedWordsCount(mode: .typing), 0)
+    }
+
+    func testNoAchievementUnlockedWhenTargetNotReached() {
+        let sut = makeSUT()
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+
+        XCTAssertNil(sut.newlyUnlockedAchievement)
     }
 }

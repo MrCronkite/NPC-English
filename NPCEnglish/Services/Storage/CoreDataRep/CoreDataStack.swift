@@ -16,7 +16,8 @@ final class CoreDataStack {
         model.entities = [
             WordProgressEntity.entityDescription(),
             AppStatsEntity.entityDescription(),
-            DailyStatEntity.entityDescription()
+            DailyStatEntity.entityDescription(),
+            UnlockedAchievementEntity.entityDescription()
         ]
         return model
     }()

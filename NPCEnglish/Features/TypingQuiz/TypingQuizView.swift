@@ -12,8 +12,24 @@ struct TypingQuizView: View {
     @Environment(\.dismiss) private var dismiss
     @FocusState private var isInputFocused: Bool
 
-    init(wordSet: WordSet, category: WordCategory? = nil, favoritesManager: FavoritesManaging, statsManager: StatsManaging, progressTracker: WordProgressTracking) {
-        _viewModel = StateObject(wrappedValue: TypingQuizViewModel(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker))
+    init(
+        wordSet: WordSet,
+        category: WordCategory? = nil,
+        favoritesManager: FavoritesManaging,
+        statsManager: StatsManaging,
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
+    ) {
+        _viewModel = StateObject(
+            wrappedValue: TypingQuizViewModel(
+                wordSet: wordSet,
+                category: category,
+                favoritesManager: favoritesManager,
+                statsManager: statsManager,
+                progressTracker: progressTracker,
+                achievementsManager: achievementsManager
+            )
+        )
     }
 
     var body: some View {
@@ -140,6 +156,18 @@ struct TypingQuizView: View {
         .padding(.bottom, 24)
         .background(Color(.systemGroupedBackground))
         .navigationBarHidden(true)
+        .alert(
+            "🎉 Новое достижение!",
+            isPresented: Binding(
+                get: { viewModel.newlyUnlockedAchievement != nil },
+                set: { if !$0 { viewModel.newlyUnlockedAchievement = nil } }
+            ),
+            presenting: viewModel.newlyUnlockedAchievement
+        ) { _ in
+            Button("Ура!") { viewModel.newlyUnlockedAchievement = nil }
+        } message: { achievement in
+            Text(achievement.title)
+        }
     }
 
     // MARK: - Header

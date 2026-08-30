@@ -11,9 +11,12 @@ import Combine
 @MainActor
 final class TypingQuizViewModel: ObservableObject {
     let wordSet: WordSet
+    private let category: WordCategory?
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
     private let progressTracker: WordProgressTracking
+    private let achievementsManager: AchievementsManaging
+
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -31,6 +34,8 @@ final class TypingQuizViewModel: ObservableObject {
     @Published private(set) var isAnswered = false
     @Published private(set) var wasCorrect = false
 
+    @Published var newlyUnlockedAchievement: Achievement?
+
     @Published var score = 0
     @Published var total = 0
 
@@ -47,17 +52,20 @@ final class TypingQuizViewModel: ObservableObject {
         category: WordCategory? = nil,
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
-        progressTracker: WordProgressTracking
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
     ) {
         self.wordSet = wordSet
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
         self.progressTracker = progressTracker
+        self.achievementsManager = achievementsManager
+        self.category = category
 
         let words = WordsLoader.loadWords(for: wordSet)
         self.allWords = category.map { cat in words.filter { $0.category == cat.rawValue } } ?? words
 
-        self.progressSnapshot = progressTracker.snapshot(for: wordSet)
+        self.progressSnapshot = progressTracker.snapshot(for: wordSet, category: category)
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
@@ -107,8 +115,14 @@ final class TypingQuizViewModel: ObservableObject {
         wasCorrect = correct
         total += 1
         
-        progressTracker.recordAnswer(wordID: word.id, in: wordSet, isCorrect: correct)
-        
+        progressTracker.recordAnswer(
+            wordID: word.id,
+            in: wordSet,
+            category: category,
+            mode: .typing,
+            isCorrect: correct
+        )
+
         if correct {
             score += 1
             FeedbackManager.playCorrect()
@@ -122,7 +136,8 @@ final class TypingQuizViewModel: ObservableObject {
         isAnswered = true
         wasCorrect = false
         total += 1
-        progressTracker.recordAnswer(wordID: word.id, in: wordSet, isCorrect: false)
+        progressTracker
+            .recordAnswer(wordID: word.id, in: wordSet, category: category, mode: .typing, isCorrect: wasCorrect)
         FeedbackManager.playIncorrect()
     }
     
