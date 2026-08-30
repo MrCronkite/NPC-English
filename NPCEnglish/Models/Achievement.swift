@@ -25,7 +25,7 @@ enum AchievementCatalog {
             id: "quiz_100_words",
             mode: .multipleChoice,
             title: "100 слов выучено",
-            iconName: "placeholder",
+            iconName: "quiz_100_words",
             targetProgress: 100
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
@@ -35,7 +35,7 @@ enum AchievementCatalog {
             id: "quiz_500_words",
             mode: .multipleChoice,
             title: "500 слов выучено",
-            iconName: "placeholder",
+            iconName: "quiz_500_words",
             targetProgress: 500
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
@@ -45,7 +45,7 @@ enum AchievementCatalog {
             id: "quiz_1000_words",
             mode: .multipleChoice,
             title: "1000 слов выучено",
-            iconName: "placeholder",
+            iconName: "quiz_1000_words",
             targetProgress: 1000
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
@@ -55,7 +55,7 @@ enum AchievementCatalog {
             id: "quiz_phrasal_verbs_complete",
             mode: .multipleChoice,
             title: "Все фразовые глаголы пройдены",
-            iconName: "placeholder",
+            iconName: "quiz_phrasal_verbs_complete",
             targetProgress: 1
         ) { tracker in
             let words = WordsLoader.loadWords(for: .phrasalVerbs)
@@ -67,7 +67,7 @@ enum AchievementCatalog {
             id: "typing_100_words",
             mode: .typing,
             title: "100 слов выучено",
-            iconName: "placeholder",
+            iconName: "typing_100_words",
             targetProgress: 100
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .typing)
@@ -77,7 +77,7 @@ enum AchievementCatalog {
             id: "typing_500_words",
             mode: .typing,
             title: "500 слов выучено",
-            iconName: "placeholder",
+            iconName: "typing_500_words",
             targetProgress: 500
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .typing)
@@ -87,7 +87,7 @@ enum AchievementCatalog {
             id: "typing_1000_words",
             mode: .typing,
             title: "1000 слов выучено",
-            iconName: "placeholder",
+            iconName: "typing_1000_words",
             targetProgress: 1000
         ) { tracker in
             tracker.totalLearnedWordsCount(mode: .typing)
@@ -97,7 +97,7 @@ enum AchievementCatalog {
             id: "typing_phrasal_verbs_complete",
             mode: .typing,
             title: "Все фразовые глаголы пройдены",
-            iconName: "placeholder",
+            iconName: "typing_phrasal_verbs_complete",
             targetProgress: 1
         ) { tracker in
             tracker.isWordSetFullyLearned(

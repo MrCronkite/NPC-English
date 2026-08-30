@@ -78,17 +78,12 @@ struct AchievementsView: View {
         let progress = min(achievement.currentProgress(progressTracker), achievement.targetProgress)
 
         return HStack(spacing: 16) {
-            ZStack {
-                Circle()
-                    .fill(isUnlocked ? Color.yellow.opacity(0.15) : Color(.systemGray5))
-                    .frame(width: 52, height: 52)
-
-                // Placeholder — замени системную иконку на кастомную из achievement.iconName,
-                // когда будут готовы твои иконки
-                Image(systemName: isUnlocked ? "star.fill" : "lock.fill")
-                    .font(.system(size: 22))
-                    .foregroundStyle(isUnlocked ? .yellow : .secondary)
-            }
+            Image(isUnlocked ? achievement.iconName : "achievement_locked")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 52, height: 52)
+                .saturation(isUnlocked ? 1.0 : 0.0)
+                .opacity(isUnlocked ? 1.0 : 0.6)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(achievement.title)
