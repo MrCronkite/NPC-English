@@ -15,6 +15,7 @@ struct CategoryPickerView: View {
     let statsManager: StatsManaging
     let speechManager: SpeechSynthesizing
     let progressTracker: WordProgressTracking
+    let achievementsManager: AchievementsManaging
 
     @Environment(\.dismiss) private var dismiss
 
@@ -35,7 +36,15 @@ struct CategoryPickerView: View {
                 VStack(spacing: 12) {
                     ForEach(availableCategories) { category in
                         NavigationLink {
-                            QuizView(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, speechManager: speechManager, progressTracker: progressTracker)
+                            QuizView(
+                                wordSet: wordSet,
+                                category: category,
+                                favoritesManager: favoritesManager,
+                                statsManager: statsManager,
+                                speechManager: speechManager,
+                                progressTracker: progressTracker,
+                                achievementsManager: achievementsManager
+                            )
                         } label: {
                             categoryRow(category)
                         }

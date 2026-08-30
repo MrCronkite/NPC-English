@@ -12,10 +12,12 @@ import Combine
 @MainActor
 final class QuizViewModel: ObservableObject {
     let wordSet: WordSet
+    private let category: WordCategory?
     private let favoritesManager: FavoritesManaging
     private let statsManager: StatsManaging
     private let speechManager: SpeechSynthesizing
     private let progressTracker: WordProgressTracking
+    private let achievementsManager: AchievementsManaging
 
     @AppStorage("translationDirection")
     private var directionRaw: String = TranslationDirection.englishToRussian.rawValue
@@ -29,6 +31,8 @@ final class QuizViewModel: ObservableObject {
     @Published private(set) var isSessionFinished = false
     @Published private(set) var isCurrentFavorite = false
     @Published private(set) var isCurrentWordReview = false
+
+    @Published var newlyUnlockedAchievement: Achievement?
 
     @Published var selectedOption: Word?
     @Published var isAnswered = false
@@ -52,13 +56,16 @@ final class QuizViewModel: ObservableObject {
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
         speechManager: SpeechSynthesizing,
-        progressTracker: WordProgressTracking
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
     ) {
         self.wordSet = wordSet
+        self.category = category
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
         self.speechManager = speechManager
         self.progressTracker = progressTracker
+        self.achievementsManager = achievementsManager
 
         let words = WordsLoader.loadWords(for: wordSet)
         if let category {
@@ -67,7 +74,7 @@ final class QuizViewModel: ObservableObject {
             self.allWords = words
         }
 
-        self.progressSnapshot = progressTracker.snapshot(for: wordSet)
+        self.progressSnapshot = progressTracker.snapshot(for: wordSet, category: category)
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
@@ -76,13 +83,16 @@ final class QuizViewModel: ObservableObject {
         favoritesManager: FavoritesManaging,
         statsManager: StatsManaging,
         speechManager: SpeechSynthesizing,
-        progressTracker: WordProgressTracking
+        progressTracker: WordProgressTracking,
+        achievementsManager: AchievementsManaging
     ) {
         self.wordSet = .favorites
         self.favoritesManager = favoritesManager
         self.statsManager = statsManager
         self.speechManager = speechManager
         self.progressTracker = progressTracker
+        self.achievementsManager = achievementsManager
+        self.category = nil
 
         var collected: [Word] = []
         var sources: [Int: WordSet] = [:]
@@ -106,7 +116,7 @@ final class QuizViewModel: ObservableObject {
         // здесь просто читаем прогресс каждого источника отдельно и сводим в одну карту).
         var mergedSnapshot: [Int: WordProgressSnapshot] = [:]
         for set in WordSet.regularSets {
-            let setSnapshot = progressTracker.snapshot(for: set)
+            let setSnapshot = progressTracker.snapshot(for: set, category: nil)
             for word in collected where sources[word.id] == set {
                 mergedSnapshot[word.id] = setSnapshot[word.id]
             }
@@ -182,18 +192,23 @@ final class QuizViewModel: ObservableObject {
         selectedOption = option
         isAnswered = true
         total += 1
-        
+
         let correct = option.id == word.id
-        progressTracker.recordAnswer(wordID: word.id, in: source, isCorrect: correct)
-        
+        progressTracker.recordAnswer(wordID: word.id, in: source, category: category, mode: .multipleChoice, isCorrect: correct)
+
         if correct {
             score += 1
             FeedbackManager.playCorrect()
         } else {
             FeedbackManager.playIncorrect()
         }
+
+        let unlocked = achievementsManager.checkAndUnlockAchievements(progressTracker: progressTracker)
+        if let first = unlocked.first {
+            newlyUnlockedAchievement = first
+        }
     }
-    
+
     func restartSession() {
         score = 0
         total = 0

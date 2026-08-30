@@ -17,6 +17,7 @@ final class WordProgressEntity: NSManagedObject {
     @NSManaged var timesIncorrect: Int32
     @NSManaged var lastReviewed: Date?
     @NSManaged var dateAdded: Date
+    @NSManaged var modeRaw: String
 }
 
 extension WordProgressEntity {
@@ -63,17 +64,14 @@ extension WordProgressEntity {
         dateAdded.attributeType = .dateAttributeType
         dateAdded.isOptional = false
 
-        entity.properties = [
-            wordSetRaw,
-            wordID,
-            isFavorite,
-            timesCorrect,
-            timesIncorrect,
-            lastReviewed,
-            dateAdded
-        ]
+        let modeRaw = NSAttributeDescription()
+        modeRaw.name = "modeRaw"
+        modeRaw.attributeType = .stringAttributeType
+        modeRaw.isOptional = false
+        modeRaw.defaultValue = QuizMode.multipleChoice.rawValue
 
-        entity.uniquenessConstraints = [["wordSetRaw", "wordID"]]
+        entity.properties = [wordSetRaw, wordID, isFavorite, timesCorrect, timesIncorrect, lastReviewed, dateAdded, modeRaw]
+        entity.uniquenessConstraints = [["wordSetRaw", "wordID", "modeRaw"]]
 
         return entity
     }

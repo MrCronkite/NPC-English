@@ -12,6 +12,7 @@ struct TypingCategoryPickerView: View {
     let favoritesManager: FavoritesManaging
     let statsManager: StatsManaging
     let progressTracker: WordProgressTracking
+    let achievementsManager: AchievementsManaging
 
     @Environment(\.dismiss) private var dismiss
 
@@ -32,7 +33,14 @@ struct TypingCategoryPickerView: View {
                 VStack(spacing: 12) {
                     ForEach(availableCategories) { category in
                         NavigationLink {
-                            TypingQuizView(wordSet: wordSet, category: category, favoritesManager: favoritesManager, statsManager: statsManager, progressTracker: progressTracker)
+                            TypingQuizView(
+                                wordSet: wordSet,
+                                category: category,
+                                favoritesManager: favoritesManager,
+                                statsManager: statsManager,
+                                progressTracker: progressTracker,
+                                achievementsManager: achievementsManager
+                            )
                         } label: {
                             categoryRow(category)
                         }
