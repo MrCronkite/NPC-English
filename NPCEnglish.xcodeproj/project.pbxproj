@@ -71,6 +71,14 @@
 				Models/Word.swift,
 				Models/WordCategory.swift,
 				Models/WordSet.swift,
+				Services/Notification/StreakNotificationManager.swift,
+				Services/Stats/CoreDataStatsManager.swift,
+				Services/Storage/CoreDataRep/CoreDataRepository.swift,
+				Services/Storage/CoreDataRep/CoreDataStack.swift,
+				Services/Storage/Entity/AppStatsEntity.swift,
+				Services/Storage/Entity/DailyStatEntity.swift,
+				Services/Storage/Entity/UnlockedAchievementEntity.swift,
+				Services/Storage/Entity/WordProgressEntity.swift,
 			);
 			target = 84AA9B8E301FA46F00550B74 /* NPCEnglishWidgetExtension */;
 		};
