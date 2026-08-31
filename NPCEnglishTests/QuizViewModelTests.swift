@@ -11,14 +11,26 @@ import XCTest
 @MainActor
 final class QuizViewModelTests: XCTestCase {
 
-    func testInitLoadsWordsAndGeneratesFourOptions() {
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
+    private func makeSUT(
+        wordSet: WordSet = .a1Words,
+        favoritesManager: FavoritesManaging = MockFavoritesManager(),
+        statsManager: StatsManaging = MockStatsManager(),
+        speechManager: SpeechSynthesizing = MockSpeechManager(),
+        progressTracker: WordProgressTracking = MockProgressManager(),
+        achievementsManager: AchievementsManaging = MockAchievementsManager()
+    ) -> QuizViewModel {
+        QuizViewModel(
+            wordSet: wordSet,
+            favoritesManager: favoritesManager,
+            statsManager: statsManager,
+            speechManager: speechManager,
+            progressTracker: progressTracker,
+            achievementsManager: achievementsManager
         )
+    }
+
+    func testInitLoadsWordsAndGeneratesFourOptions() {
+        let sut = makeSUT()
 
         XCTAssertNotNil(sut.currentWord)
         XCTAssertEqual(sut.options.count, 4)
@@ -26,13 +38,7 @@ final class QuizViewModelTests: XCTestCase {
     }
 
     func testSelectCorrectOptionIncrementsScore() {
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
             XCTFail("Правильный вариант должен быть среди options")
@@ -48,13 +54,7 @@ final class QuizViewModelTests: XCTestCase {
     }
 
     func testSelectWrongOptionDoesNotIncrementScore() {
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         guard let wrongOption = sut.options.first(where: { $0.id != sut.currentWord?.id }) else {
             XCTFail("Должен быть хотя бы один неверный вариант")
@@ -69,35 +69,21 @@ final class QuizViewModelTests: XCTestCase {
     }
 
     func testSecondSelectAfterAnswerIsIgnored() {
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         let firstOption = sut.options[0]
         let secondOption = sut.options[1]
 
         sut.select(firstOption)
-        sut.select(secondOption) 
+        sut.select(secondOption)
 
-        XCTAssertEqual(sut.total, 1, "guard !isAnswered должен блокировать повторный выбор")
+        XCTAssertEqual(sut.total, 1)
     }
 
     func testSessionFinishesAfterPlannedQuestions() {
-        // sessionLength читается из @AppStorage("sessionLength"), по умолчанию 10.
-        // Явно фиксируем значение, чтобы тест не зависел от состояния UserDefaults.
         UserDefaults.standard.set(3, forKey: "sessionLength")
 
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: MockFavoritesManager(),
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT()
 
         for _ in 0..<3 {
             guard let option = sut.options.first else { break }
@@ -110,13 +96,7 @@ final class QuizViewModelTests: XCTestCase {
 
     func testToggleFavoriteUpdatesIsCurrentFavorite() {
         let favoritesManager = MockFavoritesManager()
-        let sut = QuizViewModel(
-            wordSet: .a1Words,
-            favoritesManager: favoritesManager,
-            statsManager: MockStatsManager(),
-            speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
-        )
+        let sut = makeSUT(favoritesManager: favoritesManager)
 
         XCTAssertFalse(sut.isCurrentFavorite)
 
@@ -143,10 +123,67 @@ final class QuizViewModelTests: XCTestCase {
             favoritesManager: favoritesManager,
             statsManager: MockStatsManager(),
             speechManager: MockSpeechManager(),
-            progressTracker: MockProgressManager()
+            progressTracker: MockProgressManager(),
+            achievementsManager: MockAchievementsManager()
         )
 
         XCTAssertEqual(sut.allWords.count, 4)
         XCTAssertTrue(sut.allWords.allSatisfy { favoritedIDs.contains($0.id) })
+    }
+
+    // MARK: - Достижения (новое)
+
+    func testSelectRecordsAnswerWithMultipleChoiceMode() {
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+            XCTFail("Правильный вариант должен быть среди options")
+            return
+        }
+
+        sut.select(correctOption)
+
+        XCTAssertEqual(progressTracker.totalLearnedWordsCount(mode: .multipleChoice), 1)
+        XCTAssertEqual(progressTracker.totalLearnedWordsCount(mode: .typing), 0)
+    }
+
+    func testSelectTriggersAchievementCheck() {
+        let progressTracker = MockProgressManager()
+        let achievementsManager = MockAchievementsManager()
+
+        // Заранее доводим прогресс до 99 слов — следующий правильный ответ должен разблокировать 100-е
+        let allWords = WordsLoader.loadWords(for: .a1Words)
+        for word in allWords.prefix(99) {
+            progressTracker.markLearned(wordID: word.id, in: .a1Words, mode: .multipleChoice)
+        }
+
+        let sut = makeSUT(progressTracker: progressTracker, achievementsManager: achievementsManager)
+
+        guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+            XCTFail("Правильный вариант должен быть среди options")
+            return
+        }
+
+        sut.select(correctOption)
+
+        // Если выбранное слово ещё не было в первых 99 — это как раз 100-е уникальное слово
+        if progressTracker.totalLearnedWordsCount(mode: .multipleChoice) >= 100 {
+            XCTAssertNotNil(sut.newlyUnlockedAchievement)
+            XCTAssertEqual(sut.newlyUnlockedAchievement?.id, "quiz_100_words")
+        }
+    }
+
+    func testNoAchievementUnlockedWhenTargetNotReached() {
+        let sut = makeSUT()
+
+        guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+            XCTFail("Правильный вариант должен быть среди options")
+            return
+        }
+
+        sut.select(correctOption)
+
+        XCTAssertNil(sut.newlyUnlockedAchievement)
     }
 }
