@@ -96,4 +96,32 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_100_words" })
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_500_words" })
     }
+
+    func testQuizPerfectSessionAchievementUnlocks() {
+        progressTracker.recordPerfectSession(mode: .multipleChoice)
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+
+        XCTAssertTrue(unlocked.contains { $0.id == "quiz_perfect_session" })
+        XCTAssertTrue(sut.isUnlocked("quiz_perfect_session"))
+    }
+
+    func testTypingPerfectSessionAchievementUnlocks() {
+        progressTracker.recordPerfectSession(mode: .typing)
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+
+        XCTAssertTrue(unlocked.contains { $0.id == "typing_perfect_session" })
+        XCTAssertTrue(sut.isUnlocked("typing_perfect_session"))
+    }
+
+    func testPerfectSessionAchievementsAreIndependentByMode() {
+        progressTracker.recordPerfectSession(mode: .multipleChoice)
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+
+        XCTAssertTrue(unlocked.contains { $0.id == "quiz_perfect_session" })
+        XCTAssertFalse(unlocked.contains { $0.id == "typing_perfect_session" })
+        XCTAssertFalse(sut.isUnlocked("typing_perfect_session"))
+    }
 }

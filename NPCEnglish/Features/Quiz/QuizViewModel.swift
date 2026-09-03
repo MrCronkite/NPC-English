@@ -159,6 +159,15 @@ final class QuizViewModel: ObservableObject {
         if total >= plannedQuestions {
             if !isSessionFinished {
                 statsManager.recordSessionCompleted(score: score, total: total)
+
+                if score == total && total > 0 {
+                    progressTracker.recordPerfectSession(mode: .multipleChoice)
+                }
+
+                let unlocked = achievementsManager.checkAndUnlockAchievements(progressTracker: progressTracker)
+                if let first = unlocked.first {
+                    newlyUnlockedAchievement = first
+                }
             }
             isSessionFinished = true
             return

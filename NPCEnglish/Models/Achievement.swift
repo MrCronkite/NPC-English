@@ -106,6 +106,26 @@ enum AchievementCatalog {
                 category: nil,
                 mode: .typing
             ) ? 1 : 0
-        }
+        },
+
+        Achievement(
+            id: "quiz_perfect_session",
+            mode: .multipleChoice,
+            title: "100% в сессии",
+            iconName: "achievement_quiz_perfect",
+            targetProgress: 1
+        ) { tracker in
+            tracker.hasPerfectSession(mode: .multipleChoice) ? 1 : 0
+        },
+
+        Achievement(
+            id: "typing_perfect_session",
+            mode: .typing,
+            title: "100% в сессии",
+            iconName: "achievement_typing_perfect",
+            targetProgress: 1
+        ) { tracker in
+            tracker.hasPerfectSession(mode: .typing) ? 1 : 0
+        },
     ]
 }

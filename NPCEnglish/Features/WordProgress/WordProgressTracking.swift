@@ -10,14 +10,15 @@ import Foundation
 protocol WordProgressTracking {
     func snapshot(for wordSet: WordSet, category: WordCategory?) -> [Int: WordProgressSnapshot]
     func recordAnswer(wordID: Int, in wordSet: WordSet, category: WordCategory?, mode: QuizMode, isCorrect: Bool)
-
-    /// Общее количество уникальных слов с хотя бы одним правильным ответом,
-    /// в конкретном режиме, по всем наборам сразу — нужно для достижений вида "N слов выучено".
     func totalLearnedWordsCount(mode: QuizMode) -> Int
-
-    /// Проверяет, все ли слова в указанном наборе имеют хотя бы один правильный ответ
-    /// в данном режиме — нужно для достижений вида "весь набор пройден".
     func isWordSetFullyLearned(_ words: [Word], wordSet: WordSet, category: WordCategory?, mode: QuizMode) -> Bool
+
+    /// Отмечает, что сессия была пройдена со 100% точностью в данном режиме — вызывается
+    /// один раз при завершении идеальной сессии.
+    func recordPerfectSession(mode: QuizMode)
+
+    /// Была ли хотя бы одна идеальная сессия когда-либо в данном режиме.
+    func hasPerfectSession(mode: QuizMode) -> Bool
 }
 
 struct WordProgressSnapshot {
@@ -29,6 +30,7 @@ struct WordProgressSnapshot {
 final class MockProgressManager: WordProgressTracking {
     private var records: [String: WordProgressSnapshot] = [:]
     private(set) var recordAnswerCallCount = 0
+    private var perfectSessions: Set<QuizMode> = []
 
     // Для totalLearnedWordsCount / isWordSetFullyLearned
     private var learnedWordIDs: [QuizMode: Set<String>] = [.multipleChoice: [], .typing: []]
@@ -86,5 +88,13 @@ final class MockProgressManager: WordProgressTracking {
         let base = category.map { "\(wordSet.rawValue)_\($0.rawValue)" } ?? wordSet.rawValue
         guard let wordID else { return "\(base):" }
         return "\(base):\(wordID)"
+    }
+    
+    func recordPerfectSession(mode: QuizMode) {
+        perfectSessions.insert(mode)
+    }
+    
+    func hasPerfectSession(mode: QuizMode) -> Bool {
+        perfectSessions.contains(mode)
     }
 }

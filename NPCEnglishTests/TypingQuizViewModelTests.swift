@@ -11,6 +11,11 @@ import XCTest
 @MainActor
 final class TypingQuizViewModelTests: XCTestCase {
 
+    override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "sessionLength")
+        super.tearDown()
+    }
+
     private func makeSUT(
         wordSet: WordSet = .a1Words,
         favoritesManager: FavoritesManaging = MockFavoritesManager(),
@@ -179,5 +184,53 @@ final class TypingQuizViewModelTests: XCTestCase {
         sut.submitAnswer()
 
         XCTAssertNil(sut.newlyUnlockedAchievement)
+    }
+
+    func testPerfectSessionRecordsFlagOnCompletion() {
+        UserDefaults.standard.set(2, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+        sut.nextQuestion()
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+        sut.nextQuestion()
+
+        XCTAssertTrue(progressTracker.hasPerfectSession(mode: .typing))
+    }
+
+    func testImperfectSessionDoesNotRecordFlag() {
+        UserDefaults.standard.set(2, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+        sut.nextQuestion()
+
+        sut.revealAnswer() // засчитывается как неверный
+        sut.nextQuestion()
+
+        XCTAssertFalse(progressTracker.hasPerfectSession(mode: .typing))
+    }
+
+    func testPerfectSessionUnlocksAchievement() {
+        UserDefaults.standard.set(1, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let achievementsManager = MockAchievementsManager()
+        let sut = makeSUT(progressTracker: progressTracker, achievementsManager: achievementsManager)
+
+        sut.userInput = sut.correctAnswerText
+        sut.submitAnswer()
+        sut.nextQuestion()
+
+        XCTAssertTrue(sut.isSessionFinished)
+        XCTAssertEqual(sut.newlyUnlockedAchievement?.id, "typing_perfect_session")
     }
 }

@@ -11,6 +11,11 @@ import XCTest
 @MainActor
 final class QuizViewModelTests: XCTestCase {
 
+    override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "sessionLength")
+        super.tearDown()
+    }
+    
     private func makeSUT(
         wordSet: WordSet = .a1Words,
         favoritesManager: FavoritesManaging = MockFavoritesManager(),
@@ -185,5 +190,66 @@ final class QuizViewModelTests: XCTestCase {
         sut.select(correctOption)
 
         XCTAssertNil(sut.newlyUnlockedAchievement)
+    }
+
+    func testPerfectSessionRecordsFlagOnCompletion() {
+        UserDefaults.standard.set(3, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        for _ in 0..<3 {
+            guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+                XCTFail("Правильный вариант должен быть среди options")
+                return
+            }
+            sut.select(correctOption)
+            sut.nextQuestion()
+        }
+
+        XCTAssertTrue(progressTracker.hasPerfectSession(mode: .multipleChoice))
+    }
+
+    func testImperfectSessionDoesNotRecordFlag() {
+        UserDefaults.standard.set(2, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let sut = makeSUT(progressTracker: progressTracker)
+
+        // Первый ответ верный
+        guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+            XCTFail("Правильный вариант должен быть среди options")
+            return
+        }
+        sut.select(correctOption)
+        sut.nextQuestion()
+
+        // Второй ответ неверный
+        guard let wrongOption = sut.options.first(where: { $0.id != sut.currentWord?.id }) else {
+            XCTFail("Должен быть хотя бы один неверный вариант")
+            return
+        }
+        sut.select(wrongOption)
+        sut.nextQuestion()
+
+        XCTAssertFalse(progressTracker.hasPerfectSession(mode: .multipleChoice))
+    }
+
+    func testPerfectSessionUnlocksAchievement() {
+        UserDefaults.standard.set(1, forKey: "sessionLength")
+
+        let progressTracker = MockProgressManager()
+        let achievementsManager = MockAchievementsManager()
+        let sut = makeSUT(progressTracker: progressTracker, achievementsManager: achievementsManager)
+
+        guard let correctOption = sut.options.first(where: { $0.id == sut.currentWord?.id }) else {
+            XCTFail("Правильный вариант должен быть среди options")
+            return
+        }
+        sut.select(correctOption)
+        sut.nextQuestion()
+
+        XCTAssertTrue(sut.isSessionFinished)
+        XCTAssertEqual(sut.newlyUnlockedAchievement?.id, "quiz_perfect_session")
     }
 }
