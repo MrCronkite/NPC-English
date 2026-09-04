@@ -29,6 +29,13 @@ struct AchievementsView: View {
             .scaledToFill()
     }
 
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
+    }
+
     var body: some View {
         ZStack {
             backgroundImage
@@ -99,7 +106,7 @@ struct AchievementsView: View {
 
                 if isUnlocked {
                     if let date = achievementsManager.unlockedDate(for: achievement.id) {
-                        Text("Получено \(date.formatted(date: .abbreviated, time: .omitted))")
+                        Text("Получено \(formattedDate(date))")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }

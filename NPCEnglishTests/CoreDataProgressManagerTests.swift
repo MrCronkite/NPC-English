@@ -19,11 +19,13 @@ final class CoreDataProgressManagerTests: XCTestCase {
     }
 
     override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "hasPerfectSession_multipleChoice")
+        UserDefaults.standard.removeObject(forKey: "hasPerfectSession_typing")
         stack = nil
         sut = nil
         super.tearDown()
     }
-
+    
     func testRecordAnswerCreatesEntityOnFirstCall() {
         sut.recordAnswer(wordID: 1, in: .a1Words, category: nil, mode: .multipleChoice, isCorrect: true)
 
@@ -140,5 +142,30 @@ final class CoreDataProgressManagerTests: XCTestCase {
 
         XCTAssertTrue(sut.isWordSetFullyLearned(words, wordSet: .a1Words, category: nil, mode: .multipleChoice))
         XCTAssertFalse(sut.isWordSetFullyLearned(words, wordSet: .a1Words, category: nil, mode: .typing))
+    }
+
+    func testHasPerfectSessionFalseInitially() {
+        XCTAssertFalse(sut.hasPerfectSession(mode: .multipleChoice))
+        XCTAssertFalse(sut.hasPerfectSession(mode: .typing))
+    }
+
+    func testRecordPerfectSessionSetsFlag() {
+        sut.recordPerfectSession(mode: .multipleChoice)
+
+        XCTAssertTrue(sut.hasPerfectSession(mode: .multipleChoice))
+    }
+
+    func testPerfectSessionModesAreIndependent() {
+        sut.recordPerfectSession(mode: .multipleChoice)
+
+        XCTAssertTrue(sut.hasPerfectSession(mode: .multipleChoice))
+        XCTAssertFalse(sut.hasPerfectSession(mode: .typing))
+    }
+
+    func testRecordPerfectSessionIsIdempotent() {
+        sut.recordPerfectSession(mode: .multipleChoice)
+        sut.recordPerfectSession(mode: .multipleChoice)
+
+        XCTAssertTrue(sut.hasPerfectSession(mode: .multipleChoice))
     }
 }

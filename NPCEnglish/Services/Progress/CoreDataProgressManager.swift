@@ -94,4 +94,16 @@ final class CoreDataProgressManager: WordProgressTracking {
         }
         return wordSet.rawValue
     }
+    
+    func recordPerfectSession(mode: QuizMode) {
+        UserDefaults.standard.set(true, forKey: perfectSessionKey(for: mode))
+    }
+    
+    func hasPerfectSession(mode: QuizMode) -> Bool {
+        UserDefaults.standard.bool(forKey: perfectSessionKey(for: mode))
+    }
+    
+    private func perfectSessionKey(for mode: QuizMode) -> String {
+        "hasPerfectSession_\(mode.rawValue)"
+    }
 }

@@ -18,6 +18,38 @@ struct StartView: View {
 
     @State private var selectedMode: QuizMode = .multipleChoice
 
+    private var recentUnlockedAchievements: [Achievement] {
+        AchievementCatalog.all
+            .filter { achievementsManager.isUnlocked($0.id) }
+            .sorted { achievementsManager.unlockedDate(for: $0.id) ?? .distantPast > achievementsManager.unlockedDate(for: $1.id) ?? .distantPast }
+            .prefix(5)
+            .map { $0 }
+    }
+
+    private var achievementsMiniPreview: some View {
+        HStack(spacing: 6) {
+            ForEach(recentUnlockedAchievements) { achievement in
+                Image(achievement.iconName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
+
+            if recentUnlockedAchievements.count < AchievementCatalog.all.count {
+                Spacer()
+
+                Text("+\(AchievementCatalog.all.count - recentUnlockedAchievements.count)")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.secondary)
+            } else {
+                Spacer()
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 14)
+        .padding(.top, 4)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -60,7 +92,11 @@ struct StartView: View {
                                 title: "Достижения",
                                 subtitle: "Твой прогресс и награды"
                             )
-                            }
+                        }
+
+                        if !recentUnlockedAchievements.isEmpty {
+                            achievementsMiniPreview
+                        }
                     }
                     .background(Color(.secondarySystemGroupedBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 18))

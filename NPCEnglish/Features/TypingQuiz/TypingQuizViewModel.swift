@@ -86,15 +86,24 @@ final class TypingQuizViewModel: ObservableObject {
             currentWord = nil
             return
         }
-
+        
         if total >= plannedQuestions {
             if !isSessionFinished {
                 statsManager.recordSessionCompleted(score: score, total: total)
+                
+                if score == total && total > 0 {
+                    progressTracker.recordPerfectSession(mode: .typing)
+                }
+                
+                let unlocked = achievementsManager.checkAndUnlockAchievements(progressTracker: progressTracker)
+                if let first = unlocked.first {
+                    newlyUnlockedAchievement = first
+                }
             }
             isSessionFinished = true
             return
         }
-
+        
         userInput = ""
         isAnswered = false
         wasCorrect = false
