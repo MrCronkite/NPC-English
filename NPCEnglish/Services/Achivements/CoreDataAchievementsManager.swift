@@ -9,27 +9,29 @@ import Foundation
 import CoreData
 
 protocol AchievementsManaging {
-    /// Проверяет весь каталог достижений против текущего прогресса, разблокирует новые.
-    /// Возвращает список только что разблокированных достижений (для показа алерта).
     @discardableResult
-    func checkAndUnlockAchievements(progressTracker: WordProgressTracking) -> [Achievement]
+    func checkAndUnlockAchievements(
+        progressTracker: WordProgressTracking,
+        statsManager: StatsManaging
+    ) -> [Achievement]
 
     func isUnlocked(_ achievementID: String) -> Bool
     func unlockedDate(for achievementID: String) -> Date?
 }
 
 final class CoreDataAchievementsManager: AchievementsManaging {
+
     private let repository: GenericCoreDataRepository<UnlockedAchievementEntity>
 
     init(context: NSManagedObjectContext) {
         self.repository = GenericCoreDataRepository(context: context, entityName: "UnlockedAchievementEntity")
     }
 
-    func checkAndUnlockAchievements(progressTracker: WordProgressTracking) -> [Achievement] {
+    func checkAndUnlockAchievements(progressTracker: WordProgressTracking, statsManager: StatsManaging) -> [Achievement] {
         var newlyUnlocked: [Achievement] = []
 
         for achievement in AchievementCatalog.all where !isUnlocked(achievement.id) {
-            let progress = achievement.currentProgress(progressTracker)
+            let progress = achievement.currentProgress(progressTracker, statsManager)
             if progress >= achievement.targetProgress {
                 unlock(achievement.id)
                 newlyUnlocked.append(achievement)
@@ -66,10 +68,10 @@ final class CoreDataAchievementsManager: AchievementsManaging {
 final class MockAchievementsManager: AchievementsManaging {
     private var unlocked: [String: Date] = [:]
 
-    func checkAndUnlockAchievements(progressTracker: WordProgressTracking) -> [Achievement] {
+    func checkAndUnlockAchievements(progressTracker: WordProgressTracking, statsManager: StatsManaging) -> [Achievement] {
         var newlyUnlocked: [Achievement] = []
         for achievement in AchievementCatalog.all where unlocked[achievement.id] == nil {
-            let progress = achievement.currentProgress(progressTracker)
+            let progress = achievement.currentProgress(progressTracker, statsManager)
             if progress >= achievement.targetProgress {
                 unlocked[achievement.id] = Date()
                 newlyUnlocked.append(achievement)
@@ -78,11 +80,6 @@ final class MockAchievementsManager: AchievementsManaging {
         return newlyUnlocked
     }
 
-    func isUnlocked(_ achievementID: String) -> Bool {
-        unlocked[achievementID] != nil
-    }
-
-    func unlockedDate(for achievementID: String) -> Date? {
-        unlocked[achievementID]
-    }
+    func isUnlocked(_ achievementID: String) -> Bool { unlocked[achievementID] != nil }
+    func unlockedDate(for achievementID: String) -> Date? { unlocked[achievementID] }
 }

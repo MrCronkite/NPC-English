@@ -12,8 +12,15 @@ import SwiftUI
 struct AchievementsView: View {
     let achievementsManager: AchievementsManaging
     let progressTracker: WordProgressTracking
+    let statsManager: StatsManaging
 
     @Environment(\.colorScheme) private var colorScheme
+
+    private var backgroundImage: some View {
+        Image(colorScheme == .dark ? "achievements_background_dark" : "achievements_background_light")
+            .resizable()
+            .scaledToFill()
+    }
 
     private var quizAchievements: [Achievement] {
         AchievementCatalog.all.filter { $0.mode == .multipleChoice }
@@ -23,10 +30,8 @@ struct AchievementsView: View {
         AchievementCatalog.all.filter { $0.mode == .typing }
     }
 
-    private var backgroundImage: some View {
-        Image(colorScheme == .dark ? "achievements_background_dark" : "achievements_background_light")
-            .resizable()
-            .scaledToFill()
+    private var generalAchievements: [Achievement] {
+        AchievementCatalog.all.filter { $0.mode == nil }
     }
 
     private func formattedDate(_ date: Date) -> String {
@@ -47,6 +52,7 @@ struct AchievementsView: View {
 
             ScrollView {
                     VStack(spacing: 24) {
+                        section(title: "Общие", achievements: generalAchievements)
                         section(title: "Квиз", achievements: quizAchievements)
                         section(title: "Напиши перевод", achievements: typingAchievements)
                     }
@@ -91,7 +97,7 @@ struct AchievementsView: View {
 
     private func achievementRow(_ achievement: Achievement) -> some View {
         let isUnlocked = achievementsManager.isUnlocked(achievement.id)
-        let progress = min(achievement.currentProgress(progressTracker), achievement.targetProgress)
+        let progress = min(achievement.currentProgress(progressTracker, statsManager), achievement.targetProgress)
 
         return HStack(spacing: 16) {
             Image(isUnlocked ? achievement.iconName : "achievement_locked")
@@ -150,6 +156,7 @@ struct AchievementsView: View {
 #Preview {
     AchievementsView(
         achievementsManager: MockAchievementsManager(),
-        progressTracker: MockProgressManager()
+        progressTracker: MockProgressManager(),
+        statsManager: MockStatsManager()
     )
 }

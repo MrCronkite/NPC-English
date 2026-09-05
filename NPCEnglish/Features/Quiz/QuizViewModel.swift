@@ -164,7 +164,11 @@ final class QuizViewModel: ObservableObject {
                     progressTracker.recordPerfectSession(mode: .multipleChoice)
                 }
 
-                let unlocked = achievementsManager.checkAndUnlockAchievements(progressTracker: progressTracker)
+                let unlocked = achievementsManager.checkAndUnlockAchievements(
+                    progressTracker: progressTracker,
+                    statsManager: statsManager
+                )
+
                 if let first = unlocked.first {
                     newlyUnlockedAchievement = first
                 }
@@ -212,7 +216,11 @@ final class QuizViewModel: ObservableObject {
             FeedbackManager.playIncorrect()
         }
 
-        let unlocked = achievementsManager.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = achievementsManager.checkAndUnlockAchievements(
+            progressTracker: progressTracker,
+            statsManager: statsManager
+        )
+        
         if let first = unlocked.first {
             newlyUnlockedAchievement = first
         }
