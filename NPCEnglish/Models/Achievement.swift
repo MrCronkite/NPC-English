@@ -9,13 +9,14 @@ import Foundation
 
 struct Achievement: Identifiable {
     let id: String
-    let mode: QuizMode
+    let mode: QuizMode?
     let title: String
-    let iconName: String  // placeholder — заменишь на кастомные иконки позже
+    let iconName: String
     let targetProgress: Int
 
-    /// Проверяет текущий прогресс к достижению (0...targetProgress)
-    let currentProgress: (WordProgressTracking) -> Int
+    let currentProgress: (WordProgressTracking, StatsManaging) -> Int
+
+    var lockedIconName: String { "achievement_locked" }
 }
 
 enum AchievementCatalog {
@@ -27,7 +28,7 @@ enum AchievementCatalog {
             title: "100 слов выучено",
             iconName: "quiz_100_words",
             targetProgress: 100
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
         },
 
@@ -37,7 +38,7 @@ enum AchievementCatalog {
             title: "500 слов выучено",
             iconName: "quiz_500_words",
             targetProgress: 500
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
         },
 
@@ -47,7 +48,7 @@ enum AchievementCatalog {
             title: "1000 слов выучено",
             iconName: "quiz_1000_words",
             targetProgress: 1000
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .multipleChoice)
         },
 
@@ -57,7 +58,7 @@ enum AchievementCatalog {
             title: "Все фразовые глаголы пройдены",
             iconName: "quiz_phrasal_verbs_complete",
             targetProgress: 1
-        ) { tracker in
+        ) { tracker, _ in
             let words = WordsLoader.loadWords(for: .phrasalVerbs)
             return tracker.isWordSetFullyLearned(words, wordSet: .phrasalVerbs, category: nil, mode: .multipleChoice) ? 1 : 0
         },
@@ -69,7 +70,7 @@ enum AchievementCatalog {
             title: "100 слов выучено",
             iconName: "typing_100_words",
             targetProgress: 100
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .typing)
         },
 
@@ -79,7 +80,7 @@ enum AchievementCatalog {
             title: "500 слов выучено",
             iconName: "typing_500_words",
             targetProgress: 500
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .typing)
         },
 
@@ -89,7 +90,7 @@ enum AchievementCatalog {
             title: "1000 слов выучено",
             iconName: "typing_1000_words",
             targetProgress: 1000
-        ) { tracker in
+        ) { tracker, _ in
             tracker.totalLearnedWordsCount(mode: .typing)
         },
 
@@ -99,7 +100,7 @@ enum AchievementCatalog {
             title: "Все фразовые глаголы пройдены",
             iconName: "typing_phrasal_verbs_complete",
             targetProgress: 1
-        ) { tracker in
+        ) { tracker, _ in
             tracker.isWordSetFullyLearned(
                 WordsLoader.loadWords(for: .phrasalVerbs),
                 wordSet: .phrasalVerbs,
@@ -114,7 +115,7 @@ enum AchievementCatalog {
             title: "100% в сессии",
             iconName: "achievement_quiz_perfect",
             targetProgress: 1
-        ) { tracker in
+        ) { tracker, _ in
             tracker.hasPerfectSession(mode: .multipleChoice) ? 1 : 0
         },
 
@@ -124,8 +125,28 @@ enum AchievementCatalog {
             title: "100% в сессии",
             iconName: "achievement_typing_perfect",
             targetProgress: 1
-        ) { tracker in
+        ) { tracker, _ in
             tracker.hasPerfectSession(mode: .typing) ? 1 : 0
         },
+
+        Achievement(
+            id: "streak_7_days",
+            mode: nil,
+            title: "7 дней подряд",
+            iconName: "achievement_streak_7",
+            targetProgress: 7
+        ) { _, statsManager in
+                    statsManager.currentStreak
+        },
+
+        Achievement(
+            id: "streak_30_days",
+            mode: nil,
+            title: "30 дней подряд",
+            iconName: "achievement_streak_30",
+            targetProgress: 30
+        ) { _, statsManager in
+            statsManager.currentStreak
+        }
     ]
 }
