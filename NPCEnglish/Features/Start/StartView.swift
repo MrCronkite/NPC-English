@@ -83,7 +83,8 @@ struct StartView: View {
                         NavigationLink {
                             AchievementsView(
                                 achievementsManager: achievementsManager,
-                                progressTracker: progressTracker
+                                progressTracker: progressTracker,
+                                statsManager: statsManager
                             )
                         } label: {
                             rowContent(

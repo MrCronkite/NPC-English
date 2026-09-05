@@ -13,18 +13,21 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
     private var stack: CoreDataStack!
     private var sut: CoreDataAchievementsManager!
     private var progressTracker: MockProgressManager!
+    private var statsManager: MockStatsManager!
 
     override func setUp() {
         super.setUp()
         stack = CoreDataStack(inMemory: true)
         sut = CoreDataAchievementsManager(context: stack.viewContext)
         progressTracker = MockProgressManager()
+        statsManager = MockStatsManager()
     }
 
     override func tearDown() {
         stack = nil
         sut = nil
         progressTracker = nil
+        statsManager = nil
         super.tearDown()
     }
 
@@ -34,7 +37,7 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
     }
 
     func testCheckAndUnlockReturnsEmptyWhenNoProgressMade() {
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.isEmpty)
     }
@@ -44,7 +47,7 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
             progressTracker.markLearned(wordID: id, in: .a1Words, mode: .multipleChoice)
         }
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_100_words" })
         XCTAssertTrue(sut.isUnlocked("quiz_100_words"))
@@ -56,8 +59,8 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
             progressTracker.markLearned(wordID: id, in: .a1Words, mode: .multipleChoice)
         }
 
-        let firstCheck = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
-        let secondCheck = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let firstCheck = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
+        let secondCheck = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(firstCheck.contains { $0.id == "quiz_100_words" })
         XCTAssertFalse(secondCheck.contains { $0.id == "quiz_100_words" })
@@ -68,7 +71,7 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
             progressTracker.markLearned(wordID: id, in: .a1Words, mode: .multipleChoice)
         }
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_100_words" })
         XCTAssertFalse(unlocked.contains { $0.id == "typing_100_words" })
@@ -81,7 +84,7 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
             progressTracker.markLearned(wordID: word.id, in: .phrasalVerbs, mode: .multipleChoice)
         }
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_phrasal_verbs_complete" })
     }
@@ -91,16 +94,18 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
             progressTracker.markLearned(wordID: id, in: .a1Words, mode: .multipleChoice)
         }
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_100_words" })
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_500_words" })
     }
 
+    // MARK: - Perfect session achievements
+
     func testQuizPerfectSessionAchievementUnlocks() {
         progressTracker.recordPerfectSession(mode: .multipleChoice)
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_perfect_session" })
         XCTAssertTrue(sut.isUnlocked("quiz_perfect_session"))
@@ -109,7 +114,7 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
     func testTypingPerfectSessionAchievementUnlocks() {
         progressTracker.recordPerfectSession(mode: .typing)
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "typing_perfect_session" })
         XCTAssertTrue(sut.isUnlocked("typing_perfect_session"))
@@ -118,10 +123,51 @@ final class CoreDataAchievementsManagerTests: XCTestCase {
     func testPerfectSessionAchievementsAreIndependentByMode() {
         progressTracker.recordPerfectSession(mode: .multipleChoice)
 
-        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker)
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
 
         XCTAssertTrue(unlocked.contains { $0.id == "quiz_perfect_session" })
         XCTAssertFalse(unlocked.contains { $0.id == "typing_perfect_session" })
         XCTAssertFalse(sut.isUnlocked("typing_perfect_session"))
+    }
+
+    // MARK: - Streak achievements (новое)
+
+    func testStreak7DaysUnlocksWhenTargetReached() {
+        statsManager.currentStreak = 7
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
+
+        XCTAssertTrue(unlocked.contains { $0.id == "streak_7_days" })
+        XCTAssertTrue(sut.isUnlocked("streak_7_days"))
+    }
+
+    func testStreak7DaysNotUnlockedBelowTarget() {
+        statsManager.currentStreak = 6
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
+
+        XCTAssertFalse(unlocked.contains { $0.id == "streak_7_days" })
+        XCTAssertFalse(sut.isUnlocked("streak_7_days"))
+    }
+
+    func testStreak30DaysUnlocksAndAlsoUnlocks7DaysAtTheSameTime() {
+        statsManager.currentStreak = 30
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
+
+        // 30-дневный стрик автоматически means, что 7-дневный порог тоже пройден —
+        // оба достижения должны разблокироваться в одной проверке.
+        XCTAssertTrue(unlocked.contains { $0.id == "streak_7_days" })
+        XCTAssertTrue(unlocked.contains { $0.id == "streak_30_days" })
+    }
+
+    func testStreakAchievementDoesNotDependOnWordProgress() {
+        // Стрик не должен смешиваться с прогрессом по словам — проверяем изолированно
+        statsManager.currentStreak = 7
+
+        let unlocked = sut.checkAndUnlockAchievements(progressTracker: progressTracker, statsManager: statsManager)
+
+        XCTAssertTrue(unlocked.contains { $0.id == "streak_7_days" })
+        XCTAssertFalse(unlocked.contains { $0.id == "quiz_100_words" })
     }
 }
