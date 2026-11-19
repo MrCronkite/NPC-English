@@ -212,7 +212,7 @@ struct QuizView: View {
 
     // MARK: - Option row
 
-    private func optionRow(for option: Word) -> some View {
+    private func optionRow(for option: QuizWord) -> some View {
         let isSelected = viewModel.selectedOption?.id == option.id
         let isCorrectOption = option.id == viewModel.currentWord?.id
 

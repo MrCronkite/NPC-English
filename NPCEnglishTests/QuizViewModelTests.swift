@@ -133,7 +133,32 @@ final class QuizViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(sut.allWords.count, 4)
-        XCTAssertTrue(sut.allWords.allSatisfy { favoritedIDs.contains($0.id) })
+        XCTAssertTrue(sut.allWords.allSatisfy { favoritedIDs.contains($0.word.id) })
+    }
+
+    func testFavoritesWithMatchingIDsKeepTheirSourcesSeparate() {
+        let favorites = MockFavoritesManager()
+        for set in [WordSet.a1Words, .a2Words] {
+            for id in [1, 2] { favorites.toggleFavorite(wordID: id, in: set) }
+        }
+        let progress = MockProgressManager()
+        let sut = QuizViewModel(favoritesManager: favorites, statsManager: MockStatsManager(),
+                                speechManager: MockSpeechManager(), progressTracker: progress,
+                                achievementsManager: MockAchievementsManager())
+
+        XCTAssertEqual(Set(sut.options.map(\.id)).count, 4)
+        guard let current = sut.currentWord,
+              let other = sut.options.first(where: { $0.word.id == current.word.id && $0.wordSet != current.wordSet }) else {
+            return XCTFail("Words from both sets should appear as distinct options")
+        }
+        sut.select(other)
+        XCTAssertFalse(sut.isCorrect)
+        let category = current.word.category.flatMap(WordCategory.init(rawValue:))
+        XCTAssertEqual(progress.snapshot(for: current.wordSet, category: category)[current.word.id]?.timesIncorrect, 1)
+        XCTAssertNil(progress.snapshot(for: other.wordSet, category: other.word.category.flatMap(WordCategory.init(rawValue:)))[other.word.id])
+        sut.toggleFavorite()
+        XCTAssertFalse(favorites.isFavorite(wordID: current.word.id, in: current.wordSet))
+        XCTAssertTrue(favorites.isFavorite(wordID: other.word.id, in: other.wordSet))
     }
 
     // MARK: - Достижения (новое)

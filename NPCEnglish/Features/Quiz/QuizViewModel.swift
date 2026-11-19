@@ -9,6 +9,19 @@
 import SwiftUI
 import Combine
 
+struct QuizWord: Identifiable, Equatable {
+    struct ID: Hashable {
+        let wordSet: WordSet
+        let wordID: Int
+    }
+
+    let word: Word
+    let wordSet: WordSet
+    var id: ID { ID(wordSet: wordSet, wordID: word.id) }
+    var english: String { word.english }
+    var translation: String { word.translation }
+}
+
 @MainActor
 final class QuizViewModel: ObservableObject {
     let wordSet: WordSet
@@ -25,16 +38,16 @@ final class QuizViewModel: ObservableObject {
     @AppStorage("sessionLength")
     private var sessionLength: Int = 10
 
-    @Published private(set) var allWords: [Word] = []
-    @Published private(set) var currentWord: Word?
-    @Published private(set) var options: [Word] = []
+    @Published private(set) var allWords: [QuizWord] = []
+    @Published private(set) var currentWord: QuizWord?
+    @Published private(set) var options: [QuizWord] = []
     @Published private(set) var isSessionFinished = false
     @Published private(set) var isCurrentFavorite = false
     @Published private(set) var isCurrentWordReview = false
 
     @Published var newlyUnlockedAchievement: Achievement?
 
-    @Published var selectedOption: Word?
+    @Published var selectedOption: QuizWord?
     @Published var isAnswered = false
 
     @Published var score = 0
@@ -42,9 +55,7 @@ final class QuizViewModel: ObservableObject {
 
     private(set) var plannedQuestions: Int = 0
 
-    private var wordSources: [Int: WordSet] = [:]
-    private var currentWordSource: WordSet?
-    private var progressSnapshot: [Int: WordProgressSnapshot] = [:]
+    private var progressSnapshots: [QuizWord.ID: WordProgressSnapshot] = [:]
 
     private var direction: TranslationDirection {
         TranslationDirection(rawValue: directionRaw) ?? .englishToRussian
@@ -69,12 +80,13 @@ final class QuizViewModel: ObservableObject {
 
         let words = WordsLoader.loadWords(for: wordSet)
         if let category {
-            self.allWords = words.filter { $0.category == category.rawValue }
+            self.allWords = words.filter { $0.category == category.rawValue }.map { QuizWord(word: $0, wordSet: wordSet) }
         } else {
-            self.allWords = words
+            self.allWords = words.map { QuizWord(word: $0, wordSet: wordSet) }
         }
 
-        self.progressSnapshot = progressTracker.snapshot(for: wordSet, category: category)
+        let snapshot = progressTracker.snapshot(for: wordSet, category: category)
+        for entry in allWords { progressSnapshots[entry.id] = snapshot[entry.word.id] }
         self.plannedQuestions = sessionLength
         nextQuestion()
     }
@@ -94,34 +106,19 @@ final class QuizViewModel: ObservableObject {
         self.achievementsManager = achievementsManager
         self.category = nil
 
-        var collected: [Word] = []
-        var sources: [Int: WordSet] = [:]
-
         for set in WordSet.regularSets {
             let ids = Set(favoritesManager.favoriteWordIDs(in: set))
-            guard !ids.isEmpty else { continue }
-            let words = WordsLoader.loadWords(for: set)
-            for word in words where ids.contains(word.id) {
-                collected.append(word)
-                sources[word.id] = set
+            let words = WordsLoader.loadWords(for: set).filter { ids.contains($0.id) }
+            let entries = words.map { QuizWord(word: $0, wordSet: set) }
+            allWords.append(contentsOf: entries)
+            let categories = Set(entries.map { $0.word.category.flatMap(WordCategory.init(rawValue:)) })
+            for category in categories {
+                let snapshot = progressTracker.snapshot(for: set, category: category)
+                for entry in entries where entry.word.category.flatMap(WordCategory.init(rawValue:)) == category {
+                    progressSnapshots[entry.id] = snapshot[entry.word.id]
+                }
             }
         }
-
-        self.allWords = collected
-        self.wordSources = sources
-
-        // В режиме избранного слова из разных наборов — снэпшот собираем по всем сразу,
-        // индексируем по word.id (тут пересечения id между наборами не страшны,
-        // потому что мы не мешаем данные из разных wordSet в одном ключе словаря снаружи —
-        // здесь просто читаем прогресс каждого источника отдельно и сводим в одну карту).
-        var mergedSnapshot: [Int: WordProgressSnapshot] = [:]
-        for set in WordSet.regularSets {
-            let setSnapshot = progressTracker.snapshot(for: set, category: nil)
-            for word in collected where sources[word.id] == set {
-                mergedSnapshot[word.id] = setSnapshot[word.id]
-            }
-        }
-        self.progressSnapshot = mergedSnapshot
 
         self.plannedQuestions = sessionLength
         nextQuestion()
@@ -138,7 +135,7 @@ final class QuizViewModel: ObservableObject {
         direction == .englishToRussian
     }
 
-    func optionText(for word: Word) -> String {
+    func optionText(for word: QuizWord) -> String {
         direction == .englishToRussian
         ? word.translation
         : word.english
@@ -180,17 +177,21 @@ final class QuizViewModel: ObservableObject {
         selectedOption = nil
         isAnswered = false
 
-        let weighted = SpacedRepetitionSelector.weightedWords(from: allWords, snapshot: progressSnapshot)
-        guard let picked = SpacedRepetitionSelector.pickRandom(from: weighted) else {
+        let weighted: [(QuizWord, SpacedRepetitionSelector.WeightedWord)] = allWords.map { entry in
+            var snapshot: [Int: WordProgressSnapshot] = [:]
+            snapshot[entry.word.id] = progressSnapshots[entry.id]
+            let weightedWord = SpacedRepetitionSelector.weightedWords(from: [entry.word], snapshot: snapshot)[0]
+            return (entry, weightedWord)
+        }
+        guard let pickedIndex = SpacedRepetitionSelector.pickRandomIndex(weights: weighted.map { $0.1.weight }) else {
             currentWord = nil
             options = []
             return
         }
 
-        let word = picked.word
+        let (word, weightedWord) = weighted[pickedIndex]
         currentWord = word
-        isCurrentWordReview = picked.isReviewWord
-        currentWordSource = wordSet == .favorites ? wordSources[word.id] : wordSet
+        isCurrentWordReview = weightedWord.isReviewWord
 
         var wrongOptions = allWords.filter { $0.id != word.id }
         wrongOptions.shuffle()
@@ -200,14 +201,14 @@ final class QuizViewModel: ObservableObject {
         refreshFavoriteStatus()
     }
 
-    func select(_ option: Word) {
-        guard !isAnswered, let word = currentWord, let source = currentWordSource else { return }
+    func select(_ option: QuizWord) {
+        guard !isAnswered, let word = currentWord else { return }
         selectedOption = option
         isAnswered = true
         total += 1
 
         let correct = option.id == word.id
-        progressTracker.recordAnswer(wordID: word.id, in: source, category: category, mode: .multipleChoice, isCorrect: correct)
+        progressTracker.recordAnswer(wordID: word.word.id, in: word.wordSet, category: wordSet == .favorites ? word.word.category.flatMap(WordCategory.init(rawValue:)) : category, mode: .multipleChoice, isCorrect: correct)
 
         if correct {
             score += 1
@@ -234,8 +235,8 @@ final class QuizViewModel: ObservableObject {
     }
 
     func toggleFavorite() {
-        guard let word = currentWord, let source = currentWordSource else { return }
-        favoritesManager.toggleFavorite(wordID: word.id, in: source)
+        guard let word = currentWord else { return }
+        favoritesManager.toggleFavorite(wordID: word.word.id, in: word.wordSet)
         refreshFavoriteStatus()
     }
 
@@ -245,10 +246,10 @@ final class QuizViewModel: ObservableObject {
     }
 
     private func refreshFavoriteStatus() {
-        guard let word = currentWord, let source = currentWordSource else {
+        guard let word = currentWord else {
             isCurrentFavorite = false
             return
         }
-        isCurrentFavorite = favoritesManager.isFavorite(wordID: word.id, in: source)
+        isCurrentFavorite = favoritesManager.isFavorite(wordID: word.word.id, in: word.wordSet)
     }
 }

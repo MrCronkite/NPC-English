@@ -34,19 +34,20 @@ enum SpacedRepetitionSelector {
     /// настоящий случайный источник; параметр существует, чтобы тесты могли задать
     /// детерминированное значение и проверить конкретный исход.
     static func pickRandom(from weightedWords: [WeightedWord], randomValue: Double = Double.random(in: 0..<1)) -> WeightedWord? {
-        guard !weightedWords.isEmpty else { return nil }
+        guard let index = pickRandomIndex(weights: weightedWords.map(\.weight), randomValue: randomValue) else { return nil }
+        return weightedWords[index]
+    }
 
-        let totalWeight = weightedWords.reduce(0) { $0 + $1.weight }
-        guard totalWeight > 0 else { return weightedWords.randomElement() }
-
+    static func pickRandomIndex(weights: [Double], randomValue: Double = Double.random(in: 0..<1)) -> Int? {
+        guard !weights.isEmpty else { return nil }
+        let totalWeight = weights.reduce(0, +)
+        guard totalWeight > 0 else { return weights.indices.randomElement() }
         var target = randomValue * totalWeight
-        for weighted in weightedWords {
-            if target < weighted.weight {
-                return weighted
-            }
-            target -= weighted.weight
+        for (index, weight) in weights.enumerated() {
+            if target < weight { return index }
+            target -= weight
         }
-        return weightedWords.last
+        return weights.count - 1
     }
 
     private static func computeWeight(progress: WordProgressSnapshot?, referenceDate: Date) -> Double {
